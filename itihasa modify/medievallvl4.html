@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="result.css">
+    <script src="language.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+    <div id="google_translate_element"></div>
+
+   <div class="quiz-layout">
+
+    <aside class="fact-panel" id="factPanel">
+        <div class="fact-panel-inner">
+            <h3 class="fact-panel-title">Did You Know?</h3>
+            <p class="fact-panel-text" id="factText"></p>
+            <div class="fact-panel-deco">&#10022;</div>
+        </div>
+    </aside>
+
+    <div class="quiz-section">
+    <div id="quiz">
+        <h2 class="question" id="question">quiz question</h2>
+        <hr />
+        <ul>
+            <li><input type="radio" name="answer" class="answer" id="a">
+            <label for="a" id="option_1">quiz option</label></li>
+
+            <li><input type="radio" name="answer" class="answer" id="b">
+            <label for="b" id="option_2">quiz option</label></li>
+
+            <li><input type="radio" name="answer" class="answer" id="c">
+            <label for="c" id="option_3">quiz option</label></li>
+
+            <li><input type="radio" name="answer" class="answer" id="d">
+            <label for="d" id="option_4">quiz option</label></li>
+
+        </ul>
+        <hr>
+        <div class="btn">
+            <button type="submit" id="submit">Submit</button>
+        </div>
+    </div>
+   </div>
+   </div> 
+   <script src="medievallvl4.js"></script>
+</body>
+<button
+    id="tridharaButton"
+    onclick="window.location.href='../tridhara homepage modify/index.html'"
+    style="
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        padding: 10px 18px;
+        background: rgba(6, 21, 43, 0.8);
+        border: 1px solid #d8b75a;
+        color: #d8b75a;
+        font-family: Georgia, serif;
+        font-size: 13px;
+        letter-spacing: 2px;
+        cursor: pointer;
+        z-index: 100;
+    "
+>
+    TRIDHARA
+</button>
+</html>
