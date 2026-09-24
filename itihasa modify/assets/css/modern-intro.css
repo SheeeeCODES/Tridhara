@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* { box-sizing: border-box; }
+
+::-webkit-scrollbar { display: none; }
+
+/* Subtle Ashoka-chakra jali watermark, echoes the ancient/medieval panel textures */
+.modern-panel {
+  border: 1.5px solid rgba(240,165,0,0.85);
+  box-shadow:
+    0 0 0 1px rgba(240,165,0,0.12),
+    inset 0 0 60px rgba(0,0,0,0.6),
+    0 0 40px rgba(240,165,0,0.1),
+    0 0 80px rgba(0,0,0,0.85);
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(240,165,0,0.05) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23F0A500' stroke-width='0.4' opacity='0.06'%3E%3Ccircle cx='32' cy='32' r='16'/%3E%3Ccircle cx='32' cy='32' r='5'/%3E%3Cline x1='32' y1='16' x2='32' y2='48'/%3E%3Cline x1='16' y1='32' x2='48' y2='32'/%3E%3Cline x1='20.7' y1='20.7' x2='43.3' y2='43.3'/%3E%3Cline x1='43.3' y1='20.7' x2='20.7' y2='43.3'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: auto, 64px 64px;
+}

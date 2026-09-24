@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Era</title>
+    <script src="language.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+
+    <link rel="stylesheet" href="medievalera.css">
+    <div>
+        <h1>Medieval India</h1>
+    </div>
+
+    <!-- LEVEL 1 -->
+    <button class="level-button" id="level1">
+        <a href="medievallvl1.html" target="main">🔓 Level 1</a>
+    </button>
+
+    <!-- LEVEL 2 -->
+    <button class="level-button locked" id="level2" disabled>
+        🔒 Level 2
+    </button>
+
+    <!-- LEVEL 3 -->
+    <button class="level-button locked" id="level3" disabled>
+        🔒 Level 3
+    </button>
+
+    <!-- LEVEL 4 -->
+    <button class="level-button locked" id="level4" disabled>
+        🔒 Level 4
+    </button>
+
+    <!-- LEVEL 5 -->
+    <button class="level-button locked" id="level5" disabled>
+        🔒 Level 5
+    </button>
+
+
+    <script>
+
+        // Get all level buttons
+        const level2 = document.querySelector("#level2");
+        const level3 = document.querySelector("#level3");
+        const level4 = document.querySelector("#level4");
+        const level5 = document.querySelector("#level5");
+
+
+        // Function to unlock a level
+        function unlockLevel(levelButton, levelNumber, pageName) {
+    levelButton.disabled = false;
+    levelButton.classList.remove("locked");
+
+    levelButton.innerHTML = `
+        <a href="${pageName}" target="main">
+            🔓 Level ${levelNumber}
+        </a>
+    `;
+}
+       
+
+        // Check Level 2
+        if (localStorage.getItem("medievalLevel2Unlocked") === "true") {
+
+            unlockLevel(level2, 2, "medievallvl2.html");
+
+        }
+
+
+        // Check Level 3
+        if (localStorage.getItem("medievalLevel3Unlocked") === "true") {
+
+            unlockLevel(level3, 3, "medievallvl3.html");
+
+        }
+
+
+        // Check Level 4
+        if (localStorage.getItem("medievalLevel4Unlocked") === "true") {
+
+            unlockLevel(level4, 4, "medievallvl4.html");
+
+        }
+
+
+        // Check Level 5
+        if (localStorage.getItem("medievalLevel5Unlocked") === "true") {
+
+            unlockLevel(level5, 5, "medievallvl5.html");
+
+        }
+
+    </script>
+
+</body>
+<button id="tridharaButton" onclick="window.location.href='../tridhara homepage modify/index.html'">
+    TRIDHARA
+</button>
+</html>

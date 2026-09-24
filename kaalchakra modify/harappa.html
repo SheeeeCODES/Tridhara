@@ -1,0 +1,2832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Harappan Civilization</title>
+
+<style>
+/* ================= LANGUAGE MENU ================= */
+
+.language-menu {
+    position: relative;
+}
+
+.language-button {
+    height: 36px;
+    padding: 0 14px;
+    border: 1px solid #8a6035;
+    border-radius: 5px;
+    background: #1b2945;
+    color: #e6c77a;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.language-dropdown {
+    display: none;
+    position: absolute;
+    top: 44px;
+    right: 0;
+    width: 150px;
+    background: #1b2945;
+    border: 1px solid #8a6035;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 10001;
+}
+
+.language-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.language-dropdown button:hover {
+    background: #2a3b5c;
+    color: #e6c77a;
+}
+
+.language-menu.open .language-dropdown {
+    display: block;
+}
+
+/* Hide Google's original visible widget */
+#google_translate_element {
+    display: none !important;
+}
+
+/* GOOGLE TRANSLATE CLEANUP */
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+.goog-te-balloon-frame,
+#goog-gt-tt {
+    display: none !important;
+}
+
+html {
+    margin-top: 0 !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+.goog-te-gadget {
+    font-family: inherit !important;
+    font-size: 0 !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+    font-size: 14px !important;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #8a6035;
+    background: #1b2945;
+    color: white;
+    cursor: pointer;
+}
+/* GOOGLE TRANSLATE - HIDE TOP BAR */
+
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+#goog-gt-tt,
+.goog-te-spinner-pos,
+.goog-te-menu-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+    position: static !important;
+}
+/* HIDE GOOGLE TRANSLATE TOP BAR */
+
+body > .skiptranslate {
+    display: none !important;
+}
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+}
+
+body {
+    top: 0 !important;
+}
+#tridharaButton {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    padding: 10px 18px;
+    background: rgba(6, 21, 43, 0.8);
+    border: 1px solid #d8b75a;
+    color: #d8b75a;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#tridharaButton:hover {
+    background: rgba(216, 183, 90, 0.15);
+}
+/* =========================================================
+   BASIC RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    
+    margin: 0;
+
+    min-height: 100vh;
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            rgba(8, 13, 24, 0.72),
+            rgba(8, 13, 24, 0.72)
+        ),
+        url("images/harappa-bg.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+}
+
+
+/* =========================================================
+   GLITTER
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.45) 1px,
+            transparent 1px
+        );
+
+    background-size: 90px 90px;
+
+    opacity: 0.22;
+
+    animation: glitterMove 8s linear infinite;
+
+    z-index: -1;
+}
+
+
+@keyframes glitterMove {
+
+    from {
+        transform: translate(0,0);
+    }
+
+    to {
+        transform: translate(45px,45px);
+    }
+}
+
+
+/* =========================================================
+   MAIN GAME
+========================================================= */
+
+.game {
+
+    min-height: 100vh;
+
+    padding: 100px 30px 30px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.game-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.game-header h1 {
+
+    margin: 0;
+
+    font-size: 2.5rem;
+
+    letter-spacing: 8px;
+
+    color: #e6c77a;
+
+    text-shadow:
+        0 0 15px rgba(230,199,122,0.3);
+}
+
+
+.game-header p {
+
+    margin-top: 10px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 5px;
+
+    color: #aaa18f;
+}
+
+
+/* =========================================================
+   THREE COLUMN LAYOUT
+========================================================= */
+
+.game-content {
+
+    display: grid;
+
+    grid-template-columns:
+        220px
+        minmax(480px,1fr)
+        350px;
+
+    gap: 30px;
+
+    min-height: 600px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    padding: 25px;
+
+    border:
+        1px solid
+        rgba(230,199,122,0.4);
+
+    border-radius: 12px;
+
+    background:
+        rgba(3,11,24,0.78);
+
+    box-shadow:
+        0 0 25px rgba(230,199,122,0.05);
+}
+
+
+.sidebar h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 30px;
+
+    text-align: center;
+
+    font-size: 1.1rem;
+
+    letter-spacing: 4px;
+}
+
+
+.stat {
+
+    margin-bottom: 25px;
+
+    text-align: center;
+}
+
+
+.label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 3px;
+
+    color: #aaa18f;
+}
+
+
+.value {
+
+    display: block;
+
+    font-size: 1.4rem;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    color: #e6c77a;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.sidebar button {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 10px;
+
+    border:
+        1px solid
+        rgba(230,199,122,0.5);
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.sidebar button:hover {
+
+    background:
+        rgba(230,199,122,0.12);
+
+    box-shadow:
+        0 0 15px
+        rgba(230,199,122,0.3);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   HINT BUTTON
+========================================================= */
+
+#hintButton {
+
+    margin-top: 20px;
+
+    border-color:
+        rgba(120,200,255,0.5);
+
+    color: #8fdcff;
+}
+
+
+#hintButton:hover {
+
+    background:
+        rgba(100,190,255,0.1);
+
+    box-shadow:
+        0 0 18px
+        rgba(100,200,255,0.35);
+}
+
+
+/* =========================================================
+   PUZZLE AREA
+========================================================= */
+
+.puzzle-area {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 600px;
+
+    padding: 30px;
+
+    border:
+        1px solid
+        rgba(230,199,122,0.4);
+
+    border-radius: 12px;
+
+    background:
+        rgba(3,11,24,0.45);
+
+    box-shadow:
+        inset 0 0 40px
+        rgba(230,199,122,0.03);
+}
+
+
+/* =========================================================
+   PUZZLE BOARD
+========================================================= */
+
+.puzzle-board {
+
+    position: relative;
+
+    width: 480px;
+
+    height: 480px;
+
+    border:
+        2px solid
+        rgba(230,199,122,0.6);
+
+    border-radius: 18px;
+
+    background:
+        rgba(3,11,24,0.9);
+
+    box-shadow:
+        0 0 25px
+        rgba(230,199,122,0.15),
+
+        inset 0 0 40px
+        rgba(230,199,122,0.05);
+
+    overflow: hidden;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    grid-template-rows:
+        repeat(3,1fr);
+
+    gap: 3px;
+
+    padding: 3px;
+}
+
+
+/* =========================================================
+   BOARD HEADER
+========================================================= */
+
+.board-header {
+
+    position: absolute;
+
+    top: 12px;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+.city-title {
+
+    font-size: 16px;
+
+    letter-spacing: 4px;
+}
+
+
+.city-subtitle {
+
+    margin-top: 5px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #aaa18f;
+}
+
+
+/* =========================================================
+   PUZZLE SLOT
+========================================================= */
+
+.puzzle-slot {
+
+    position: relative;
+
+    border:
+        1px dashed
+        rgba(230,199,122,0.35);
+
+    border-radius: 4px;
+
+    background:
+        rgba(230,199,122,0.025);
+
+    transition: 0.3s ease;
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+.puzzle-slot.hint-glow {
+
+    border:
+        2px solid
+        #8fdcff;
+
+    background:
+        rgba(80,190,255,0.16);
+
+    box-shadow:
+
+        0 0 10px
+        rgba(100,210,255,0.8),
+
+        0 0 25px
+        rgba(100,210,255,0.7),
+
+        inset 0 0 20px
+        rgba(100,210,255,0.3);
+
+    animation:
+        hintPulse 1s ease-in-out infinite;
+}
+
+
+.puzzle-piece.hint-glow {
+
+    border:
+        2px solid
+        #8fdcff !important;
+
+    box-shadow:
+
+        0 0 12px
+        rgba(100,210,255,0.9),
+
+        0 0 28px
+        rgba(100,210,255,0.75),
+
+        inset 0 0 15px
+        rgba(100,210,255,0.25);
+
+    animation:
+        hintPiecePulse 1s ease-in-out infinite;
+}
+
+
+@keyframes hintPulse {
+
+    0%,100% {
+
+        box-shadow:
+            0 0 10px
+            rgba(100,210,255,0.5);
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 30px
+            rgba(100,210,255,1);
+    }
+}
+
+
+@keyframes hintPiecePulse {
+
+    0%,100% {
+
+        transform: scale(1);
+
+        box-shadow:
+            0 0 12px
+            rgba(100,210,255,0.5);
+    }
+
+    50% {
+
+        transform: scale(1.07);
+
+        box-shadow:
+            0 0 30px
+            rgba(100,210,255,1);
+    }
+}
+
+
+/* =========================================================
+   FILLED SLOT
+========================================================= */
+
+.puzzle-slot.filled {
+
+    border:
+        2px solid
+        rgba(230,199,122,0.8);
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(230,199,122,0.15);
+}
+
+
+/* =========================================================
+   CENTER MESSAGE
+========================================================= */
+
+.puzzle-message {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width: 80%;
+
+    text-align: center;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+.puzzle-message strong {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 20px;
+
+    letter-spacing: 4px;
+
+    color:
+        rgba(230,199,122,0.35);
+}
+
+
+.puzzle-message span {
+
+    font-family: Arial,sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(170,161,143,0.5);
+}
+
+
+/* =========================================================
+   BOTTOM LABEL
+========================================================= */
+
+.water-label {
+
+    position: absolute;
+
+    bottom: 15px;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-family: Arial,sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color:
+        rgba(150,200,220,0.7);
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PIECES PANEL
+========================================================= */
+
+.pieces-panel {
+
+    padding: 20px;
+
+    border:
+        1px solid
+        rgba(230,199,122,0.4);
+
+    border-radius: 12px;
+
+    background:
+        rgba(3,11,24,0.78);
+
+    min-height: 600px;
+
+    box-shadow:
+        0 0 25px
+        rgba(230,199,122,0.05);
+}
+
+
+.pieces-title {
+
+    text-align: center;
+
+    margin-bottom: 10px;
+
+    font-size: 1rem;
+
+    letter-spacing: 3px;
+}
+
+
+.pieces-subtitle {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    font-family: Arial,sans-serif;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+
+    letter-spacing: 2px;
+
+    color: #aaa18f;
+}
+
+
+.pieces {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,100px);
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   PUZZLE PIECES
+========================================================= */
+
+.puzzle-piece {
+
+    width: 100px;
+
+    height: 100px;
+
+    border:
+        2px solid
+        rgba(230,199,122,0.5);
+
+    border-radius: 8px;
+
+    background-image:
+        url("images/harappa-city.jpg");
+
+    background-repeat: no-repeat;
+
+    background-size:
+        300% 300%;
+
+    cursor: grab;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+    user-select: none;
+}
+
+
+.puzzle-piece:hover {
+
+    transform: scale(1.05);
+
+    border-color:
+        #e6c77a;
+
+    box-shadow:
+        0 0 18px
+        rgba(230,199,122,0.35);
+}
+
+
+.puzzle-piece:active {
+
+    cursor: grabbing;
+
+    transform: scale(1.08);
+}
+
+
+.puzzle-piece.dragging {
+
+    opacity: 0.5;
+}
+
+
+/* =========================================================
+   COMPLETE PICTURE HINT POPUP
+========================================================= */
+
+.complete-picture-hint {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10,6,3,0.88);
+    backdrop-filter: blur(6px);
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+
+.complete-picture-hint.fade-out {
+    opacity: 0;
+}
+
+.complete-picture-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 22px;
+    border: 2px solid rgba(230,199,122,0.7);
+    border-radius: 16px;
+    background: rgba(3,11,24,0.95);
+    box-shadow: 0 0 40px rgba(230,199,122,0.25);
+}
+
+.complete-picture-label {
+    font-family: Georgia, serif;
+    letter-spacing: 3px;
+    font-size: 13px;
+    color: #e6c77a;
+    text-align: center;
+}
+
+.complete-picture-img {
+    width: min(420px, 80vw);
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(230,199,122,0.5);
+    display: block;
+}
+
+
+/* =========================================================
+   INTRO / CONGRATULATIONS OVERLAY
+========================================================= */
+
+.intro-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(3,8,18,0.88);
+
+    backdrop-filter:
+        blur(8px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+}
+
+
+.intro-scroll {
+
+    width: 600px;
+
+    max-width: 90%;
+
+    padding: 45px;
+
+    border:
+        2px solid
+        rgba(230,199,122,0.7);
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171d2c,
+            #0b111e
+        );
+
+    box-shadow:
+
+        0 0 35px
+        rgba(230,199,122,0.25),
+
+        inset 0 0 35px
+        rgba(230,199,122,0.05);
+
+    text-align: center;
+
+    animation:
+        scrollAppear 0.8s ease;
+}
+
+
+@keyframes scrollAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.95);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+.intro-scroll h2 {
+
+    margin-top: 0;
+
+    letter-spacing: 5px;
+
+    color: #e6c77a;
+}
+
+
+.intro-scroll p {
+
+    font-family: Arial,sans-serif;
+
+    color: #c5bfae;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+
+.intro-scroll ul {
+
+    text-align: left;
+
+    font-family: Arial,sans-serif;
+
+    color: #aaa18f;
+
+    line-height: 2;
+
+    margin: 25px auto;
+
+    max-width: 400px;
+}
+
+
+/* =========================================================
+   CONTINUE BUTTON
+========================================================= */
+
+.continue-button {
+
+    padding: 13px 35px;
+
+    border:
+        1px solid
+        #e6c77a;
+
+    border-radius: 6px;
+
+    background:
+        transparent;
+
+    color: #e6c77a;
+
+    font-family: Georgia,serif;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+
+.continue-button:hover {
+
+    background:
+        rgba(230,199,122,0.15);
+
+    box-shadow:
+        0 0 20px
+        rgba(230,199,122,0.35);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   CONGRATULATIONS STATS
+========================================================= */
+
+.congrats-stats {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 35px;
+
+    margin: 25px 0;
+
+    font-family: Arial,sans-serif;
+}
+
+
+.congrats-stat {
+
+    text-align: center;
+}
+
+
+.congrats-stat small {
+
+    display: block;
+
+    color: #aaa18f;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+}
+
+
+.congrats-stat strong {
+
+    font-size: 20px;
+
+    color: #e6c77a;
+}
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    background: rgba(6, 21, 43, 0.96);
+
+    border-bottom:
+        1px solid
+        rgba(230, 199, 122, 0.45);
+
+    box-shadow:
+        0 4px 20px
+        rgba(0, 0, 0, 0.35);
+
+    z-index: 9999;
+
+    transition:
+        transform 0.35s ease;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-left a {
+    color: #e6c77a;
+
+    text-decoration: none;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+}
+
+.navbar .brand {
+    color: #e6c77a;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+}
+
+.language-menu {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.navbar-toggle {
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid #8a6035;
+    border-radius: 5px;
+
+    background: #1b2945;
+    color: #e6c77a;
+
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.navbar.navbar-hidden {
+    transform: translateY(-35px);
+}
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width:1100px) {
+
+    .game-content {
+
+        grid-template-columns:
+            180px 1fr 280px;
+
+        gap: 15px;
+    }
+
+    .puzzle-board {
+
+        width: 420px;
+
+        height: 420px;
+    }
+
+    .pieces {
+
+        grid-template-columns:
+            repeat(3,75px);
+    }
+
+    .puzzle-piece {
+
+        width: 75px;
+
+        height: 75px;
+    }
+}
+
+
+@media (max-width:850px) {
+
+    .game-content {
+
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4,1fr);
+
+        gap: 10px;
+    }
+
+    .sidebar h2 {
+
+        grid-column:
+            1/-1;
+    }
+}
+/* =========================================================
+   NAVBAR
+========================================================= */
+.player-profile-display{
+    display:flex;align-items:center;gap:7px;
+    margin-left:15px;
+    color:#e6c77a;
+    font-family:Georgia,serif;
+    font-size:14px;
+    letter-spacing:1px;
+    white-space:nowrap;
+    pointer-events:none;
+}
+.player-profile-display span:first-child{font-size:18px}
+</style>
+<script src="../tridhara homepage modify/player-profile.js" defer></script>
+<nav class="navbar" id="navbar">
+
+    <div class="nav-left">
+
+        <a href="../tridhara homepage modify/index.html"
+           class="brand notranslate">
+            TRIDHARA
+        </a>
+
+        <a href="../timeline.html"
+           class="notranslate">
+            KAALCHAKRA
+        </a>
+
+    </div>
+
+    <div class="language-menu notranslate" id="languageMenu">
+
+        <button
+            class="language-button notranslate"
+            id="languageButton"
+            type="button"
+        >
+            LANGUAGES ▾
+        </button>
+
+        <div class="language-dropdown notranslate">
+
+            <button type="button" onclick="changeLanguage('en')">
+                English
+            </button>
+
+            <button type="button" onclick="changeLanguage('hi')">
+                हिन्दी
+            </button>
+
+            <button type="button" onclick="changeLanguage('bn')">
+                বাংলা
+            </button>
+
+            <button type="button" onclick="changeLanguage('or')">
+                ଓଡ଼ିଆ
+            </button>
+
+            <button type="button" onclick="changeLanguage('ta')">
+                தமிழ்
+            </button>
+
+            <button type="button" onclick="changeLanguage('te')">
+                తెలుగు
+            </button>
+
+            <button type="button" onclick="changeLanguage('ml')">
+                മലയാളം
+            </button>
+
+            <button type="button" onclick="changeLanguage('mr')">
+                मराठी
+            </button>
+
+            <button type="button" onclick="changeLanguage('gu')">
+                ગુજરાતી
+            </button>
+
+            <button type="button" onclick="changeLanguage('pa')">
+                ਪੰਜਾਬੀ
+            </button>
+
+        </div>
+
+    </div>
+
+    <span class="player-profile-display" aria-label="Student profile" title="Student profile">
+        <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+        <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+    </span>
+
+    <button
+        class="navbar-toggle notranslate"
+        id="navbarToggle"
+        type="button"
+    >
+        ↑
+    </button>
+
+</nav>
+
+
+<!-- =========================================================
+     INTRO OVERLAY
+========================================================= -->
+
+<div
+    class="intro-overlay"
+    id="introOverlay"
+>
+
+    <div class="intro-scroll">
+
+        <h2>
+            BEFORE YOU ENTER HARAPPA
+        </h2>
+
+        <p>
+            The ancient city has been fragmented.
+            Your task is to reconstruct it.
+        </p>
+
+        <ul>
+
+            <li>
+                Drag each city fragment from the right.
+            </li>
+
+            <li>
+                Place it into its correct position.
+            </li>
+
+            <li>
+                Wrong placements cost you a life.
+            </li>
+
+            <li>
+                You have 3 hints to help you.
+            </li>
+
+        </ul>
+
+        <button
+            class="continue-button"
+            id="continueButton"
+        >
+            CONTINUE
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN GAME
+========================================================= -->
+
+<div class="game">
+
+<header class="game-header">
+
+    <h1>
+        HARAPPAN CIVILIZATION
+    </h1>
+
+    <p>
+        RECONSTRUCT THE ANCIENT CITY
+    </p>
+
+</header>
+
+
+<div class="game-content">
+
+
+<!-- =========================================================
+     SCORECARD
+========================================================= -->
+
+<div class="sidebar">
+
+    <h2>
+        SCORECARD
+    </h2>
+
+
+    <div class="stat">
+
+        <span class="label">
+            TIME
+        </span>
+
+        <span
+            class="value"
+            id="time"
+        >
+            00:00
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <span class="label">
+            SCORE
+        </span>
+
+        <span
+            class="value"
+            id="score"
+        >
+            0
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <span class="label">
+            LIVES
+        </span>
+
+        <span
+            class="value"
+            id="lives"
+        >
+            ♥ ♥ ♥
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <span class="label">
+            HINTS
+        </span>
+
+        <span
+            class="value"
+            id="hints"
+        >
+            💡 3
+        </span>
+
+    </div>
+
+
+    <button id="hintButton">
+        USE HINT
+    </button>
+
+
+    <button id="pauseButton">
+        PAUSE
+    </button>
+
+
+    <button id="restartButton">
+        RESTART
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     PUZZLE
+========================================================= -->
+
+<div class="puzzle-area">
+
+    <div
+        class="puzzle-board"
+        id="puzzleBoard"
+    >
+
+        <div class="board-header">
+
+            <div class="city-title">
+                THE LOST CITY
+            </div>
+
+            <div class="city-subtitle">
+                RECONSTRUCT THE REMAINS
+            </div>
+
+        </div>
+
+
+        <div class="puzzle-slot" data-slot="1"></div>
+        <div class="puzzle-slot" data-slot="2"></div>
+        <div class="puzzle-slot" data-slot="3"></div>
+        <div class="puzzle-slot" data-slot="4"></div>
+        <div class="puzzle-slot" data-slot="5"></div>
+        <div class="puzzle-slot" data-slot="6"></div>
+        <div class="puzzle-slot" data-slot="7"></div>
+        <div class="puzzle-slot" data-slot="8"></div>
+        <div class="puzzle-slot" data-slot="9"></div>
+
+
+        <div class="puzzle-message">
+
+            <strong>
+                LOST HARAPPA
+            </strong>
+
+            <span>
+                DRAG THE CITY FRAGMENTS INTO PLACE
+            </span>
+
+        </div>
+
+
+        <div class="water-label">
+            ANCIENT CITY RECONSTRUCTION
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     PIECES
+========================================================= -->
+
+<div class="pieces-panel">
+
+    <div class="pieces-title">
+        CITY FRAGMENTS
+    </div>
+
+    <div class="pieces-subtitle">
+        DRAG EACH FRAGMENT<br>
+        INTO THE CORRECT POSITION
+    </div>
+
+    <div
+        class="pieces"
+        id="pieces"
+    ></div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const piecesContainer =
+    document.getElementById("pieces");
+
+const puzzleSlots =
+    document.querySelectorAll(".puzzle-slot");
+
+const timeDisplay =
+    document.getElementById("time");
+
+const scoreDisplay =
+    document.getElementById("score");
+
+const livesDisplay =
+    document.getElementById("lives");
+
+const hintsDisplay =
+    document.getElementById("hints");
+
+const hintButton =
+    document.getElementById("hintButton");
+
+const pauseButton =
+    document.getElementById("pauseButton");
+
+const restartButton =
+    document.getElementById("restartButton");
+
+const introOverlay =
+    document.getElementById("introOverlay");
+
+const continueButton =
+    document.getElementById("continueButton");
+
+
+/* =========================================================
+   GAME VARIABLES
+========================================================= */
+
+const totalPieces = 9;
+
+let lives = 3;
+
+let score = 0;
+
+let hints = 3;
+
+let seconds = 0;
+
+let gameStarted = false;
+
+let gamePaused = false;
+
+let gameCompleted = false;
+
+let timer;
+
+
+/* =========================================================
+   CREATE PUZZLE PIECES
+========================================================= */
+
+for (
+    let i = 0;
+    i < totalPieces;
+    i++
+) {
+
+    const piece =
+        document.createElement("div");
+
+    piece.classList.add(
+        "puzzle-piece"
+    );
+
+    piece.draggable = true;
+
+
+    const row =
+        Math.floor(i / 3);
+
+    const column =
+        i % 3;
+
+
+    piece.style.backgroundSize =
+        "300% 300%";
+
+    piece.style.backgroundPosition =
+        `${column * 50}% ${row * 50}%`;
+
+    piece.dataset.piece =
+        i + 1;
+
+
+    piece.addEventListener(
+        "dragstart",
+        function(event) {
+
+            if (gamePaused || gameCompleted) {
+                event.preventDefault();
+                return;
+            }
+
+            event.dataTransfer.setData(
+                "text/plain",
+                piece.dataset.piece
+            );
+
+            piece.classList.add(
+                "dragging"
+            );
+
+        }
+    );
+
+
+    piece.addEventListener(
+        "dragend",
+        function() {
+
+            piece.classList.remove(
+                "dragging"
+            );
+
+        }
+    );
+
+
+    piecesContainer.appendChild(
+        piece
+    );
+
+}
+
+
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shufflePieces() {
+
+    const pieces =
+        Array.from(
+            piecesContainer.children
+        );
+
+
+    for (
+        let i = pieces.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const randomIndex =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        piecesContainer.appendChild(
+            pieces[randomIndex]
+        );
+
+
+        pieces.splice(
+            randomIndex,
+            1
+        );
+
+    }
+
+}
+
+
+shufflePieces();
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer() {
+
+    if (gameStarted) return;
+
+    gameStarted = true;
+
+
+    timer =
+        setInterval(
+            function() {
+
+                if (!gamePaused && !gameCompleted) {
+
+                    seconds++;
+
+                    updateTime();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+function updateTime() {
+
+    const minutes =
+        Math.floor(seconds / 60);
+
+    const remainingSeconds =
+        seconds % 60;
+
+
+    timeDisplay.textContent =
+        String(minutes).padStart(2,"0")
+        +
+        ":"
+        +
+        String(
+            remainingSeconds
+        ).padStart(2,"0");
+
+}
+
+
+/* =========================================================
+   DRAG + DROP
+========================================================= */
+
+puzzleSlots.forEach(
+    function(slot) {
+
+        slot.addEventListener(
+            "dragover",
+            function(event) {
+
+                if (
+                    !gamePaused &&
+                    !gameCompleted
+                ) {
+
+                    event.preventDefault();
+
+                }
+
+            }
+        );
+
+
+        slot.addEventListener(
+            "drop",
+            function(event) {
+
+                event.preventDefault();
+
+
+                if (
+                    gamePaused ||
+                    gameCompleted
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    slot.children.length > 0
+                ) {
+
+                    return;
+
+                }
+
+
+                const pieceNumber =
+                    event.dataTransfer.getData(
+                        "text/plain"
+                    );
+
+
+                const piece =
+                    document.querySelector(
+                        `.puzzle-piece[data-piece="${pieceNumber}"]`
+                    );
+
+
+                if (!piece) return;
+
+
+                const correctSlot =
+                    slot.dataset.slot;
+
+
+                if (
+                    pieceNumber === correctSlot
+                ) {
+
+                    placeCorrectPiece(
+                        slot,
+                        piece
+                    );
+
+                }
+
+                else {
+
+                    wrongPlacement();
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CORRECT PIECE
+========================================================= */
+
+function placeCorrectPiece(
+    slot,
+    piece
+) {
+
+    slot.appendChild(piece);
+
+
+    piece.style.width =
+        "100%";
+
+    piece.style.height =
+        "100%";
+
+    piece.style.border =
+        "none";
+
+    piece.style.borderRadius =
+        "3px";
+
+    piece.style.transform =
+        "none";
+
+    piece.style.cursor =
+        "default";
+
+    piece.draggable = false;
+
+
+    piece.classList.remove(
+        "hint-glow"
+    );
+
+
+    slot.classList.remove(
+        "hint-glow"
+    );
+
+
+    slot.classList.add(
+        "filled"
+    );
+
+
+    score += 10;
+
+    scoreDisplay.textContent =
+        score;
+
+
+    document
+        .querySelector(
+            ".puzzle-message"
+        )
+        .style.display =
+        "none";
+
+
+    checkPuzzle();
+
+}
+
+
+/* =========================================================
+   WRONG PLACEMENT
+========================================================= */
+
+function wrongPlacement() {
+
+    lives--;
+
+    updateLives();
+
+    showWrongPopup();
+
+
+    if (lives <= 0) {
+
+        gameOver();
+
+    }
+
+}
+
+
+/* =========================================================
+   LIVES
+========================================================= */
+
+function updateLives() {
+
+    let hearts = "";
+
+    for (
+        let i = 0;
+        i < lives;
+        i++
+    ) {
+
+        hearts += "♥ ";
+
+    }
+
+
+    livesDisplay.textContent =
+        hearts.trim();
+
+}
+
+
+/* =========================================================
+   WRONG POPUP
+========================================================= */
+
+function showWrongPopup() {
+
+    const popup =
+        document.createElement("div");
+
+
+    popup.textContent =
+        "WRONG FRAGMENT";
+
+
+    popup.style.position =
+        "fixed";
+
+    popup.style.top =
+        "50%";
+
+    popup.style.left =
+        "50%";
+
+    popup.style.transform =
+        "translate(-50%,-50%)";
+
+    popup.style.padding =
+        "25px 45px";
+
+    popup.style.border =
+        "2px solid #d99b72";
+
+    popup.style.borderRadius =
+        "10px";
+
+    popup.style.background =
+        "#111827";
+
+    popup.style.color =
+        "#e6c77a";
+
+    popup.style.fontSize =
+        "20px";
+
+    popup.style.letterSpacing =
+        "4px";
+
+    popup.style.zIndex =
+        "2000";
+
+    popup.style.boxShadow =
+        "0 0 30px rgba(220,120,80,0.5)";
+
+
+    document.body.appendChild(
+        popup
+    );
+
+
+    setTimeout(
+        function() {
+
+            popup.remove();
+
+        },
+        1000
+    );
+
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+hintButton.addEventListener(
+    "click",
+    useHint
+);
+
+
+function useHint() {
+
+    if (gamePaused || gameCompleted) {
+        return;
+    }
+
+
+    if (hints <= 0) {
+
+        alert(
+            "NO HINTS LEFT!"
+        );
+
+        return;
+
+    }
+
+
+    let targetSlot = null;
+
+
+    for (
+        let i = 0;
+        i < puzzleSlots.length;
+        i++
+    ) {
+
+        if (
+            puzzleSlots[i].children.length === 0
+        ) {
+
+            targetSlot =
+                puzzleSlots[i];
+
+            break;
+
+        }
+
+    }
+
+
+    if (!targetSlot) {
+        return;
+    }
+
+
+    const correctNumber =
+        targetSlot.dataset.slot;
+
+
+    const correctPiece =
+        document.querySelector(
+            `.puzzle-piece[data-piece="${correctNumber}"]`
+        );
+
+
+    if (!correctPiece) {
+        return;
+    }
+
+
+    hints--;
+
+
+    hintsDisplay.textContent =
+        "💡 " + hints;
+
+
+    targetSlot.classList.add(
+        "hint-glow"
+    );
+
+
+    correctPiece.classList.add(
+        "hint-glow"
+    );
+
+
+    setTimeout(
+        function() {
+
+            targetSlot.classList.remove(
+                "hint-glow"
+            );
+
+            correctPiece.classList.remove(
+                "hint-glow"
+            );
+
+        },
+        5000
+    );
+
+}
+
+
+/* =========================================================
+   CHECK PUZZLE
+========================================================= */
+
+function checkPuzzle() {
+
+    let completed = true;
+
+
+    puzzleSlots.forEach(
+        function(slot) {
+
+            if (
+                slot.children.length === 0
+            ) {
+
+                completed = false;
+
+            }
+
+        }
+    );
+
+
+    if (completed) {
+
+        completePuzzle();
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE GAME DATA
+========================================================= */
+
+function saveGameData() {
+
+    const storageKey =
+        "bharatTimeMachine";
+
+
+    const gameState =
+        JSON.parse(
+            localStorage.getItem(storageKey)
+        ) || {};
+
+
+    if (!gameState.levels) {
+
+        gameState.levels = {};
+
+    }
+
+
+    /*
+       SAVE HARAPPAN AS COMPLETED
+    */
+
+    gameState.levels.harappan = {
+
+        score: score,
+
+        time: seconds,
+
+        lives: lives,
+
+        hints: hints,
+
+        civilization:
+            "Harappan Civilization",
+
+        completed: true
+
+    };
+
+
+    /*
+       REMEMBER LAST COMPLETED LEVEL
+    */
+
+    gameState.lastCompleted =
+        "harappan";
+
+
+    /*
+       DO NOT UNLOCK VEDIC HERE.
+       TIMELINE WILL HANDLE THAT.
+    */
+
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(gameState)
+    );
+
+}
+/* =========================================================
+   COMPLETION
+========================================================= */
+
+function completePuzzle() {
+
+    if (gameCompleted) return;
+
+    gameCompleted = true;
+
+    clearInterval(timer);
+
+    score = 100;
+
+    scoreDisplay.textContent =
+        score;
+
+    saveGameData();
+
+    window.location.href =
+        "harappa-facts.html";
+
+}
+
+
+/* =========================================================
+   CONGRATULATIONS SCROLL
+========================================================= */
+
+function showCongratulations() {
+
+    introOverlay.style.display =
+        "flex";
+
+
+    introOverlay.innerHTML = `
+
+        <div class="intro-scroll">
+
+            <h2>
+                HARAPPA RESTORED
+            </h2>
+
+            <p>
+                The lost city has been
+                successfully reconstructed.
+            </p>
+
+            <div class="congrats-stats">
+
+                <div class="congrats-stat">
+
+                    <small>
+                        SCORE
+                    </small>
+
+                    <strong>
+                        ${score}
+                    </strong>
+
+                </div>
+
+
+                <div class="congrats-stat">
+
+                    <small>
+                        TIME
+                    </small>
+
+                    <strong>
+                        ${formatTime(seconds)}
+                    </strong>
+
+                </div>
+
+
+                <div class="congrats-stat">
+
+                    <small>
+                        LIVES
+                    </small>
+
+                    <strong>
+                        ${lives}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <p>
+                You have uncovered the first
+                chapter of India's ancient past.
+            </p>
+
+
+            <button
+                class="continue-button"
+                id="completionButton"
+            >
+                CONTINUE
+            </button>
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById("completionButton")
+        .addEventListener(
+            "click",
+            function() {
+
+                /*
+                   IMPORTANT:
+                   Change this filename only if
+                   your completion page has
+                   a different filename.
+                */
+
+                window.location.href =
+                 "harappa-facts.html";
+
+            }
+        );
+
+}
+
+
+function formatTime(totalSeconds) {
+
+    const minutes =
+        Math.floor(
+            totalSeconds / 60
+        );
+
+    const secs =
+        totalSeconds % 60;
+
+
+    return (
+        String(minutes).padStart(2,"0")
+        +
+        ":"
+        +
+        String(secs).padStart(2,"0")
+    );
+
+}
+
+
+/* =========================================================
+   GAME OVER
+========================================================= */
+
+function gameOver() {
+
+    gameCompleted = true;
+
+    clearInterval(timer);
+
+    introOverlay.style.display = "flex";
+
+    introOverlay.innerHTML = `
+
+        <div class="intro-scroll">
+
+            <h2>
+                THE CITY REMAINS LOST
+            </h2>
+
+            <p>
+                You have used all three lives.
+                The reconstruction could not be completed.
+            </p>
+
+            <p>
+                Restart the puzzle and try again.
+            </p>
+
+            <button
+                class="continue-button"
+                id="restartGameButton"
+            >
+                RESTART
+            </button>
+
+        </div>
+
+    `;
+
+    document
+        .getElementById("restartGameButton")
+        .addEventListener(
+            "click",
+            function() {
+
+                location.reload();
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   PAUSE
+========================================================= */
+
+pauseButton.addEventListener(
+    "click",
+    function() {
+
+        if (gameCompleted) return;
+
+
+        gamePaused =
+            !gamePaused;
+
+
+        this.textContent =
+            gamePaused
+            ? "RESUME"
+            : "PAUSE";
+
+    }
+);
+/* =========================================================
+   RESTART
+========================================================= */
+
+restartButton.addEventListener(
+    "click",
+    function() {
+
+        location.reload();
+
+    }
+);
+
+
+/* =========================================================
+   COMPLETE PICTURE HINT
+========================================================= */
+
+function showCompletePictureHint(
+    imageSrc,
+    labelText,
+    callback
+) {
+
+    const overlay =
+        document.createElement("div");
+
+    overlay.className =
+        "complete-picture-hint";
+
+    overlay.innerHTML =
+        '<div class="complete-picture-box">' +
+            '<div class="complete-picture-label">' + labelText + '</div>' +
+            '<img class="complete-picture-img" src="' + imageSrc + '" alt="Complete picture">' +
+        '</div>';
+
+    document.body.appendChild(overlay);
+
+    setTimeout(
+        function() {
+
+            overlay.classList.add("fade-out");
+
+            setTimeout(
+                function() {
+
+                    overlay.remove();
+
+                    if (callback) callback();
+
+                },
+                350
+            );
+
+        },
+        2000
+    );
+
+}
+
+
+/*========================================
+   INTRO CONTINUE
+========================================================= */
+
+continueButton.addEventListener(
+    "click",
+    function() {
+
+        introOverlay.style.display =
+            "none";
+
+
+        showCompletePictureHint(
+            "images/harappa-city.jpg",
+            "MEMORIZE THE COMPLETE CITY",
+            startTimer
+        );
+
+    }
+);
+/* =========================================================
+   NAVBAR TOGGLE
+========================================================= */
+
+const navbar =
+    document.getElementById("navbar");
+
+const navbarToggle =
+    document.getElementById("navbarToggle");
+
+navbarToggle.addEventListener(
+    "click",
+    function() {
+
+        navbar.classList.toggle(
+            "navbar-hidden"
+        );
+
+        if (
+            navbar.classList.contains(
+                "navbar-hidden"
+            )
+        ) {
+
+            navbarToggle.textContent = "↓";
+
+        } else {
+
+            navbarToggle.textContent = "↑";
+
+        }
+
+    }
+);
+
+</script>
+<!-- GOOGLE TRANSLATE -->
+
+<script type="text/javascript">
+
+function googleTranslateElementInit() {
+
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,bn,or,ta,te,ml,mr,gu,pa'
+        },
+        'google_translate_element'
+    );
+
+}
+
+
+function changeLanguage(language) {
+
+    const select =
+        document.querySelector(".goog-te-combo");
+
+    if (!select) {
+
+        setTimeout(
+            function() {
+                changeLanguage(language);
+            },
+            500
+        );
+
+        return;
+    }
+
+    select.value = language;
+
+    select.dispatchEvent(
+        new Event("change", {
+            bubbles: true
+        })
+    );
+
+}
+
+
+const languageButton =
+    document.getElementById("languageButton");
+
+const languageMenu =
+    document.getElementById("languageMenu");
+
+
+languageButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        languageMenu.classList.toggle("open");
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    function() {
+
+        languageMenu.classList.remove("open");
+
+    }
+);
+const hideGoogleBar = setInterval(function() {
+
+    const bar = document.querySelector(
+        "body > .skiptranslate"
+    );
+
+    if (bar) {
+        bar.style.display = "none";
+    }
+
+    document.body.style.top = "0px";
+
+}, 100);
+</script>
+<div id="google_translate_element" translate="no"></div>
+<script
+    type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+</body>
+
+</html>

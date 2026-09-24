@@ -1,0 +1,2993 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="google"
+    content="notranslate"
+  >
+
+  <title>Chitra – The Kaleidoscope</title>
+
+
+  <!-- =========================================================
+       DECORATIVE / CLEAN FONTS
+  ========================================================== -->
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cinzel+Decorative:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =========================================================
+       RESET GOOGLE TRANSLATE TO ENGLISH ON EVERY RELOAD
+  ========================================================== -->
+
+  <script>
+
+    (function resetGoogleTranslate() {
+
+      try {
+
+        localStorage.removeItem("googtrans");
+        sessionStorage.removeItem("googtrans");
+
+      } catch (e) {}
+
+      try {
+
+        const cookies =
+          document.cookie.split(";");
+
+        cookies.forEach(function(cookie) {
+
+          const name =
+            cookie.split("=")[0].trim();
+
+          if (
+            name === "googtrans" ||
+            name === "googtransopt"
+          ) {
+
+            document.cookie =
+              name +
+              "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+
+            document.cookie =
+              name +
+              "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=" +
+              location.hostname;
+
+          }
+
+        });
+
+      } catch (e) {}
+
+    })();
+
+  </script>
+
+
+  <!-- =========================================================
+       GOOGLE TRANSLATE ENGINE
+  ========================================================== -->
+
+  <script type="text/javascript">
+
+    function googleTranslateElementInit() {
+
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          includedLanguages:
+            "en,hi,bn,or,ta,te,ml,mr,gu,pa",
+          autoDisplay: false
+        },
+        "google_translate_element"
+      );
+
+    }
+
+  </script>
+
+
+  <script
+    type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+  </script>
+
+
+  <style>
+
+
+    /* =========================================================
+       RESET
+    ========================================================== */
+
+    *,
+    *::before,
+    *::after {
+
+      margin: 0;
+      padding: 0;
+
+      box-sizing: border-box;
+
+    }
+
+
+    html,
+    body {
+
+      width: 100%;
+      height: 100%;
+
+      overflow: hidden;
+
+      background: #c87800;
+
+    }
+
+
+    /* =========================================================
+       TOP NAVIGATION BAR
+       CLEAN / BORDERLESS
+    ========================================================== */
+
+    .top-nav {
+
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 74px;
+
+      z-index: 1000;
+
+      display: flex;
+      align-items: center;
+
+      background: linear-gradient(
+        90deg,
+        rgba(75, 7, 18, 0.94) 0%,
+        rgba(104, 19, 35, 0.94) 45%,
+        rgba(75, 7, 18, 0.94) 100%
+      );
+
+      border-bottom: 2px solid #d4af37;
+
+      box-shadow:
+
+        0 3px 18px
+        rgba(35, 0, 5, 0.65),
+
+        0 0 14px
+        rgba(212, 175, 55, 0.18),
+
+        inset 0 -1px 0
+        rgba(255, 225, 130, 0.25);
+
+      transition:
+
+        transform
+        0.65s
+        cubic-bezier(0.22, 0.61, 0.36, 1);
+
+    }
+
+
+    .top-nav.nav-hidden {
+
+      transform:
+        translateY(-100%);
+
+    }
+
+
+    /* =========================================================
+       NAV ITEMS
+       NO BOXES
+    ========================================================== */
+
+    .nav-item {
+
+      height: 40px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      text-decoration: none;
+
+      color: #f1cf70;
+
+      border: none;
+
+      border-radius: 0;
+
+      background: transparent;
+
+      box-shadow: none;
+
+      transition:
+
+        color 0.3s ease,
+
+        text-shadow 0.3s ease,
+
+        transform 0.3s ease;
+
+    }
+
+
+    .nav-item:hover {
+
+      background: transparent;
+
+      color: #fff3bd;
+
+      box-shadow: none;
+
+      transform:
+        translateY(-1px);
+
+      text-shadow:
+
+        0 0 6px
+        rgba(212,175,55,0.45),
+
+        0 0 14px
+        rgba(212,175,55,0.25);
+
+    }
+
+
+    /* =========================================================
+       TRIDHARA
+    ========================================================== */
+
+    .top-nav > .nav-item:nth-child(1) {
+
+      width: 205px;
+
+      flex-shrink: 0;
+
+      margin-left: 6px;
+      margin-right: 6px;
+
+    }
+
+
+    /* =========================================================
+       CHITRA
+    ========================================================== */
+
+    .top-nav > .nav-item:nth-child(2) {
+
+      width: 138px;
+
+      flex-shrink: 0;
+
+      margin-left: 6px;
+      margin-right: 6px;
+
+    }
+
+
+    /* =========================================================
+       NAV TITLE
+       CLEAN CINZEL
+    ========================================================== */
+
+    .nav-title {
+
+      font-family:
+        "Cinzel",
+        serif;
+
+      font-size:
+        clamp(18px, 1.5vw, 24px);
+
+      font-weight: 700;
+
+      letter-spacing: 0.10em;
+
+      line-height: 1;
+
+      white-space: nowrap;
+
+      color: #f1cf70;
+
+      text-shadow:
+
+        0 1px 2px
+        rgba(0,0,0,0.75),
+
+        0 0 8px
+        rgba(212,175,55,0.20);
+
+      transition:
+
+        color 0.3s ease,
+
+        text-shadow 0.3s ease;
+
+    }
+
+
+    .nav-item:hover .nav-title {
+
+      color: #fff0b0;
+
+      text-shadow:
+
+        0 0 7px
+        rgba(255,215,100,0.55),
+
+        0 0 16px
+        rgba(212,175,55,0.28);
+
+    }
+
+
+    /* =========================================================
+       NAV SUBTITLE
+    ========================================================== */
+
+    .nav-subtitle {
+
+      margin-top: 5px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(9px, 0.70vw, 12px);
+
+      letter-spacing: 0.055em;
+
+      line-height: 1;
+
+      white-space: nowrap;
+
+      color:
+        rgba(255, 232, 175, 0.88);
+
+      opacity: 0.96;
+
+    }
+
+
+    /* =========================================================
+       LANGUAGE NAV ITEM
+       NO BOX
+    ========================================================== */
+
+    .language-nav {
+
+      width: 210px;
+
+      min-width: 210px;
+
+      margin-left: auto;
+
+      padding: 0 22px;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      position: relative;
+
+      cursor: default;
+
+      border: none;
+
+      background: transparent;
+
+      box-shadow: none;
+
+    }
+
+
+    .language-box {
+
+      position: relative;
+
+      width: 170px;
+
+    }
+
+
+    /* =========================================================
+       LANGUAGE BUTTON
+       BORDERLESS / CLEAN
+    ========================================================== */
+
+    .language-button {
+
+      width: 170px;
+
+      height: 40px;
+
+      border: none;
+
+      border-radius: 0;
+
+      outline: none;
+
+      cursor: pointer;
+
+      background: transparent;
+
+      color: #f1cf70;
+
+      font-family:
+        "Cinzel",
+        serif;
+
+      font-size:
+        clamp(14px, 1vw, 16px);
+
+      font-weight: 700;
+
+      letter-spacing: 0.10em;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 9px;
+
+      box-shadow: none;
+
+      transition:
+
+        color 0.25s ease,
+
+        text-shadow 0.25s ease,
+
+        transform 0.2s ease;
+
+    }
+
+
+    .language-button:hover {
+
+      background: transparent;
+
+      color: #fff4ca;
+
+      box-shadow: none;
+
+      transform:
+        translateY(-1px);
+
+      text-shadow:
+
+        0 0 7px
+        rgba(255,215,100,0.55),
+
+        0 0 16px
+        rgba(212,175,55,0.30);
+
+    }
+
+
+    .language-arrow {
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size: 11px;
+
+      transition:
+        transform 0.25s ease;
+
+    }
+
+
+    .language-box.open
+    .language-arrow {
+
+      transform:
+        rotate(180deg);
+
+    }
+
+
+    /* =========================================================
+       LANGUAGE DROPDOWN
+       DROPDOWN BOX KEPT
+    ========================================================== */
+
+    .language-menu {
+
+      position: absolute;
+
+      top:
+        calc(100% + 7px);
+
+      left: 0;
+
+      width: 170px;
+
+      padding: 6px;
+
+      background: linear-gradient(
+        180deg,
+        #681323,
+        #4b0712
+      );
+
+      border: 1px solid #d4af37;
+
+      border-radius: 5px;
+
+      box-shadow:
+
+        0 8px 25px
+        rgba(0,0,0,0.55),
+
+        0 0 18px
+        rgba(212,175,55,0.20);
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transform:
+        translateY(-7px)
+        scale(0.98);
+
+      transform-origin:
+        top center;
+
+      transition:
+
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        transform 0.2s ease;
+
+      z-index: 2000;
+
+    }
+
+
+    .language-box.open
+    .language-menu {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+
+    /* =========================================================
+       LANGUAGE OPTIONS
+    ========================================================== */
+
+    .language-option {
+
+      width: 100%;
+
+      height: 30px;
+
+      border: none;
+
+      border-radius: 3px;
+
+      background: transparent;
+
+      color: #ffe5a3;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size: 12px;
+
+      letter-spacing: 0.03em;
+
+      word-spacing: normal;
+
+      cursor: pointer;
+
+      text-align: left;
+
+      padding: 0 10px;
+
+      white-space: nowrap;
+
+      transition:
+
+        background 0.2s ease,
+        color 0.2s ease,
+        padding-left 0.2s ease;
+
+    }
+
+
+    .language-option:hover {
+
+      background:
+        rgba(212,175,55,0.18);
+
+      color: #fff4ca;
+
+      padding-left: 14px;
+
+    }
+
+
+    .language-option.active {
+
+      background:
+        rgba(212,175,55,0.22);
+
+      color: #f1cf70;
+
+    }
+
+
+    /* =========================================================
+       PROTECT CUSTOM LANGUAGE AREA
+    ========================================================== */
+
+    .notranslate,
+    [translate="no"] {
+
+      -webkit-translate: no;
+
+    }
+
+
+    #languageBox,
+    #languageBox *,
+    #languageMenu,
+    #languageMenu *,
+    #languageButton,
+    #languageButton *,
+    .language-option {
+
+      translate: no;
+
+    }
+
+
+    /* =========================================================
+       GOOGLE TRANSLATE ENGINE CONTAINER
+    ========================================================== */
+
+    #google_translate_element {
+
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+
+      overflow: hidden;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      left: -9999px;
+      top: -9999px;
+
+    }
+
+
+    /* =========================================================
+       GOOGLE TRANSLATE TOP PANE REMOVAL
+    ========================================================== */
+
+    html {
+
+      margin-top: 0 !important;
+
+    }
+
+
+    body {
+
+      top: 0 !important;
+
+      margin-top: 0 !important;
+
+    }
+
+
+    .goog-te-banner-frame,
+    .goog-te-banner-frame.skiptranslate,
+    iframe.goog-te-banner-frame,
+    iframe[id*="goog-te-banner"] {
+
+      display: none !important;
+
+      visibility: hidden !important;
+
+      width: 0 !important;
+      height: 0 !important;
+
+      min-width: 0 !important;
+      min-height: 0 !important;
+
+      max-width: 0 !important;
+      max-height: 0 !important;
+
+      border: 0 !important;
+
+      position: absolute !important;
+
+      top: -9999px !important;
+      left: -9999px !important;
+
+      opacity: 0 !important;
+
+      pointer-events: none !important;
+
+    }
+
+
+    body > .skiptranslate {
+
+      display: none !important;
+
+      visibility: hidden !important;
+
+      width: 0 !important;
+      height: 0 !important;
+
+      min-width: 0 !important;
+      min-height: 0 !important;
+
+      max-width: 0 !important;
+      max-height: 0 !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
+      position: absolute !important;
+
+      top: -9999px !important;
+      left: -9999px !important;
+
+      opacity: 0 !important;
+
+      pointer-events: none !important;
+
+    }
+
+
+    #goog-gt-tt,
+    .goog-te-balloon-frame,
+    .goog-te-menu-frame {
+
+      display: none !important;
+
+      visibility: hidden !important;
+
+      opacity: 0 !important;
+
+      pointer-events: none !important;
+
+    }
+
+
+    .goog-text-highlight {
+
+      background: transparent !important;
+
+      box-shadow: none !important;
+
+    }
+
+
+    .skiptranslate {
+
+      font-family:
+        Georgia,
+        serif;
+
+    }
+
+
+    /* =========================================================
+       NAVIGATION ROLL BUTTON
+    ========================================================== */
+
+    .nav-toggle {
+
+      position: fixed;
+
+      top: 74px;
+      right: 18px;
+
+      width: 25px;
+      height: 16px;
+
+      z-index: 1001;
+
+      border:
+        1px solid
+        #d4af37;
+
+      border-top: none;
+
+      border-radius:
+        0 0 5px 5px;
+
+      background: linear-gradient(
+        180deg,
+        #681323,
+        #4b0712
+      );
+
+      color: #f1cf70;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 0;
+
+      cursor: pointer;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size: 12px;
+
+      line-height: 1;
+
+      box-shadow:
+
+        0 3px 8px
+        rgba(35, 0, 5, 0.55),
+
+        0 0 8px
+        rgba(212, 175, 55, 0.18);
+
+      transition:
+
+        top
+        0.65s
+        cubic-bezier(0.22, 0.61, 0.36, 1),
+
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+
+    }
+
+
+    .nav-toggle:hover {
+
+      background: linear-gradient(
+        180deg,
+        #7b182a,
+        #570b18
+      );
+
+      color: #fff4ca;
+
+      box-shadow:
+
+        0 3px 12px
+        rgba(35, 0, 5, 0.65),
+
+        0 0 14px
+        rgba(212, 175, 55, 0.45);
+
+    }
+
+
+    .nav-toggle.nav-collapsed {
+
+      top: 0;
+
+      border-top:
+        1px solid
+        #d4af37;
+
+      border-bottom: none;
+
+      border-radius:
+        0 0 5px 5px;
+
+    }
+
+
+    /* =========================================================
+       MAIN BACKGROUND
+    ========================================================== */
+
+    .bg {
+
+      position: fixed;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      z-index: 0;
+
+    }
+
+
+    /* =========================================================
+       ROTATING MANDALA
+    ========================================================== */
+
+    .wheel {
+
+      position: fixed;
+
+      top: 50%;
+      left: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      width:
+        max(125vw, 125vh);
+
+      height:
+        max(125vw, 125vh);
+
+      z-index: 2;
+
+    }
+
+
+    .wheel img {
+
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      transform-origin:
+        center center;
+
+      will-change:
+        transform;
+
+      animation:
+        spin-cw 140s linear infinite;
+
+    }
+
+
+    /* =========================================================
+       CENTRE
+    ========================================================== */
+
+    .centre {
+
+      position: fixed;
+
+      top:
+        calc(50% + 1cm);
+
+      left: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      width:
+        min(72vw, 72vh);
+
+      height:
+        min(72vw, 72vh);
+
+      z-index: 3;
+
+    }
+
+
+    .centre img {
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      display: block;
+
+      animation:
+        heartbeat 4s ease-in-out infinite;
+
+    }
+
+
+    /* =========================================================
+       LAMPS
+    ========================================================== */
+
+    .lamp-wrap {
+
+      position: fixed;
+
+      top: 0;
+
+      z-index: 6;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      transform-origin:
+        top center;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+    }
+
+
+    .rope {
+
+      width: 2px;
+
+      flex-shrink: 0;
+
+      background: linear-gradient(
+
+        to bottom,
+
+        rgba(200, 140, 20, 0) 0%,
+
+        rgba(200, 140, 20, 0.75) 20%,
+
+        rgba(160, 100, 10, 0.95) 100%
+
+      );
+
+    }
+
+
+    .lamp-body {
+
+      position: relative;
+
+      display: block;
+
+    }
+
+
+    .lamp-img {
+
+      display: block;
+
+      height: auto;
+
+      object-fit: fill;
+
+      animation:
+        lamp-breathe 3.5s ease-in-out infinite;
+
+    }
+
+
+    .lamp-wrap:hover
+    .lamp-img {
+
+      animation:
+        lamp-bloom 2s ease-in-out infinite;
+
+    }
+
+
+    /* =========================================================
+       LAMP TEXT
+       ALGERIAN
+    ========================================================== */
+
+    .lamp-text {
+
+      position: absolute;
+
+      left: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 3px;
+
+      pointer-events: none;
+
+      user-select: none;
+
+      text-align: center;
+
+      width: 62%;
+
+    }
+
+
+    .lamp-text::before,
+    .lamp-text::after {
+
+      content:
+        '✦ ── ✦';
+
+      font-size:
+        clamp(5px, 0.55vw, 8px);
+
+      color: #7a3a00;
+
+      letter-spacing: 0.04em;
+
+      opacity: 0.85;
+
+    }
+
+
+    .lamp-text span {
+
+      font-family:
+        Algerian,
+        serif;
+
+      font-weight: 700;
+
+      color: #5c1e00;
+
+      text-shadow:
+
+        0 1px 2px
+        rgba(255, 220, 100, 0.5),
+
+        0 0 6px
+        rgba(255, 160, 0, 0.2);
+
+      line-height: 1.3;
+
+    }
+
+
+    .lamp-text .dot {
+
+      font-size:
+        clamp(6px, 0.65vw, 9px);
+
+      color: #7a3a00;
+
+      opacity: 0.7;
+
+      letter-spacing: 0.3em;
+
+    }
+
+
+    /* =========================================================
+       RIGHT LAMPS
+    ========================================================== */
+
+    .lamp-r1 {
+
+      right:
+        calc(-5vw - 3cm);
+
+      animation:
+        sway 5.2s ease-in-out infinite;
+
+    }
+
+
+    .lamp-r1 .rope {
+
+      height: 8vh;
+
+    }
+
+
+    .lamp-r1 .lamp-img {
+
+      width: 36vw;
+
+    }
+
+
+    .lamp-r1 .lamp-text {
+
+      top: 56%;
+
+    }
+
+
+    .lamp-r1 .lamp-text span {
+
+      font-size:
+        clamp(14px, 1.6vw, 22px);
+
+      letter-spacing: 0.05em;
+
+      white-space: nowrap;
+
+    }
+
+
+    .lamp-r2 {
+
+      right:
+        calc(10vw - 3cm);
+
+      animation:
+        sway 6.8s ease-in-out infinite;
+
+      animation-delay: -3.1s;
+
+    }
+
+
+    .lamp-r2 .rope {
+
+      height: 36vh;
+
+    }
+
+
+    .lamp-r2 .lamp-img {
+
+      width: 30vw;
+
+    }
+
+
+    .lamp-r2 .lamp-text {
+
+      top: 56%;
+
+    }
+
+
+    /* =========================================================
+       FOOD / खाना GAP FIX
+    ========================================================== */
+
+    .lamp-r2 .lamp-text span {
+
+      font-size:
+        clamp(16px, 1.9vw, 26px);
+
+      letter-spacing: 0 !important;
+
+      word-spacing: 0 !important;
+
+      padding-left: 0;
+
+      padding-right: 0;
+
+      white-space: nowrap;
+
+      font-kerning: normal;
+
+    }
+
+
+    /* =========================================================
+       LEFT LAMPS
+    ========================================================== */
+
+    .lamp-l1 {
+
+      left:
+        calc(-5vw - 3cm);
+
+      animation:
+        sway 5.6s ease-in-out infinite;
+
+      animation-delay: -1.8s;
+
+    }
+
+
+    .lamp-l1 .rope {
+
+      height: 8vh;
+
+    }
+
+
+    .lamp-l1 .lamp-img {
+
+      width: 36vw;
+
+    }
+
+
+    .lamp-l1 .lamp-text {
+
+      top: 56%;
+
+    }
+
+
+    .lamp-l1 .lamp-text span {
+
+      font-size:
+        clamp(10px, 1.15vw, 16px);
+
+      letter-spacing: 0.06em;
+
+      white-space: normal;
+
+    }
+
+
+    .lamp-l2 {
+
+      left:
+        calc(10vw - 3cm);
+
+      animation:
+        sway 7s ease-in-out infinite;
+
+      animation-delay: -4.2s;
+
+    }
+
+
+    .lamp-l2 .rope {
+
+      height: 36vh;
+
+    }
+
+
+    .lamp-l2 .lamp-img {
+
+      width: 30vw;
+
+    }
+
+
+    .lamp-l2 .lamp-text {
+
+      top: 54%;
+
+      width: 66%;
+
+    }
+
+
+    .lamp-l2 .lamp-text span {
+
+      font-size:
+        clamp(16px, 1.9vw, 26px);
+
+      letter-spacing: 0.06em;
+
+      white-space: nowrap;
+
+    }
+
+
+    /* =========================================================
+       VIDEO INTRO
+    ========================================================== */
+
+    .video-intro {
+
+      position: fixed;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background: #000;
+
+      z-index: 9999;
+
+      opacity: 1;
+
+      visibility: visible;
+
+      pointer-events: all;
+
+      transition:
+
+        opacity 1.5s ease,
+        visibility 1.5s ease;
+
+    }
+
+
+    .video-intro video {
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+    }
+
+
+    .video-intro.fade-out {
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      pointer-events: none;
+
+    }
+
+
+    /* =========================================================
+       SKIP INTRO BUTTON
+    ========================================================== */
+
+    .skip-intro {
+
+      position: absolute;
+
+      right: 28px;
+      bottom: 28px;
+
+      z-index: 10000;
+
+      padding: 11px 22px;
+
+      border:
+        1px solid
+        rgba(255, 220, 130, 0.8);
+
+      border-radius: 4px;
+
+      background:
+        rgba(50, 20, 0, 0.65);
+
+      color: #ffe5a3;
+
+      font-family:
+        "Cinzel Decorative",
+        serif;
+
+      font-size:
+        clamp(10px, 0.9vw, 14px);
+
+      letter-spacing: 0.08em;
+
+      cursor: pointer;
+
+      backdrop-filter:
+        blur(5px);
+
+      box-shadow:
+
+        0 0 10px
+        rgba(255, 180, 50, 0.25),
+
+        inset 0 0 8px
+        rgba(255, 190, 60, 0.08);
+
+      transition:
+
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+
+    }
+
+
+    .skip-intro:hover {
+
+      background:
+        rgba(100, 40, 0, 0.85);
+
+      color: #fff1c7;
+
+      box-shadow:
+
+        0 0 18px
+        rgba(255, 200, 80, 0.55),
+
+        0 0 35px
+        rgba(255, 140, 0, 0.25);
+
+      transform:
+        translateY(-2px);
+
+    }
+
+
+    /* =========================================================
+       KEYFRAMES
+    ========================================================== */
+
+    @keyframes spin-cw {
+
+      to {
+
+        transform:
+          rotate(360deg);
+
+      }
+
+    }
+
+
+    @keyframes heartbeat {
+
+      0% {
+
+        transform:
+          scale(1);
+
+      }
+
+      60% {
+
+        transform:
+          scale(1);
+
+      }
+
+      72% {
+
+        transform:
+          scale(1.045);
+
+      }
+
+      84% {
+
+        transform:
+          scale(0.98);
+
+      }
+
+      92% {
+
+        transform:
+          scale(1.025);
+
+      }
+
+      100% {
+
+        transform:
+          scale(1);
+
+      }
+
+    }
+
+
+    @keyframes sway {
+
+      0% {
+
+        transform:
+          rotate(-3deg);
+
+      }
+
+      50% {
+
+        transform:
+          rotate(3deg);
+
+      }
+
+      100% {
+
+        transform:
+          rotate(-3deg);
+
+      }
+
+    }
+
+
+    @keyframes lamp-breathe {
+
+      0%,
+      100% {
+
+        filter:
+
+          brightness(1.15)
+
+          drop-shadow(
+            0 0 14px
+            rgba(255, 200, 60, 0.95)
+          )
+
+          drop-shadow(
+            0 0 45px
+            rgba(255, 140, 0, 0.55)
+          )
+
+          drop-shadow(
+            0 0 90px
+            rgba(220, 100, 0, 0.22)
+          )
+
+          drop-shadow(
+            0 16px 22px
+            rgba(210, 160, 100, 0.20)
+          )
+
+          drop-shadow(
+            0 30px 40px
+            rgba(200, 150, 90, 0.12)
+          );
+
+      }
+
+
+      50% {
+
+        filter:
+
+          brightness(1.28)
+
+          drop-shadow(
+            0 0 22px
+            rgba(255, 225, 80, 1)
+          )
+
+          drop-shadow(
+            0 0 65px
+            rgba(255, 160, 0, 0.68)
+          )
+
+          drop-shadow(
+            0 0 120px
+            rgba(220, 100, 0, 0.30)
+          )
+
+          drop-shadow(
+            0 18px 26px
+            rgba(210, 160, 100, 0.24)
+          )
+
+          drop-shadow(
+            0 34px 46px
+            rgba(200, 150, 90, 0.14)
+          );
+
+      }
+
+    }
+
+
+    @keyframes lamp-bloom {
+
+      0%,
+      100% {
+
+        filter:
+
+          brightness(1.65)
+
+          drop-shadow(
+            0 0 40px
+            rgba(255, 245, 140, 1)
+          )
+
+          drop-shadow(
+            0 0 100px
+            rgba(255, 190, 50, 0.95)
+          )
+
+          drop-shadow(
+            0 0 200px
+            rgba(240, 130, 0, 0.65)
+          )
+
+          drop-shadow(
+            0 0 320px
+            rgba(220, 90, 0, 0.35)
+          )
+
+          drop-shadow(
+            0 18px 24px
+            rgba(210, 160, 100, 0.22)
+          )
+
+          drop-shadow(
+            0 32px 44px
+            rgba(200, 150, 90, 0.13)
+          );
+
+      }
+
+
+      50% {
+
+        filter:
+
+          brightness(1.90)
+
+          drop-shadow(
+            0 0 55px
+            rgba(255, 255, 200, 1)
+          )
+
+          drop-shadow(
+            0 0 130px
+            rgba(255, 210, 70, 1)
+          )
+
+          drop-shadow(
+            0 0 250px
+            rgba(245, 140, 0, 0.75)
+          )
+
+          drop-shadow(
+            0 0 380px
+            rgba(220, 90, 0, 0.45)
+          )
+
+          drop-shadow(
+            0 20px 28px
+            rgba(210, 160, 100, 0.24)
+          )
+
+          drop-shadow(
+            0 36px 50px
+            rgba(200, 150, 90, 0.15)
+          );
+
+      }
+
+    }
+
+  .player-profile-display{
+      position:relative;
+      display:flex;align-items:center;gap:7px;
+      margin-left:26px;
+      padding:8px 18px;
+      border-radius:999px;
+      color:#f5d98b;
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:13px;
+      letter-spacing:.08em;
+      white-space:nowrap;
+      pointer-events:none;
+      isolation:isolate;
+  }
+  .player-profile-display::before{
+      content:"";
+      position:absolute;
+      inset:-6px -14px;
+      z-index:-1;
+      border-radius:999px;
+      background:radial-gradient(
+          ellipse at center,
+          rgba(240,205,120,0.32) 0%,
+          rgba(198,151,61,0.18) 45%,
+          rgba(198,151,61,0) 75%
+      );
+      pointer-events:none;
+  }
+  .player-profile-display span:first-child{font-size:17px}
+
+  </style>
+  <script src="../tridhara homepage modify/progress-guard.js"></script>
+  <script src="../tridhara homepage modify/player-profile.js" defer></script>
+</head>
+
+
+<body>
+
+
+  <!-- =======================================================
+       TOP NAVIGATION
+  ======================================================== -->
+
+  <nav
+    class="top-nav"
+    id="topNav"
+  >
+
+
+    <!-- TRIDHARA -->
+
+    <a
+      class="nav-item notranslate"
+      translate="no"
+      href="../tridhara homepage modify/index.html"
+    >
+
+      <span class="nav-title">
+        TRIDHARA
+      </span>
+
+      <span class="nav-subtitle">
+        culture · civilisation · history
+      </span>
+
+    </a>
+
+
+    <!-- CHITRA -->
+
+    <a
+      class="nav-item notranslate"
+      translate="no"
+      href="#"
+    >
+
+      <span class="nav-title">
+        CHITRA
+      </span>
+
+      <span class="nav-subtitle">
+        the Kaleidoscope
+      </span>
+
+    </a>
+
+
+    <!-- =====================================================
+         LANGUAGE BUTTON
+    ====================================================== -->
+
+    <div
+      class="nav-item language-nav notranslate"
+      translate="no"
+    >
+
+      <div
+        class="language-box notranslate"
+        id="languageBox"
+        translate="no"
+      >
+
+        <button
+          class="language-button notranslate"
+          id="languageButton"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          translate="no"
+        >
+
+          <span
+            translate="no"
+          >
+            LANGUAGE
+          </span>
+
+          <span
+            class="language-arrow"
+            translate="no"
+          >
+            ▼
+          </span>
+
+        </button>
+
+
+        <!-- =================================================
+             LANGUAGE DROPDOWN
+        ================================================== -->
+
+        <div
+          class="language-menu notranslate"
+          id="languageMenu"
+          translate="no"
+        >
+
+
+          <button
+            class="language-option active notranslate"
+            data-lang="en"
+            type="button"
+            translate="no"
+          >
+            English
+          </button>
+
+
+          <button
+            class="language-option notranslate"
+            data-lang="hi"
+            type="button"
+            translate="no"
+          >
+            हिन्दी
+          </button>
+
+
+          <button
+            class="language-option notranslate"
+            data-lang="bn"
+            type="button"
+            translate="no"
+          >
+            বাংলা
+          </button>
+
+
+          <button
+            class="language-option notranslate"
+            data-lang="or"
+            type="button"
+            translate="no"
+          >
+            ଓଡ଼ିଆ
+          </button>
+
+
+          <button
+            class="language-option notranslate"
+            data-lang="ta"
+            type="button"
+            translate="no"
+          >
+            தமிழ்
+          </button>
+
+
+          <button
+            class="language-option notranslate"
+            data-lang="te"
+            type="button"
+            translate="no"
+          >
+            తెలుగు
+          </button>
+
+
+          <button
+            class="language-option notranslate"
+            data-lang="ml"
+            type="button"
+            translate="no"
+          >
+            മലയാളം
+          </button>
+
+
+          <button
+            class="language-option notranslate"
+            data-lang="mr"
+            type="button"
+            translate="no"
+          >
+            मराठी
+          </button>
+
+
+          <button
+            class="language-option notranslate"
+            data-lang="gu"
+            type="button"
+            translate="no"
+          >
+            ગુજરાતી
+          </button>
+
+
+          <button
+            class="language-option notranslate"
+            data-lang="pa"
+            type="button"
+            translate="no"
+          >
+            ਪੰਜਾਬੀ
+          </button>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <span class="nav-item player-profile-display" aria-label="Student profile" title="Student profile">
+      <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+      <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+    </span>
+
+  </nav>
+
+
+  <!-- =======================================================
+       HIDDEN GOOGLE TRANSLATE ENGINE
+  ======================================================== -->
+
+  <div
+    id="google_translate_element"
+  ></div>
+
+
+  <!-- =======================================================
+       NAVIGATION ROLL CONTROL
+  ======================================================== -->
+
+  <button
+    class="nav-toggle"
+    id="navToggle"
+    type="button"
+    aria-label="Roll navigation bar up"
+    title="Roll navigation bar up"
+  >
+    ▲
+  </button>
+
+
+  <!-- =======================================================
+       VIDEO INTRO
+  ======================================================== -->
+
+  <div
+    class="video-intro"
+    id="videoIntro"
+  >
+
+    <video
+      id="introVideo"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+    >
+
+      <source
+        src="vdo2.mp4"
+        type="video/mp4"
+      >
+
+    </video>
+
+
+    <button
+      class="skip-intro"
+      id="skipIntro"
+      type="button"
+    >
+      SKIP INTRO
+    </button>
+
+  </div>
+
+
+  <!-- =======================================================
+       MAIN BACKGROUND
+  ======================================================== -->
+
+  <img
+    class="bg"
+    src="basebg.jpg"
+    alt=""
+  >
+
+
+  <!-- =======================================================
+       ROTATING MANDALA
+  ======================================================== -->
+
+  <div class="wheel">
+
+    <img
+      src="abc.png"
+      alt="mandala"
+    >
+
+  </div>
+
+
+  <!-- =======================================================
+       CENTRE
+  ======================================================== -->
+
+  <div class="centre">
+
+    <img
+      src="0.png"
+      alt="Chitra centre"
+    >
+
+  </div>
+
+
+  <!-- =======================================================
+       FESTIVAL
+  ======================================================== -->
+
+  <a
+    class="lamp-wrap lamp-r1"
+    href="#"
+    target="_blank"
+  >
+
+    <div class="rope"></div>
+
+    <div class="lamp-body">
+
+      <img
+        class="lamp-img"
+        src="lamp.png"
+        alt="lamp"
+      >
+
+      <div class="lamp-text">
+
+        <span>
+          Festival
+        </span>
+
+        <div class="dot">
+          · · ·
+        </div>
+
+      </div>
+
+    </div>
+
+  </a>
+
+
+  <!-- =======================================================
+       FOOD
+  ======================================================== -->
+
+  <a
+    class="lamp-wrap lamp-r2"
+    href="#"
+    target="_blank"
+  >
+
+    <div class="rope"></div>
+
+    <div class="lamp-body">
+
+      <img
+        class="lamp-img"
+        src="lamp.png"
+        alt="lamp"
+      >
+
+      <div class="lamp-text">
+
+        <span>
+          Food
+        </span>
+
+        <div class="dot">
+          · · ·
+        </div>
+
+      </div>
+
+    </div>
+
+  </a>
+
+
+  <!-- =======================================================
+       ART & CULTURE
+  ======================================================== -->
+
+  <a
+    class="lamp-wrap lamp-l1"
+    href="#"
+    target="_blank"
+  >
+
+    <div class="rope"></div>
+
+    <div class="lamp-body">
+
+      <img
+        class="lamp-img"
+        src="lamp.png"
+        alt="lamp"
+      >
+
+      <div class="lamp-text">
+
+        <span>
+          Art &amp;<br>
+          Culture
+        </span>
+
+        <div class="dot">
+          · · ·
+        </div>
+
+      </div>
+
+    </div>
+
+  </a>
+
+
+  <!-- =======================================================
+       DANCE
+  ======================================================== -->
+
+  <a
+    class="lamp-wrap lamp-l2"
+    href="comsp.html"
+  >
+
+    <div class="rope"></div>
+
+    <div class="lamp-body">
+
+      <img
+        class="lamp-img"
+        src="lamp.png"
+        alt="lamp"
+      >
+
+      <div class="lamp-text">
+
+        <span>
+          Dance
+        </span>
+
+        <div class="dot">
+          · · ·
+        </div>
+
+      </div>
+
+    </div>
+
+  </a>
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       GOOGLE TRANSLATE BANNER REMOVAL
+    ====================================================== */
+
+    function removeGoogleTranslateBanner() {
+
+      document
+        .querySelectorAll(
+          '.goog-te-banner-frame, ' +
+          'iframe.goog-te-banner-frame, ' +
+          'iframe[id*="goog-te-banner"]'
+        )
+        .forEach(function(element) {
+
+          element.style.display =
+            "none";
+
+          element.style.visibility =
+            "hidden";
+
+          element.style.width =
+            "0";
+
+          element.style.height =
+            "0";
+
+          element.style.minWidth =
+            "0";
+
+          element.style.minHeight =
+            "0";
+
+          element.style.position =
+            "absolute";
+
+          element.style.top =
+            "-9999px";
+
+          element.style.left =
+            "-9999px";
+
+          element.style.opacity =
+            "0";
+
+          element.style.pointerEvents =
+            "none";
+
+        });
+
+
+      document
+        .querySelectorAll(
+          "body > .skiptranslate"
+        )
+        .forEach(function(element) {
+
+          if (
+            element.id !==
+            "google_translate_element"
+          ) {
+
+            element.style.display =
+              "none";
+
+            element.style.visibility =
+              "hidden";
+
+            element.style.width =
+              "0";
+
+            element.style.height =
+              "0";
+
+            element.style.minWidth =
+              "0";
+
+            element.style.minHeight =
+              "0";
+
+            element.style.position =
+              "absolute";
+
+            element.style.top =
+              "-9999px";
+
+            element.style.left =
+              "-9999px";
+
+            element.style.opacity =
+              "0";
+
+            element.style.pointerEvents =
+              "none";
+
+          }
+
+        });
+
+
+      document.documentElement.style.marginTop =
+        "0px";
+
+      document.body.style.top =
+        "0px";
+
+      document.body.style.marginTop =
+        "0px";
+
+    }
+
+
+    removeGoogleTranslateBanner();
+
+
+    setTimeout(
+      removeGoogleTranslateBanner,
+      100
+    );
+
+
+    setTimeout(
+      removeGoogleTranslateBanner,
+      500
+    );
+
+
+    setTimeout(
+      removeGoogleTranslateBanner,
+      1000
+    );
+
+
+    setTimeout(
+      removeGoogleTranslateBanner,
+      2000
+    );
+
+
+    const googleTranslateObserver =
+      new MutationObserver(
+        function() {
+
+          removeGoogleTranslateBanner();
+
+        }
+      );
+
+
+    googleTranslateObserver.observe(
+      document.documentElement,
+      {
+        childList: true,
+        subtree: true,
+        attributes: true
+      }
+    );
+
+
+    /* =====================================================
+       KEEP LANGUAGE MENU TEXT PERMANENTLY ORIGINAL
+    ====================================================== */
+
+    const fixedLanguageTexts = {
+
+      language:
+        "LANGUAGE",
+
+      arrow:
+        "▼",
+
+      en:
+        "English",
+
+      hi:
+        "हिन्दी",
+
+      bn:
+        "বাংলা",
+
+      or:
+        "ଓଡ଼ିଆ",
+
+      ta:
+        "தமிழ்",
+
+      te:
+        "తెలుగు",
+
+      ml:
+        "മലയാളം",
+
+      mr:
+        "मराठी",
+
+      gu:
+        "ગુજરાતી",
+
+      pa:
+        "ਪੰਜਾਬੀ"
+
+    };
+
+
+    function restoreLanguageMenuText() {
+
+      const buttonText =
+        document.querySelector(
+          "#languageButton span:not(.language-arrow)"
+        );
+
+
+      const arrow =
+        document.querySelector(
+          "#languageButton .language-arrow"
+        );
+
+
+      if (buttonText) {
+
+        buttonText.textContent =
+          fixedLanguageTexts.language;
+
+      }
+
+
+      if (arrow) {
+
+        arrow.textContent =
+          fixedLanguageTexts.arrow;
+
+      }
+
+
+      document
+        .querySelectorAll(
+          "#languageMenu .language-option"
+        )
+        .forEach(function(option) {
+
+          const lang =
+            option.getAttribute(
+              "data-lang"
+            );
+
+
+          if (
+            fixedLanguageTexts[lang]
+          ) {
+
+            option.textContent =
+              fixedLanguageTexts[lang];
+
+          }
+
+        });
+
+    }
+
+
+    restoreLanguageMenuText();
+
+
+    const languageTextObserver =
+      new MutationObserver(
+        function() {
+
+          languageTextObserver.disconnect();
+
+          restoreLanguageMenuText();
+
+          languageTextObserver.observe(
+            document.getElementById(
+              "languageBox"
+            ),
+            {
+              childList: true,
+              subtree: true,
+              characterData: true
+            }
+          );
+
+        }
+      );
+
+
+    languageTextObserver.observe(
+      document.getElementById(
+        "languageBox"
+      ),
+      {
+        childList: true,
+        subtree: true,
+        characterData: true
+      }
+    );
+
+
+    /* =====================================================
+       GOOGLE TRANSLATE CONTROLLER
+    ====================================================== */
+
+    const languageBox =
+      document.getElementById(
+        "languageBox"
+      );
+
+
+    const languageButton =
+      document.getElementById(
+        "languageButton"
+      );
+
+
+    const languageOptions =
+      document.querySelectorAll(
+        ".language-option"
+      );
+
+
+    /* =====================================================
+       OPEN / CLOSE CUSTOM LANGUAGE MENU
+    ====================================================== */
+
+    languageButton.addEventListener(
+      "click",
+      function(event) {
+
+        event.stopPropagation();
+
+        const isOpen =
+          languageBox.classList.toggle(
+            "open"
+          );
+
+        languageButton.setAttribute(
+          "aria-expanded",
+          isOpen
+        );
+
+        restoreLanguageMenuText();
+
+      }
+    );
+
+
+    /* =====================================================
+       CLOSE MENU WHEN CLICKING OUTSIDE
+    ====================================================== */
+
+    document.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          !languageBox.contains(
+            event.target
+          )
+        ) {
+
+          languageBox.classList.remove(
+            "open"
+          );
+
+          languageButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       ACTUALLY TELL GOOGLE TRANSLATE
+    ====================================================== */
+
+    function translatePage(
+      language,
+      attempts = 0
+    ) {
+
+      const googleSelect =
+        document.querySelector(
+          ".goog-te-combo"
+        );
+
+
+      if (!googleSelect) {
+
+        if (attempts < 20) {
+
+          setTimeout(
+            function() {
+
+              translatePage(
+                language,
+                attempts + 1
+              );
+
+            },
+            500
+          );
+
+        }
+
+        return;
+
+      }
+
+
+      googleSelect.value =
+        language;
+
+
+      googleSelect.dispatchEvent(
+        new Event(
+          "change",
+          {
+            bubbles: true
+          }
+        )
+      );
+
+
+      setTimeout(
+        restoreLanguageMenuText,
+        50
+      );
+
+
+      setTimeout(
+        restoreLanguageMenuText,
+        200
+      );
+
+
+      setTimeout(
+        restoreLanguageMenuText,
+        500
+      );
+
+
+      setTimeout(
+        removeGoogleTranslateBanner,
+        50
+      );
+
+
+      setTimeout(
+        removeGoogleTranslateBanner,
+        300
+      );
+
+
+      setTimeout(
+        removeGoogleTranslateBanner,
+        800
+      );
+
+    }
+
+
+    /* =====================================================
+       LANGUAGE OPTION CLICK
+    ====================================================== */
+
+    languageOptions.forEach(
+      function(option) {
+
+
+        option.addEventListener(
+          "click",
+          function(event) {
+
+            event.stopPropagation();
+
+
+            const language =
+              option.getAttribute(
+                "data-lang"
+              );
+
+
+            languageOptions.forEach(
+              function(item) {
+
+                item.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+            option.classList.add(
+              "active"
+            );
+
+
+            languageBox.classList.remove(
+              "open"
+            );
+
+
+            languageButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+
+            if (
+              language === "en"
+            ) {
+
+              translatePage("en");
+
+              setTimeout(
+                restoreLanguageMenuText,
+                100
+              );
+
+              return;
+
+            }
+
+
+            translatePage(
+              language
+            );
+
+
+            setTimeout(
+              restoreLanguageMenuText,
+              100
+            );
+
+
+            setTimeout(
+              restoreLanguageMenuText,
+              500
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       VIDEO INTRO
+    ====================================================== */
+
+    const videoIntro =
+      document.getElementById(
+        "videoIntro"
+      );
+
+
+    const introVideo =
+      document.getElementById(
+        "introVideo"
+      );
+
+
+    const skipIntro =
+      document.getElementById(
+        "skipIntro"
+      );
+
+
+    function closeIntro() {
+
+      videoIntro.classList.add(
+        "fade-out"
+      );
+
+      introVideo.pause();
+
+    }
+
+
+    introVideo.addEventListener(
+      "ended",
+      function() {
+
+        closeIntro();
+
+      }
+    );
+
+
+    skipIntro.addEventListener(
+      "click",
+      function() {
+
+        closeIntro();
+
+      }
+    );
+
+
+    introVideo.addEventListener(
+      "error",
+      function() {
+
+        closeIntro();
+
+      }
+    );
+
+
+    /* =====================================================
+       NAVIGATION ROLL UP / DOWN
+    ====================================================== */
+
+    const topNav =
+      document.getElementById(
+        "topNav"
+      );
+
+
+    const navToggle =
+      document.getElementById(
+        "navToggle"
+      );
+
+
+    navToggle.addEventListener(
+      "click",
+      function() {
+
+
+        const isCollapsed =
+          topNav.classList.toggle(
+            "nav-hidden"
+          );
+
+
+        navToggle.classList.toggle(
+          "nav-collapsed",
+          isCollapsed
+        );
+
+
+        if (isCollapsed) {
+
+
+          navToggle.textContent =
+            "▼";
+
+
+          navToggle.setAttribute(
+            "aria-label",
+            "Roll navigation bar down"
+          );
+
+
+          navToggle.setAttribute(
+            "title",
+            "Roll navigation bar down"
+          );
+
+
+        } else {
+
+
+          navToggle.textContent =
+            "▲";
+
+
+          navToggle.setAttribute(
+            "aria-label",
+            "Roll navigation bar up"
+          );
+
+
+          navToggle.setAttribute(
+            "title",
+            "Roll navigation bar up"
+          );
+
+        }
+
+      }
+    );
+
+
+  </script>
+
+
+</body>
+
+</html>

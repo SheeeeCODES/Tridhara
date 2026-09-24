@@ -1,0 +1,396 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KAALCHAKRA</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #06152b;
+        }
+
+        #introVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Skip button in case the video has a problem */
+        #skipButton {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+
+            padding: 10px 22px;
+
+            background: rgba(6, 21, 43, 0.75);
+            border: 1px solid #e6c77a;
+            color: #e6c77a;
+
+            font-family: Georgia, serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            z-index: 10;
+        }
+
+        #skipButton:hover {
+            background: rgba(230, 199, 122, 0.15);
+        }
+        /* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    background: rgba(6, 21, 43, 0.96);
+    border-bottom: 1px solid rgba(230, 199, 122, 0.45);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+
+    z-index: 20;
+}
+
+.language-menu {
+    position: relative;
+}
+
+.language-button {
+    height: 36px;
+    padding: 0 14px;
+
+    border: 1px solid #8a6035;
+    border-radius: 5px;
+
+    background: #1b2945;
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+.language-dropdown {
+    display: none;
+
+    position: absolute;
+    top: 44px;
+    left: 0;
+
+    width: 150px;
+
+    background: #1b2945;
+    border: 1px solid #8a6035;
+    border-radius: 5px;
+
+    overflow: hidden;
+    z-index: 10001;
+}
+
+.language-dropdown button {
+    display: block;
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: none;
+    background: transparent;
+    color: white;
+
+    font-family: Georgia, serif;
+    font-size: 13px;
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.language-dropdown button:hover {
+    background: #2a3b5c;
+    color: #e6c77a;
+}
+
+.language-menu.open .language-dropdown {
+    display: block;
+}
+
+.navbar-brand {
+    color: #e6c77a;
+    text-decoration: none;
+
+    font-family: Georgia, serif;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+/* Hide Google Translate's original controls */
+#google_translate_element {
+    display: none !important;
+}
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.goog-te-menu-frame,
+#goog-gt-tt {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+body > .skiptranslate {
+    display: none !important;
+}
+
+html {
+    margin-top: 0 !important;
+}
+
+body {
+    top: 0 !important;
+}
+.player-profile-display{
+    display:flex;align-items:center;gap:7px;
+    margin-left:15px;margin-right:12px;
+    color:#e6c77a;
+    font-family:Georgia,serif;
+    font-size:14px;
+    letter-spacing:1px;
+    white-space:nowrap;
+    pointer-events:none;
+}
+.player-profile-display span:first-child{font-size:18px}
+    </style>
+    <script src="../tridhara homepage modify/player-profile.js" defer></script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="language-menu notranslate" id="languageMenu">
+
+            <button
+                class="language-button notranslate"
+                id="languageButton"
+                type="button"
+            >
+                LANGUAGES ▾
+            </button>
+
+            <div class="language-dropdown notranslate">
+
+                <button type="button" onclick="changeLanguage('en')">English</button>
+                <button type="button" onclick="changeLanguage('hi')">हिन्दी</button>
+                <button type="button" onclick="changeLanguage('bn')">বাংলা</button>
+                <button type="button" onclick="changeLanguage('or')">ଓଡ଼ିଆ</button>
+                <button type="button" onclick="changeLanguage('ta')">தமிழ்</button>
+                <button type="button" onclick="changeLanguage('te')">తెలుగు</button>
+                <button type="button" onclick="changeLanguage('ml')">മലയാളം</button>
+                <button type="button" onclick="changeLanguage('mr')">मराठी</button>
+                <button type="button" onclick="changeLanguage('gu')">ગુજરાતી</button>
+                <button type="button" onclick="changeLanguage('pa')">ਪੰਜਾਬੀ</button>
+
+            </div>
+
+        </div>
+
+        <span class="player-profile-display" aria-label="Student profile" title="Student profile">
+            <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+            <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+        </span>
+
+        <a
+            href="../tridhara homepage modify/index.html"
+            class="navbar-brand notranslate"
+        >
+            TRIDHARA
+        </a>
+
+    </nav>
+
+
+    <video
+        id="introVideo"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+    >
+        <source src="intro-video.mp4" type="video/mp4">
+
+        Your browser does not support HTML5 video.
+    </video>
+
+
+    <button id="skipButton">
+        SKIP →
+    </button>
+
+
+    <script>
+
+        const video = document.getElementById("introVideo");
+        const skipButton = document.getElementById("skipButton");
+        function changeLanguage(language) {
+
+    const select = document.querySelector(".goog-te-combo");
+
+    if (!select) {
+
+        setTimeout(function () {
+            changeLanguage(language);
+        }, 500);
+
+        return;
+    }
+
+    select.value = language;
+
+    select.dispatchEvent(
+        new Event("change", { bubbles: true })
+    );
+}
+
+
+const languageButton =
+    document.getElementById("languageButton");
+
+const languageMenu =
+    document.getElementById("languageMenu");
+
+
+languageButton.addEventListener("click", function (event) {
+
+    event.stopPropagation();
+
+    languageMenu.classList.toggle("open");
+
+});
+
+
+document.addEventListener("click", function () {
+
+    languageMenu.classList.remove("open");
+
+});
+
+
+function googleTranslateElementInit() {
+
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: "en",
+            includedLanguages:
+                "en,hi,bn,or,ta,te,ml,mr,gu,pa"
+        },
+        "google_translate_element"
+    );
+
+}
+
+
+setInterval(function () {
+
+    const bar =
+        document.querySelector("body > .skiptranslate");
+
+    if (bar) {
+        bar.style.display = "none";
+    }
+
+    document.body.style.top = "0px";
+
+}, 100);
+
+        /*
+        =====================================================
+        GO TO KAALCHAKRA INDEX PAGE
+        =====================================================
+        */
+
+        function goToKaalchakra() {
+
+            window.location.href = "./index.html";
+
+        }
+
+
+        /*
+        =====================================================
+        WHEN VIDEO FINISHES
+        =====================================================
+        */
+
+        video.addEventListener("ended", function () {
+
+            goToKaalchakra();
+
+        });
+
+
+        /*
+        =====================================================
+        SKIP BUTTON
+        =====================================================
+        */
+
+        skipButton.addEventListener("click", function () {
+
+            goToKaalchakra();
+
+        });
+
+
+        /*
+        =====================================================
+        IF VIDEO CANNOT LOAD
+        =====================================================
+        */
+
+        video.addEventListener("error", function () {
+
+            console.log("Video could not be loaded.");
+
+            goToKaalchakra();
+
+        });
+
+    </script>
+
+<div id="google_translate_element" translate="no"></div>
+
+<script
+    type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+</body>
+
+</html>
+```

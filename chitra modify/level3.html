@@ -1,0 +1,5182 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Nrityam</title>
+
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    font-family: Georgia, serif;
+    top: 0 !important;
+    margin-top: 0 !important;
+}
+
+body {
+    background-image: url("bg.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #f5d98b;
+    position: static !important;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   NAVIGATION BAR
+========================================================= */
+
+.nav-shell {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 68px;
+
+    z-index: 9000;
+
+    padding: 9px 18px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   MAIN NAV
+========================================================= */
+
+.top-nav {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /*
+       Extra right padding leaves room for the
+       UP / DOWN arrow button.
+    */
+    padding: 0 62px 0 14px;
+
+    border: 1px solid rgba(201,168,64,0.8);
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5,4,2,0.94),
+            rgba(28,18,5,0.91),
+            rgba(5,4,2,0.94)
+        );
+
+    box-shadow:
+        0 4px 22px rgba(0,0,0,0.55),
+        inset 0 0 18px rgba(184,151,42,0.08);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    pointer-events: auto;
+
+    transition:
+        transform 0.4s
+        cubic-bezier(0.22,0.61,0.36,1),
+
+        opacity 0.3s ease,
+
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   ROLL NAVIGATION UP
+========================================================= */
+
+.nav-shell.collapsed .top-nav {
+    transform:
+        translateY(-58px);
+
+    opacity: 0.92;
+
+    box-shadow:
+        0 2px 12px rgba(0,0,0,0.35);
+}
+
+
+/* =========================================================
+   NAVIGATION TOGGLE ARROW
+========================================================= */
+
+.nav-toggle {
+    position: absolute;
+
+    top: 10px;
+    right: 8px;
+
+    width: 42px;
+    height: 42px;
+
+    z-index: 9100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border:
+        1px solid
+        #b8972a;
+
+    border-radius: 4px;
+
+    background:
+        linear-gradient(
+            rgba(8,6,2,0.97),
+            rgba(25,16,5,0.97)
+        );
+
+    color:
+        #f5d98b;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,0.55),
+        inset 0 0 12px
+        rgba(184,151,42,0.08);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.nav-toggle:hover {
+    color:
+        #fff0bd;
+
+    border-color:
+        #f5d98b;
+
+    background:
+        linear-gradient(
+            rgba(184,151,42,0.2),
+            rgba(18,12,4,0.98)
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(245,217,139,0.4),
+
+        0 0 24px
+        rgba(212,168,71,0.22),
+
+        inset 0 0 14px
+        rgba(184,151,42,0.1);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/*
+   Keep the arrow visible when the navigation
+   bar has been rolled upward.
+*/
+
+.nav-shell.collapsed .nav-toggle {
+    top: 6px;
+}
+
+
+/* =========================================================
+   NAV LEFT
+========================================================= */
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* =========================================================
+   NAV BUTTONS
+========================================================= */
+
+.nav-button,
+.language-button {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    height: 34px;
+
+    padding: 0 17px;
+
+    background:
+        linear-gradient(
+            rgba(8,6,2,0.94),
+            rgba(25,16,5,0.94)
+        );
+
+    border:
+        1px solid
+        #b8972a;
+
+    border-radius: 3px;
+
+    color:
+        #f5d98b;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.64rem;
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.nav-button:hover,
+.language-button:hover {
+    color:
+        #fff0bd;
+
+    border-color:
+        #f5d98b;
+
+    background:
+        linear-gradient(
+            rgba(184,151,42,0.18),
+            rgba(18,12,4,0.96)
+        );
+
+    box-shadow:
+        0 0 10px
+        rgba(245,217,139,0.32),
+
+        0 0 22px
+        rgba(212,168,71,0.18),
+
+        inset 0 0 12px
+        rgba(184,151,42,0.1);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   LANGUAGE AREA
+========================================================= */
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.language-area {
+    position: relative;
+}
+
+.language-button {
+    min-width: 125px;
+}
+
+.language-arrow {
+    font-size: 0.55rem;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.language-area.open
+.language-arrow {
+    transform:
+        rotate(180deg);
+}
+
+
+/* =========================================================
+   LANGUAGE DROPDOWN
+========================================================= */
+
+.language-menu {
+    position: absolute;
+
+    top:
+        calc(100% + 8px);
+
+    right: 0;
+
+    width: 165px;
+
+    padding: 6px;
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    background:
+        linear-gradient(
+            rgba(7,5,2,0.98),
+            rgba(25,16,5,0.98)
+        );
+
+    border:
+        1px solid
+        #b8972a;
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 10px 28px
+        rgba(0,0,0,0.65),
+
+        0 0 18px
+        rgba(184,151,42,0.15);
+
+    z-index: 9200;
+}
+
+.language-area.open
+.language-menu {
+    display: flex;
+}
+
+.language-menu button {
+    width: 100%;
+
+    padding:
+        8px
+        10px;
+
+    background:
+        transparent;
+
+    border:
+        1px solid
+        transparent;
+
+    border-radius: 2px;
+
+    color:
+        #f5d98b;
+
+    font-family:
+        Georgia, serif;
+
+    font-size:
+        0.7rem;
+
+    text-align:
+        left;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.language-menu button:hover {
+    color:
+        #fff0bd;
+
+    background:
+        rgba(184,151,42,0.16);
+
+    border-color:
+        rgba(201,168,64,0.5);
+}
+
+
+/* =========================================================
+   GOOGLE TRANSLATE HIDDEN UI
+========================================================= */
+
+#google_translate_element {
+    position: fixed !important;
+
+    left: -10000px !important;
+    top: -10000px !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    opacity: 0 !important;
+
+    pointer-events: none !important;
+
+    overflow: hidden !important;
+}
+
+
+/* Google top banner */
+
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame,
+body > .goog-te-banner-frame,
+body > .skiptranslate,
+iframe.skiptranslate,
+.goog-te-balloon-frame,
+iframe.goog-te-balloon-frame,
+.goog-te-menu-frame,
+iframe.goog-te-menu-frame {
+    display:
+        none !important;
+
+    visibility:
+        hidden !important;
+
+    opacity:
+        0 !important;
+
+    height:
+        0 !important;
+
+    width:
+        0 !important;
+
+    pointer-events:
+        none !important;
+}
+
+
+/* Google body positioning protection */
+
+html {
+    top:
+        0 !important;
+
+    margin-top:
+        0 !important;
+}
+
+body,
+body.translated-ltr,
+body.translated-rtl {
+    top:
+        0 !important;
+
+    margin-top:
+        0 !important;
+
+    position:
+        static !important;
+}
+
+
+/* =========================================================
+   OPENING IMAGE REVEAL
+========================================================= */
+
+.opening-reveal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    display: flex;
+}
+
+.opening-reveal img {
+    position: absolute;
+
+    top: 0;
+
+    width: 50vw;
+    height: 100vh;
+
+    object-fit: fill;
+
+    opacity: 1;
+
+    will-change:
+        transform;
+}
+
+.opening-left {
+    left: 0;
+
+    transform:
+        translateX(0);
+
+    animation:
+        openingLeft
+        4s
+        cubic-bezier(0.22,0.61,0.36,1)
+        forwards;
+}
+
+.opening-right {
+    right: 0;
+    top: 0;
+
+    transform:
+        translateX(0);
+
+    animation:
+        openingRight
+        4s
+        cubic-bezier(0.22,0.61,0.36,1)
+        forwards;
+}
+
+@keyframes openingLeft {
+
+    0% {
+        transform:
+            translateX(0);
+        opacity: 1;
+    }
+
+    25% {
+        transform:
+            translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateX(-100%);
+        opacity: 1;
+    }
+
+}
+
+@keyframes openingRight {
+
+    0% {
+        transform:
+            translateX(0);
+        opacity: 1;
+    }
+
+    25% {
+        transform:
+            translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateX(100%);
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.layout {
+    display:
+        flex;
+
+    min-height:
+        100vh;
+
+    padding:
+        88px
+        180px
+        28px
+        12px;
+
+    align-items:
+        flex-start;
+}
+
+
+/* =========================================================
+   LEFT PANEL
+========================================================= */
+
+.left-pane {
+    flex:
+        0 0 310px;
+
+    position:
+        sticky;
+
+    top:
+        88px;
+
+    min-height:
+        600px;
+
+    border:
+        1px solid
+        #b8972a;
+
+    border-radius:
+        4px;
+
+    overflow:
+        hidden;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.72),
+            rgba(0,0,0,0.78)
+        ),
+        url("cbg.avif");
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+
+    box-shadow:
+        0 0 25px
+        rgba(0,0,0,0.45),
+
+        inset 0 0 35px
+        rgba(0,0,0,0.4);
+}
+
+
+/* =========================================================
+   LEFT PANEL TITLE
+========================================================= */
+
+.pane-title-wrap {
+    width:
+        100%;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        4px 4px 0 0;
+
+    line-height:
+        0;
+}
+
+.pane-title-img {
+    width:
+        184%;
+
+    margin-left:
+        -42%;
+
+    display:
+        block;
+
+    mix-blend-mode:
+        screen;
+
+    margin-top:
+        -8px;
+
+    margin-bottom:
+        -20px;
+
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 22%,
+            black 78%,
+            transparent 100%
+        );
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 22%,
+            black 78%,
+            transparent 100%
+        );
+}
+
+
+/* =========================================================
+   PANE BODY
+========================================================= */
+
+.pane-body {
+    padding:
+        0
+        18px
+        18px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    flex:
+        1;
+}
+
+.pane-divider {
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            #b8972a,
+            transparent
+        );
+
+    margin-bottom:
+        16px;
+}
+
+
+/* =========================================================
+   IDLE TEXT
+========================================================= */
+
+.pane-idle {
+    text-align:
+        center;
+
+    color:
+        #c9a84c;
+
+    font-size:
+        0.76rem;
+
+    letter-spacing:
+        0.1em;
+
+    line-height:
+        2;
+
+    text-transform:
+        uppercase;
+}
+
+.pane-idle .flow-line {
+    display:
+        block;
+
+    opacity:
+        0;
+
+    transform:
+        translateY(8px);
+
+    animation:
+        paneFlow
+        0.8s
+        ease-out
+        forwards;
+}
+
+.pane-idle .flow-line:nth-child(1) {
+    animation-delay:
+        0.15s;
+}
+
+.pane-idle .flow-line:nth-child(2) {
+    animation-delay:
+        0.38s;
+}
+
+.pane-idle .flow-line:nth-child(3) {
+    animation-delay:
+        0.61s;
+}
+
+.pane-idle .hint {
+    margin-top:
+        12px;
+
+    font-size:
+        0.63rem;
+
+    opacity:
+        0.5;
+}
+
+
+/* =========================================================
+   INFO PANEL
+========================================================= */
+
+.pane-info {
+    display:
+        none;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+}
+
+.pane-info.visible {
+    display:
+        flex;
+}
+
+.pane-info .flow-item {
+    opacity:
+        0;
+
+    transform:
+        translateY(8px);
+
+    animation:
+        paneFlow
+        0.75s
+        ease-out
+        forwards;
+}
+
+.pane-info .info-state {
+    animation-delay:
+        0.05s;
+}
+
+.pane-info .info-dance {
+    animation-delay:
+        0.25s;
+}
+
+.pane-info .info-divider {
+    animation-delay:
+        0.45s;
+}
+
+.pane-info .info-desc {
+    animation-delay:
+        0.65s;
+}
+
+.pane-info .info-tag {
+    animation-delay:
+        0.9s;
+}
+
+@keyframes paneFlow {
+
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateY(9px);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+.info-state {
+    font-size:
+        1.15rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.14em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        #f5d98b;
+
+    text-align:
+        center;
+}
+
+.info-dance {
+    font-size:
+        0.95rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        #c9a84c;
+
+    text-align:
+        center;
+}
+
+.info-divider {
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            #b8972a,
+            transparent
+        );
+}
+
+.info-desc {
+    font-size:
+        0.78rem;
+
+    color:
+        #d4b96a;
+
+    line-height:
+        1.85;
+
+    text-align:
+        center;
+}
+
+.info-tag {
+    font-size:
+        0.68rem;
+
+    letter-spacing:
+        0.15em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        #7a5c10;
+
+    text-align:
+        center;
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+.score-bar {
+    margin-top:
+        auto;
+
+    padding-top:
+        14px;
+
+    border-top:
+        1px solid
+        rgba(184,151,42,0.3);
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+}
+
+.score-label {
+    font-size:
+        0.6rem;
+
+    letter-spacing:
+        0.15em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        #7a5c10;
+}
+
+.score-val {
+    font-size:
+        1rem;
+
+    font-weight:
+        900;
+
+    color:
+        #f5d98b;
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+.timer-box {
+    margin-top:
+        10px;
+
+    padding:
+        7px
+        10px;
+
+    border:
+        1px solid
+        rgba(184,151,42,0.55);
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    background:
+        rgba(0,0,0,0.28);
+}
+
+.timer-label {
+    font-size:
+        0.6rem;
+
+    letter-spacing:
+        0.15em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        #7a5c10;
+}
+
+.timer {
+    font-size:
+        1rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    color:
+        #f5d98b;
+
+    min-width:
+        42px;
+
+    text-align:
+        right;
+}
+
+.timer.warning {
+    color:
+        #e8a84c;
+}
+
+.timer.danger {
+    color:
+        #e05a47;
+}
+
+
+/* =========================================================
+   WIN BANNER
+========================================================= */
+
+.win-banner {
+    display:
+        none;
+
+    text-align:
+        center;
+
+    padding:
+        9px;
+
+    background:
+        rgba(139,0,0,0.5);
+
+    border:
+        1px solid
+        #b8972a;
+
+    border-radius:
+        3px;
+
+    font-size:
+        0.68rem;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        #f5d98b;
+
+    margin-top:
+        10px;
+
+    line-height:
+        1.7;
+}
+
+.win-banner.visible {
+    display:
+        block;
+}
+
+
+/* =========================================================
+   RESET BUTTON
+========================================================= */
+
+.reset-btn {
+    margin-top:
+        10px;
+
+    width:
+        100%;
+
+    padding:
+        8px;
+
+    background:
+        transparent;
+
+    border:
+        1px solid
+        #b8972a;
+
+    color:
+        #f5d98b;
+
+    font-family:
+        Georgia, serif;
+
+    font-size:
+        0.63rem;
+
+    letter-spacing:
+        0.18em;
+
+    text-transform:
+        uppercase;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s;
+}
+
+.reset-btn:hover {
+    background:
+        rgba(184,151,42,0.15);
+}
+
+
+/* =========================================================
+   THEORY MODE
+========================================================= */
+
+.theory-label {
+    display:
+        none;
+
+    text-align:
+        center;
+
+    color:
+        #f5d98b;
+
+    font-size:
+        0.78rem;
+
+    letter-spacing:
+        0.16em;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom:
+        10px;
+
+    opacity:
+        0.95;
+
+    padding:
+        11px
+        22px;
+
+    border:
+        1px solid
+        rgba(201,168,64,0.85);
+
+    border-radius:
+        5px;
+
+    background:
+        linear-gradient(
+            rgba(8,6,2,0.84),
+            rgba(24,16,5,0.88)
+        ),
+        url("cbg.avif");
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+
+    box-shadow:
+        0 0 18px
+        rgba(0,0,0,0.45),
+
+        inset 0 0 18px
+        rgba(184,151,42,0.12);
+
+    text-shadow:
+        0 0 10px
+        rgba(245,217,139,0.35);
+}
+
+.theory-label.visible {
+    display:
+        block;
+}
+
+
+/* =========================================================
+   STUDIO BUTTON
+========================================================= */
+
+.studio-btn {
+    display:
+        none;
+
+    width:
+        auto;
+
+    min-width:
+        190px;
+
+    margin:
+        12px
+        auto
+        0;
+
+    padding:
+        9px
+        18px;
+
+    background:
+        linear-gradient(
+            rgba(8,6,2,0.80),
+            rgba(18,12,4,0.86)
+        ),
+        url("cbg.avif");
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+
+    border:
+        1px solid
+        #b8972a;
+
+    border-radius:
+        5px;
+
+    color:
+        #f5d98b;
+
+    font-family:
+        Georgia, serif;
+
+    font-size:
+        0.62rem;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s,
+        transform 0.2s;
+
+    box-shadow:
+        0 0 16px
+        rgba(0,0,0,0.35),
+
+        inset 0 0 18px
+        rgba(184,151,42,0.08);
+}
+
+.studio-btn.visible {
+    display:
+        block;
+}
+
+.studio-btn:hover {
+    background:
+        linear-gradient(
+            rgba(184,151,42,0.18),
+            rgba(18,12,4,0.88)
+        ),
+        url("cbg.avif");
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+
+    border-color:
+        #f5d98b;
+
+    box-shadow:
+        0 0 12px
+        rgba(245,217,139,0.35),
+
+        0 0 25px
+        rgba(212,168,71,0.25),
+
+        inset 0 0 18px
+        rgba(184,151,42,0.12);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   CARDS AREA
+========================================================= */
+
+.cards-area {
+    flex:
+        1;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        18px;
+
+    justify-content:
+        center;
+
+    padding:
+        6px
+        0
+        0
+        0;
+
+    margin-left:
+        -56px;
+}
+
+.card-row {
+    display:
+        flex;
+
+    gap:
+        16px;
+
+    justify-content:
+        center;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.flip-card {
+    width:
+        158px;
+
+    height:
+        205px;
+
+    perspective:
+        1000px;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+.flip-card:hover {
+    transform:
+        translateY(-5px)
+        scale(1.015);
+
+    z-index:
+        15;
+}
+
+.flip-card-inner {
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    transition:
+        transform
+        0.65s
+        cubic-bezier(0.4,0.2,0.2,1);
+
+    transform-style:
+        preserve-3d;
+}
+
+.flip-card.revealed
+.flip-card-inner {
+    transform:
+        rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    border-radius:
+        6px;
+
+    backface-visibility:
+        hidden;
+
+    -webkit-backface-visibility:
+        hidden;
+
+    overflow:
+        hidden;
+}
+
+
+/* =========================================================
+   CARD FRONT
+========================================================= */
+
+.flip-card-front {
+    border:
+        2px solid
+        #c9a840;
+
+    background-image:
+        url("cbg.avif");
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+}
+
+.flip-card-front::after {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(0,0,0,0.05) 0%,
+            rgba(0,0,0,0.42) 100%
+        );
+
+    border-radius:
+        4px;
+}
+
+
+/* =========================================================
+   CARD BACK
+========================================================= */
+
+.flip-card-back {
+    transform:
+        rotateY(180deg);
+
+    border:
+        2px solid
+        #b8972a;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+
+    padding:
+        14px
+        10px;
+
+    text-align:
+        center;
+}
+
+
+/* =========================================================
+   STATE IMAGE CARDS
+========================================================= */
+
+.flip-card-back.type-state {
+    position:
+        relative;
+
+    display:
+        block;
+
+    padding:
+        0;
+
+    border-color:
+        #d4a847;
+
+    background:
+        #000;
+}
+
+.state-image {
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    overflow:
+        hidden;
+}
+
+.state-image img {
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        block;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+    margin:
+        0;
+
+    padding:
+        0;
+}
+
+
+/* =========================================================
+   KERALA IMAGE POSITION
+========================================================= */
+
+.state-image img[src="kl.jpeg"] {
+    object-position:
+        center 35%;
+}
+
+
+/* =========================================================
+   DANCE IMAGE CARDS
+========================================================= */
+
+.flip-card-back.type-dance {
+    position:
+        relative;
+
+    display:
+        block;
+
+    padding:
+        0;
+
+    border-color:
+        #d4a847;
+
+    background:
+        #000;
+}
+
+.dance-image {
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    overflow:
+        hidden;
+}
+
+.dance-image img {
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        block;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+    margin:
+        0;
+
+    padding:
+        0;
+}
+
+
+/* =========================================================
+   GHOOMAR POSITION
+========================================================= */
+
+.dance-image img.ghoomar-image {
+    object-position:
+        center 35%;
+}
+
+
+/* =========================================================
+   KATHAKALI POSITION
+========================================================= */
+
+.dance-image img.kathakali-image {
+    object-position:
+        center 65%;
+}
+
+
+/* =========================================================
+   MATCHED
+========================================================= */
+
+.flip-card.matched
+.flip-card-back {
+    box-shadow:
+        0 0 20px
+        rgba(212,168,71,0.6);
+}
+
+.flip-card.locked {
+    pointer-events:
+        none;
+}
+
+
+/* =========================================================
+   AFTER TIMER / GAME FINISHED
+========================================================= */
+
+.flip-card.after-timer:hover {
+    transform:
+        translateY(-9px)
+        scale(1.04);
+
+    z-index:
+        30;
+}
+
+.flip-card.after-timer:hover
+.flip-card-back {
+    border-color:
+        #f5d98b;
+
+    box-shadow:
+        0 0 12px
+        rgba(245,217,139,0.9),
+
+        0 0 28px
+        rgba(212,168,71,0.9),
+
+        0 0 55px
+        rgba(212,140,20,0.6);
+}
+
+.flip-card.after-timer:hover
+.flip-card-front {
+    border-color:
+        #f5d98b;
+
+    box-shadow:
+        0 0 18px
+        rgba(245,217,139,0.8);
+}
+
+
+/* =========================================================
+   SELECTED CARD
+========================================================= */
+
+.flip-card.selected-card {
+    z-index:
+        20;
+
+    transform:
+        translateY(-6px);
+}
+
+.flip-card.selected-card
+.flip-card-back {
+    border-color:
+        #f5d98b;
+
+    box-shadow:
+        0 0 12px
+        rgba(245,217,139,0.85),
+
+        0 0 28px
+        rgba(212,168,71,0.85),
+
+        0 0 55px
+        rgba(212,140,20,0.55);
+}
+
+
+/* =========================================================
+   NATARAJA
+========================================================= */
+
+.nataraja {
+    position:
+        fixed;
+
+    bottom:
+        58px;
+
+    right:
+        20px;
+
+    width:
+        260px;
+
+    pointer-events:
+        none;
+
+    z-index:
+        9;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,190,60,0.3)
+        )
+        drop-shadow(
+            0 0 22px
+            rgba(212,140,20,0.2)
+        );
+
+    animation:
+        natGlow
+        3.5s
+        ease-in-out
+        infinite;
+
+    transform-origin:
+        bottom center;
+}
+
+@keyframes natGlow {
+
+    0%,100% {
+        filter:
+            drop-shadow(
+                0 0 8px
+                rgba(255,190,60,0.3)
+            )
+            drop-shadow(
+                0 0 22px
+                rgba(212,140,20,0.2)
+            );
+    }
+
+    50% {
+        filter:
+            drop-shadow(
+                0 0 14px
+                rgba(255,210,80,0.45)
+            )
+            drop-shadow(
+                0 0 36px
+                rgba(200,140,20,0.3)
+            );
+    }
+
+}
+
+
+/* =========================================================
+   GNG
+========================================================= */
+
+.gng {
+    position:
+        fixed;
+
+    right:
+        46px;
+
+    bottom:
+        2px;
+
+    width:
+        auto;
+
+    height:
+        130px;
+
+    pointer-events:
+        none;
+
+    z-index:
+        10;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,190,60,0.45)
+        )
+        drop-shadow(
+            0 0 20px
+            rgba(212,140,20,0.3)
+        );
+}
+
+
+/* =========================================================
+   LAMPS
+========================================================= */
+
+.lamp-wrap {
+    position:
+        fixed;
+
+    top:
+        0;
+
+    pointer-events:
+        none;
+
+    z-index:
+        10;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    transform-origin:
+        top center;
+}
+
+.lamp-wrap.lamp-a {
+    right:
+        -80px;
+
+    animation:
+        sway
+        7s
+        ease-in-out
+        infinite;
+}
+
+.lamp-wrap.lamp-b {
+    right:
+        40px;
+
+    animation:
+        sway
+        9s
+        ease-in-out
+        infinite reverse;
+
+    animation-delay:
+        -3s;
+}
+
+@keyframes sway {
+
+    0% {
+        transform:
+            rotate(-2deg);
+    }
+
+    50% {
+        transform:
+            rotate(2deg);
+    }
+
+    100% {
+        transform:
+            rotate(-2deg);
+    }
+
+}
+
+.lamp-chain {
+    width:
+        2px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(184,151,42,0.0) 0%,
+            rgba(184,151,42,0.85) 55%,
+            rgba(212,168,71,1) 100%
+        );
+}
+
+.lamp-wrap.lamp-a
+.lamp-chain {
+    height:
+        55px;
+}
+
+.lamp-wrap.lamp-b
+.lamp-chain {
+    height:
+        28px;
+}
+
+.lamp-img {
+    display:
+        block;
+
+    filter:
+        drop-shadow(
+            0 8px 22px
+            rgba(255,190,60,0.75)
+        )
+        drop-shadow(
+            0 0 38px
+            rgba(255,180,40,0.65)
+        )
+        drop-shadow(
+            0 0 75px
+            rgba(255,160,20,0.35)
+        );
+
+    animation:
+        lampGlow
+        3s
+        ease-in-out
+        infinite;
+}
+
+.lamp-wrap.lamp-a
+.lamp-img {
+    width:
+        377px;
+}
+
+.lamp-wrap.lamp-b
+.lamp-img {
+    width:
+        325px;
+}
+
+
+/* =========================================================
+   LAMP GLOW
+========================================================= */
+
+@keyframes lampGlow {
+
+    0%,100% {
+        filter:
+            drop-shadow(
+                0 8px 22px
+                rgba(255,190,60,0.65)
+            )
+            drop-shadow(
+                0 0 38px
+                rgba(255,180,40,0.55)
+            )
+            drop-shadow(
+                0 0 70px
+                rgba(255,160,20,0.3)
+            );
+    }
+
+    50% {
+        filter:
+            drop-shadow(
+                0 8px 28px
+                rgba(255,205,80,0.95)
+            )
+            drop-shadow(
+                0 0 52px
+                rgba(255,190,50,0.8)
+            )
+            drop-shadow(
+                0 0 95px
+                rgba(255,165,25,0.45)
+            );
+    }
+
+}
+
+
+/* =========================================================
+   GAME POPUP OVERLAY
+========================================================= */
+
+.game-overlay {
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        50000;
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        rgba(0,0,0,0.72);
+
+    backdrop-filter:
+        blur(7px);
+
+    -webkit-backdrop-filter:
+        blur(7px);
+}
+
+.game-overlay.visible {
+    display:
+        flex;
+}
+
+
+/* =========================================================
+   POPUP
+========================================================= */
+
+.game-popup {
+    width:
+        min(420px,88vw);
+
+    padding:
+        30px
+        30px
+        28px;
+
+    background:
+        linear-gradient(
+            rgba(8,6,2,0.97),
+            rgba(18,12,4,0.97)
+        );
+
+    border:
+        1px solid
+        #c9a840;
+
+    border-radius:
+        6px;
+
+    box-shadow:
+        0 0 25px
+        rgba(0,0,0,0.7),
+
+        0 0 45px
+        rgba(184,151,42,0.18),
+
+        inset 0 0 30px
+        rgba(184,151,42,0.05);
+
+    text-align:
+        center;
+
+    animation:
+        popupAppear
+        0.35s
+        ease-out;
+}
+
+@keyframes popupAppear {
+
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateY(12px)
+            scale(0.97);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   POPUP TITLE
+========================================================= */
+
+.popup-title {
+    color:
+        #f5d98b;
+
+    font-size:
+        1.5rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.08em;
+
+    margin-bottom:
+        18px;
+
+    text-shadow:
+        0 0 12px
+        rgba(245,217,139,0.25);
+}
+
+
+/* =========================================================
+   POPUP TEXT
+========================================================= */
+
+.popup-main-text {
+    color:
+        #e2c979;
+
+    font-size:
+        0.9rem;
+
+    line-height:
+        1.8;
+
+    margin-bottom:
+        13px;
+}
+
+.popup-question {
+    color:
+        #c9a84c;
+
+    font-size:
+        0.82rem;
+
+    line-height:
+        1.7;
+
+    margin-bottom:
+        18px;
+}
+
+
+/* =========================================================
+   COMPLETION TEXT
+========================================================= */
+
+.complete-subtitle {
+    color:
+        #f5d98b;
+
+    font-size:
+        0.86rem;
+
+    letter-spacing:
+        0.1em;
+
+    margin-bottom:
+        7px;
+}
+
+.complete-message {
+    color:
+        #c9a84c;
+
+    font-size:
+        0.72rem;
+
+    line-height:
+        1.7;
+
+    margin-bottom:
+        20px;
+}
+
+
+/* =========================================================
+   POPUP BUTTONS
+========================================================= */
+
+.popup-buttons {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        9px;
+}
+
+.popup-btn {
+    width:
+        100%;
+
+    padding:
+        9px
+        12px;
+
+    background:
+        rgba(0,0,0,0.18);
+
+    border:
+        1px solid
+        #b8972a;
+
+    color:
+        #f5d98b;
+
+    font-family:
+        Georgia, serif;
+
+    font-size:
+        0.67rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.13em;
+
+    text-transform:
+        uppercase;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+.popup-btn:hover {
+    background:
+        rgba(184,151,42,0.14);
+
+    border-color:
+        #f5d98b;
+
+    box-shadow:
+        0 0 12px
+        rgba(245,217,139,0.25);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .layout {
+        padding-right:
+            110px;
+    }
+
+    .flip-card {
+        width:
+            135px;
+
+        height:
+            180px;
+    }
+
+    .nataraja {
+        width:
+            210px;
+    }
+
+}
+
+
+@media (max-width: 950px) {
+
+    .nav-shell {
+        padding:
+            8px
+            10px;
+    }
+
+    .top-nav {
+        padding:
+            0
+            55px
+            0
+            9px;
+    }
+
+    .nav-button,
+    .language-button {
+        padding:
+            0
+            12px;
+
+        font-size:
+            0.58rem;
+    }
+
+    .language-button {
+        min-width:
+            110px;
+    }
+
+    .nav-toggle {
+        width:
+            38px;
+
+        height:
+            38px;
+
+        top:
+            6px;
+
+        right:
+            7px;
+
+        font-size:
+            0.85rem;
+    }
+
+    .nav-shell.collapsed .nav-toggle {
+        top:
+            4px;
+    }
+
+    .layout {
+        padding:
+            88px
+            80px
+            20px
+            10px;
+    }
+
+    .left-pane {
+        flex-basis:
+            270px;
+
+        top:
+            88px;
+    }
+
+    .cards-area {
+        margin-left:
+            -25px;
+    }
+
+    .flip-card {
+        width:
+            120px;
+
+        height:
+            160px;
+    }
+
+    .card-row {
+        gap:
+            10px;
+    }
+
+    .nataraja {
+        width:
+            170px;
+
+        right:
+            8px;
+
+        bottom:
+            50px;
+    }
+
+}
+
+
+@media (max-width: 720px) {
+
+    .nav-shell {
+        height:
+            60px;
+
+        padding:
+            7px;
+    }
+
+    .top-nav {
+        height:
+            46px;
+
+        padding:
+            0
+            47px
+            0
+            6px;
+    }
+
+    .nav-left {
+        gap:
+            5px;
+    }
+
+    .nav-button,
+    .language-button {
+        height:
+            31px;
+
+        padding:
+            0
+            8px;
+
+        font-size:
+            0.48rem;
+
+        letter-spacing:
+            0.1em;
+    }
+
+    .language-button {
+        min-width:
+            91px;
+    }
+
+    .language-menu {
+        width:
+            145px;
+    }
+
+    .language-menu button {
+        font-size:
+            0.64rem;
+    }
+
+    .nav-toggle {
+        width:
+            34px;
+
+        height:
+            34px;
+
+        top:
+            6px;
+
+        right:
+            6px;
+
+        font-size:
+            0.75rem;
+    }
+
+    .nav-shell.collapsed .nav-toggle {
+        top:
+            4px;
+    }
+
+    .layout {
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+
+        padding:
+            75px
+            15px
+            100px;
+    }
+
+    .left-pane {
+        position:
+            relative;
+
+        top:
+            auto;
+
+        width:
+            min(310px,90vw);
+
+        flex-basis:
+            auto;
+
+        min-height:
+            500px;
+    }
+
+    .cards-area {
+        width:
+            100%;
+
+        margin-left:
+            0;
+
+        margin-top:
+            25px;
+    }
+
+    .flip-card {
+        width:
+            22vw;
+
+        height:
+            30vw;
+
+        max-width:
+            140px;
+
+        max-height:
+            185px;
+    }
+
+    .card-row {
+        gap:
+            8px;
+    }
+
+    .nataraja {
+        width:
+            135px;
+
+        bottom:
+            45px;
+
+        right:
+            0;
+    }
+
+    .gng {
+        height:
+            90px;
+
+        right:
+            25px;
+    }
+
+    .theory-label {
+        font-size:
+            0.68rem;
+
+        padding:
+            10px
+            12px;
+    }
+
+}
+
+
+/* =========================================================
+   END CSS
+========================================================= */
+
+.player-profile-display{
+    position:relative;
+    display:flex;align-items:center;gap:7px;
+    margin-left:26px;
+    padding:8px 18px;
+    border-radius:999px;
+    color:#f5d98b;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:13px;
+    letter-spacing:.08em;
+    white-space:nowrap;
+    pointer-events:none;
+    isolation:isolate;
+}
+.player-profile-display::before{
+    content:"";
+    position:absolute;
+    inset:-6px -14px;
+    z-index:-1;
+    border-radius:999px;
+    background:radial-gradient(
+        ellipse at center,
+        rgba(240,205,120,0.32) 0%,
+        rgba(198,151,61,0.18) 45%,
+        rgba(198,151,61,0) 75%
+    );
+    pointer-events:none;
+}
+.player-profile-display span:first-child{font-size:17px}
+
+</style>
+<script src="../tridhara homepage modify/progress-guard.js"></script>
+<script src="../tridhara homepage modify/player-profile.js" defer></script>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION BAR
+========================================================= -->
+
+<div
+    class="nav-shell notranslate"
+    id="navShell"
+    translate="no"
+>
+
+
+    <nav
+        class="top-nav notranslate"
+        translate="no"
+    >
+
+
+        <!-- LEFT NAVIGATION -->
+
+        <div
+            class="nav-left notranslate"
+            translate="no"
+        >
+
+            <a
+                href="../tridhara homepage modify/index.html"
+                class="nav-button notranslate"
+                translate="no"
+            >
+                TRIDHARA
+            </a>
+
+
+            <a
+                href="bg2.html"
+                class="nav-button notranslate"
+                translate="no"
+            >
+                CHITRA
+            </a>
+
+        </div>
+
+
+        <!-- RIGHT NAVIGATION -->
+
+        <div
+            class="nav-right notranslate"
+            translate="no"
+        >
+
+            <div
+                class="language-area notranslate"
+                id="languageArea"
+                translate="no"
+            >
+
+                <button
+                    type="button"
+                    class="language-button notranslate"
+                    id="languageButton"
+                    translate="no"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+
+                    <span
+                        class="notranslate"
+                        translate="no"
+                    >
+                        LANGUAGE
+                    </span>
+
+                    <span
+                        class="language-arrow notranslate"
+                        id="languageArrow"
+                        translate="no"
+                    >
+                        ▼
+                    </span>
+
+                </button>
+
+
+                <div
+                    class="language-menu notranslate"
+                    id="languageMenu"
+                    translate="no"
+                >
+
+                    <button
+                        type="button"
+                        data-lang="en"
+                        class="notranslate"
+                        translate="no"
+                    >
+                        English
+                    </button>
+
+                    <button
+                        type="button"
+                        data-lang="hi"
+                        class="notranslate"
+                        translate="no"
+                    >
+                        हिन्दी
+                    </button>
+
+                    <button
+                        type="button"
+                        data-lang="bn"
+                        class="notranslate"
+                        translate="no"
+                    >
+                        বাংলা
+                    </button>
+
+                    <button
+                        type="button"
+                        data-lang="or"
+                        class="notranslate"
+                        translate="no"
+                    >
+                        ଓଡ଼ିଆ
+                    </button>
+
+                    <button
+                        type="button"
+                        data-lang="ta"
+                        class="notranslate"
+                        translate="no"
+                    >
+                        தமிழ்
+                    </button>
+
+                    <button
+                        type="button"
+                        data-lang="te"
+                        class="notranslate"
+                        translate="no"
+                    >
+                        తెలుగు
+                    </button>
+
+                    <button
+                        type="button"
+                        data-lang="ml"
+                        class="notranslate"
+                        translate="no"
+                    >
+                        മലയാളം
+                    </button>
+
+                    <button
+                        type="button"
+                        data-lang="mr"
+                        class="notranslate"
+                        translate="no"
+                    >
+                        मराठी
+                    </button>
+
+                    <button
+                        type="button"
+                        data-lang="gu"
+                        class="notranslate"
+                        translate="no"
+                    >
+                        ગુજરાતી
+                    </button>
+
+                    <button
+                        type="button"
+                        data-lang="pa"
+                        class="notranslate"
+                        translate="no"
+                    >
+                        ਪੰਜਾਬੀ
+                    </button>
+
+                </div>
+
+            </div>
+
+            <span class="player-profile-display" aria-label="Student profile" title="Student profile">
+                <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+                <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+            </span>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         EXTREME RIGHT NAV ROLL BUTTON
+         
+         ▲ = click to roll navigation UP
+         ▼ = click to roll navigation DOWN
+    ====================================================== -->
+
+    <button
+        type="button"
+        class="nav-toggle notranslate"
+        id="navToggle"
+        translate="no"
+        aria-label="Roll navigation up"
+        aria-expanded="true"
+        title="Roll navigation up"
+    >
+
+        <span
+            id="navToggleArrow"
+            class="notranslate"
+            translate="no"
+        >
+            ▲
+        </span>
+
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     HIDDEN GOOGLE TRANSLATE ELEMENT
+========================================================= -->
+
+<div
+    id="google_translate_element"
+    aria-hidden="true"
+></div>
+
+
+<!-- =========================================================
+     OPENING IMAGE REVEAL
+========================================================= -->
+
+<div
+    class="opening-reveal"
+    id="openingReveal"
+>
+
+    <img
+        src="left.jpeg"
+        class="opening-left"
+        alt=""
+    >
+
+    <img
+        src="right.jpeg"
+        class="opening-right"
+        alt=""
+    >
+
+</div>
+
+
+<!-- =========================================================
+     LAMPS
+========================================================= -->
+
+<div class="lamp-wrap lamp-a">
+
+    <div class="lamp-chain"></div>
+
+    <img
+        class="lamp-img"
+        src="lamp.png"
+        alt=""
+    >
+
+</div>
+
+
+<div class="lamp-wrap lamp-b">
+
+    <div class="lamp-chain"></div>
+
+    <img
+        class="lamp-img"
+        src="lamp.png"
+        alt=""
+    >
+
+</div>
+
+
+<!-- =========================================================
+     NATARAJA
+========================================================= -->
+
+<img
+    class="nataraja"
+    src="natraj.png"
+    alt="Nataraja"
+>
+
+
+<!-- =========================================================
+     GNG
+========================================================= -->
+
+<img
+    class="gng"
+    src="gng.png"
+    alt=""
+>
+
+
+<!-- =========================================================
+     MAIN LAYOUT
+========================================================= -->
+
+<div class="layout">
+
+
+<!-- =========================================================
+     LEFT PANEL
+========================================================= -->
+
+<div class="left-pane">
+
+    <div class="pane-title-wrap">
+
+        <img
+            class="pane-title-img"
+            src="title.jpeg"
+            alt="Nrityam"
+        >
+
+    </div>
+
+
+    <div class="pane-body">
+
+        <div class="pane-divider"></div>
+
+
+        <!-- IDLE TEXT -->
+
+        <div
+            class="pane-idle"
+            id="paneIdle"
+        >
+
+            <span class="flow-line">
+                Match each Indian state
+            </span>
+
+            <span class="flow-line">
+                with its classical
+            </span>
+
+            <span class="flow-line">
+                or folk dance form.
+            </span>
+
+            <div class="hint">
+                Tap two cards to reveal.<br>
+                Correct pairs stay open.
+            </div>
+
+        </div>
+
+
+        <!-- INFO PANEL -->
+
+        <div
+            class="pane-info"
+            id="paneInfo"
+        >
+
+            <div
+                class="info-state flow-item"
+                id="infoState"
+            ></div>
+
+            <div
+                class="info-dance flow-item"
+                id="infoDance"
+            ></div>
+
+            <div
+                class="info-divider flow-item"
+            ></div>
+
+            <div
+                class="info-desc flow-item"
+                id="infoDesc"
+            ></div>
+
+            <div
+                class="info-tag flow-item"
+                id="infoTag"
+            ></div>
+
+        </div>
+
+
+        <!-- SCORE -->
+
+        <div class="score-bar">
+
+            <span class="score-label">
+                Pairs found
+            </span>
+
+            <span class="score-val">
+
+                <span id="scoreNum">
+                    0
+                </span>
+
+                / 6
+
+            </span>
+
+        </div>
+
+
+        <!-- TIMER -->
+
+        <div class="timer-box">
+
+            <span class="timer-label">
+                Time
+            </span>
+
+            <span
+                class="timer"
+                id="timer"
+            >
+                01:00
+            </span>
+
+        </div>
+
+
+        <!-- SMALL MESSAGE -->
+
+        <div
+            class="win-banner"
+            id="winBanner"
+        >
+        </div>
+
+
+        <!-- RESET -->
+
+        <button
+            class="reset-btn"
+            onclick="initGame()"
+        >
+            ↺ Reset
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CARDS
+========================================================= -->
+
+<div
+    class="cards-area"
+    id="cardsArea"
+>
+
+    <div
+        class="theory-label"
+        id="theoryLabel"
+    >
+        Theory mode, Explore the dance cards
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+     BACK TO NRITYAM STUDIO
+========================================================= -->
+
+<button
+    class="studio-btn"
+    id="bottomStudioBtn"
+    onclick="goToStudio()"
+>
+    Back to Nrityam studio
+</button>
+
+
+<!-- =========================================================
+     GAME POPUP
+========================================================= -->
+
+<div
+    class="game-overlay"
+    id="gameOverlay"
+>
+
+    <div class="game-popup">
+
+
+        <!-- TIME UP -->
+
+        <div
+            id="timeUpPopup"
+            style="display:none;"
+        >
+
+            <div class="popup-title">
+                ✦ TIME'S UP ✦
+            </div>
+
+            <div class="popup-main-text">
+                The dance awaits another attempt.
+            </div>
+
+            <div class="popup-question">
+                Would you like to try again?
+            </div>
+
+            <div class="popup-buttons">
+
+                <button
+                    class="popup-btn"
+                    onclick="replayGame()"
+                >
+                    Replay
+                </button>
+
+                <button
+                    class="popup-btn"
+                    onclick="goToStudio()"
+                >
+                    Back to Nrityam studio
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LEVEL COMPLETE -->
+
+        <div
+            id="completePopup"
+            style="display:none;"
+        >
+
+            <div class="popup-title">
+                ✦ LEVEL 3 COMPLETE ✦
+            </div>
+
+            <div class="complete-subtitle">
+                Beautifully done
+            </div>
+
+            <div class="complete-message">
+                You have successfully finished all the Nrityam hurdles!
+            </div>
+
+            <div class="popup-buttons">
+
+                <button
+                    class="popup-btn"
+                    onclick="replayGame()"
+                >
+                    Replay
+                </button>
+
+                <button
+                    class="popup-btn"
+                    onclick="laterMode()"
+                >
+                    Later
+                </button>
+
+                <button
+                    class="popup-btn"
+                    onclick="goToStudio()"
+                >
+                    Back to Nrityam studio
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   NAVIGATION ROLL UP / DOWN
+========================================================= */
+
+const navShell =
+    document.getElementById(
+        "navShell"
+    );
+
+const navToggle =
+    document.getElementById(
+        "navToggle"
+    );
+
+const navToggleArrow =
+    document.getElementById(
+        "navToggleArrow"
+    );
+
+
+navToggle.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+
+        const collapsed =
+            navShell.classList.toggle(
+                "collapsed"
+            );
+
+
+        /*
+           When collapsed:
+           ▼ means click to roll DOWN.
+
+           When expanded:
+           ▲ means click to roll UP.
+        */
+
+        navToggleArrow.textContent =
+            collapsed
+                ? "▼"
+                : "▲";
+
+
+        navToggle.setAttribute(
+            "aria-expanded",
+            collapsed
+                ? "false"
+                : "true"
+        );
+
+
+        navToggle.setAttribute(
+            "aria-label",
+            collapsed
+                ? "Roll navigation down"
+                : "Roll navigation up"
+        );
+
+
+        navToggle.setAttribute(
+            "title",
+            collapsed
+                ? "Roll navigation down"
+                : "Roll navigation up"
+        );
+
+
+        /*
+           Close language dropdown whenever
+           the navigation is rolled.
+        */
+
+        languageArea.classList.remove(
+            "open"
+        );
+
+        languageButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   STATE IMAGE FILES
+========================================================= */
+
+const STATE_IMGS = {
+
+    odd:
+        "odd.jpeg",
+
+    mn:
+        "mn.jpeg",
+
+    rj:
+        "rj.jpeg",
+
+    pn:
+        "pn.jpeg",
+
+    tn:
+        "tn.jpeg",
+
+    kl:
+        "kl.jpeg"
+
+};
+
+
+/* =========================================================
+   DANCE IMAGE FILES
+========================================================= */
+
+const DANCE_IMGS = {
+
+    raj:
+        "ghoom.jpeg",
+
+    pun:
+        "bhang.jpeg?v=2",
+
+    ker:
+        "katha.jpeg?v=2",
+
+    tn:
+        "bharat.jpeg",
+
+    odi:
+        "odi.jpeg",
+
+    man:
+        "mani.jpeg"
+
+};
+
+
+/* =========================================================
+   PAIRS
+========================================================= */
+
+const PAIRS = [
+
+    {
+
+        id:
+            "raj",
+
+        state:
+            "Rajasthan",
+
+        dance:
+            "Ghoomar",
+
+        stateIcon:
+            "🏜️",
+
+        danceIcon:
+            "💃",
+
+        stateImg:
+            "rj",
+
+        desc:
+            "Ghoomar is the pride of Rajasthan — a graceful folk dance performed by women in swirling ghagras that fan out like blooming flowers. Originating among the Bhil tribe, it was later embraced by Rajput royalty as a ceremonial dance for auspicious occasions. The word comes from ghoomna, meaning to spin. Dancers move in concentric circles, their veiled faces tilting gently as bangles chime and anklets ring.",
+
+        tag:
+            "Folk Dance · Rajasthan"
+
+    },
+
+
+    {
+
+        id:
+            "pun",
+
+        state:
+            "Punjab",
+
+        dance:
+            "Bhangra",
+
+        stateIcon:
+            "🌾",
+
+        danceIcon:
+            "🥁",
+
+        stateImg:
+            "pn",
+
+        desc:
+            "Bhangra was born in the fertile fields of Punjab as a harvest celebration during the Vaisakhi season. Farmers danced with abandon to the thunderous beat of the dhol drum, rejoicing in a bountiful crop. Over centuries it evolved into a dynamic performance art — leaps, shoulder shrugs, and vigorous footwork. Today Bhangra has crossed borders and continents, fusing with hip-hop and EDM, making it one of the most globally recognised dance forms of South Asia.",
+
+        tag:
+            "Folk Dance · Punjab"
+
+    },
+
+
+    {
+
+        id:
+            "ker",
+
+        state:
+            "Kerala",
+
+        dance:
+            "Kathakali",
+
+        stateIcon:
+            "🌴",
+
+        danceIcon:
+            "🎭",
+
+        stateImg:
+            "kl",
+
+        desc:
+            "Kathakali is a monumental classical art form from Kerala that fuses dance, drama, music, and elaborate ritual into a single spectacle. Performers wear towering crowns and striking painted faces — green for noble heroes, red for villains — crafted over hours using natural pigments. Stories from the Mahabharata and Ramayana are conveyed through 24 mudras and 9 rasas. Training begins in childhood and demands extraordinary physical discipline.",
+
+        tag:
+            "Classical Dance · Kerala"
+
+    },
+
+
+    {
+
+        id:
+            "tn",
+
+        state:
+            "Tamil Nadu",
+
+        dance:
+            "Bharatanatyam",
+
+        stateIcon:
+            "🛕",
+
+        danceIcon:
+            "🙏",
+
+        stateImg:
+            "tn",
+
+        desc:
+            "Bharatanatyam is among the oldest classical dance traditions of India, tracing its roots to devadasi temple dancers of Tamil Nadu who performed as an offering to the deity. Codified in the Natya Shastra, it balances nritta (pure rhythm), nritya (expression), and natya (drama). Its hallmark is the aramandi — a deep half-seated stance — combined with angular geometric arm lines and precise footwork. Revived by Rukmini Devi Arundale, it now graces global concert stages.",
+
+        tag:
+            "Classical Dance · Tamil Nadu"
+
+    },
+
+
+    {
+
+        id:
+            "odi",
+
+        state:
+            "Odisha",
+
+        dance:
+            "Odissi",
+
+        stateIcon:
+            "⛵",
+
+        danceIcon:
+            "🌸",
+
+        stateImg:
+            "odd",
+
+        desc:
+            "Odissi is one of the oldest surviving dance forms in India, with sculptural evidence dating back over 2,000 years on the walls of the Udayagiri caves and the Konark Sun Temple. Performed by maharis — temple women dedicated to Lord Jagannath at Puri. Its defining characteristic is the tribhangi, a triple-flexion at the neck, torso, and knee creating a fluid S-curve. Lyrical and devotional, it celebrates the eternal love of Radha and Krishna.",
+
+        tag:
+            "Classical Dance · Odisha"
+
+    },
+
+
+    {
+
+        id:
+            "man",
+
+        state:
+            "Manipur",
+
+        dance:
+            "Manipuri",
+
+        stateIcon:
+            "🏔️",
+
+        danceIcon:
+            "🎶",
+
+        stateImg:
+            "mn",
+
+        desc:
+            "Manipuri dance emerged from the misty valleys of Manipur, rooted in Vaishnavite devotional traditions introduced in the 15th century. Unlike other classical forms, it is characterised by soft, undulating movements — the body sways like a gentle wave and expressions are understated and inward. The Ras Leela performances dedicated to Radha and Krishna are its most sacred expression. Rabindranath Tagore, encountering it in 1919, called it the most beautiful dance he had ever seen.",
+
+        tag:
+            "Classical Dance · Manipur"
+
+    }
+
+];
+
+
+/* =========================================================
+   GAME VARIABLES
+========================================================= */
+
+let flipped = [];
+
+let matched = new Set();
+
+let locked = false;
+
+let score = 0;
+
+let timeLeft = 60;
+
+let timerInterval = null;
+
+let timeIsUp = false;
+
+
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(arr) {
+
+    const a =
+        [...arr];
+
+    for (
+        let i = a.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+        [
+            a[i],
+            a[j]
+        ] =
+        [
+            a[j],
+            a[i]
+        ];
+
+    }
+
+    return a;
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer() {
+
+    clearInterval(
+        timerInterval
+    );
+
+    timeLeft =
+        60;
+
+    updateTimerDisplay();
+
+
+    timerInterval =
+        setInterval(
+            function() {
+
+                timeLeft--;
+
+                updateTimerDisplay();
+
+
+                if (
+                    timeLeft <= 0
+                ) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+                    timeUp();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+/* =========================================================
+   UPDATE TIMER
+========================================================= */
+
+function updateTimerDisplay() {
+
+    const timer =
+        document.getElementById(
+            "timer"
+        );
+
+
+    const minutes =
+        Math.floor(
+            timeLeft / 60
+        );
+
+
+    const seconds =
+        timeLeft % 60;
+
+
+    timer.textContent =
+        String(minutes).padStart(2,"0")
+        +
+        ":"
+        +
+        String(seconds).padStart(2,"0");
+
+
+    timer.classList.remove(
+        "warning",
+        "danger"
+    );
+
+
+    if (
+        timeLeft <= 10
+    ) {
+
+        timer.classList.add(
+            "danger"
+        );
+
+    }
+
+    else if (
+        timeLeft <= 20
+    ) {
+
+        timer.classList.add(
+            "warning"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   POPUP HELPERS
+========================================================= */
+
+function showPopup(type) {
+
+    const overlay =
+        document.getElementById(
+            "gameOverlay"
+        );
+
+    const timePopup =
+        document.getElementById(
+            "timeUpPopup"
+        );
+
+    const completePopup =
+        document.getElementById(
+            "completePopup"
+        );
+
+
+    timePopup.style.display =
+        "none";
+
+    completePopup.style.display =
+        "none";
+
+
+    if (
+        type === "time"
+    ) {
+
+        timePopup.style.display =
+            "block";
+
+    }
+
+
+    if (
+        type === "complete"
+    ) {
+
+        completePopup.style.display =
+            "block";
+
+    }
+
+
+    overlay.classList.add(
+        "visible"
+    );
+
+}
+
+
+function hidePopup() {
+
+    document
+        .getElementById(
+            "gameOverlay"
+        )
+        .classList
+        .remove(
+            "visible"
+        );
+
+}
+
+
+/* =========================================================
+   TIME UP
+========================================================= */
+
+function timeUp() {
+
+    timeIsUp =
+        true;
+
+    locked =
+        false;
+
+
+    const allCards =
+        document.querySelectorAll(
+            ".flip-card"
+        );
+
+
+    allCards.forEach(
+        function(card) {
+
+            card.classList.remove(
+                "locked"
+            );
+
+            card.classList.add(
+                "revealed"
+            );
+
+            card.classList.remove(
+                "selected-card"
+            );
+
+            card.classList.add(
+                "after-timer"
+            );
+
+        }
+    );
+
+
+    document
+        .getElementById(
+            "theoryLabel"
+        )
+        .classList
+        .add(
+            "visible"
+        );
+
+
+    document
+        .getElementById(
+            "bottomStudioBtn"
+        )
+        .classList
+        .add(
+            "visible"
+        );
+
+
+    showPopup(
+        "time"
+    );
+
+}
+
+
+/* =========================================================
+   REPLAY
+========================================================= */
+
+function replayGame() {
+
+    hidePopup();
+
+    initGame();
+
+}
+
+
+/* =========================================================
+   LATER MODE
+========================================================= */
+
+function laterMode() {
+
+    hidePopup();
+
+
+    timeIsUp =
+        true;
+
+    locked =
+        false;
+
+
+    const allCards =
+        document.querySelectorAll(
+            ".flip-card"
+        );
+
+
+    allCards.forEach(
+        function(card) {
+
+            card.classList.remove(
+                "locked"
+            );
+
+            card.classList.add(
+                "revealed"
+            );
+
+            card.classList.remove(
+                "selected-card"
+            );
+
+            card.classList.add(
+                "after-timer"
+            );
+
+        }
+    );
+
+
+    document
+        .getElementById(
+            "theoryLabel"
+        )
+        .classList
+        .add(
+            "visible"
+        );
+
+
+    document
+        .getElementById(
+            "bottomStudioBtn"
+        )
+        .classList
+        .add(
+            "visible"
+        );
+
+}
+
+
+/* =========================================================
+   BACK TO STUDIO
+========================================================= */
+
+function goToStudio() {
+
+    window.location.href =
+        "comsp.html";
+
+}
+
+
+/* =========================================================
+   INITIALISE GAME
+========================================================= */
+
+function initGame() {
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    flipped =
+        [];
+
+    matched =
+        new Set();
+
+    locked =
+        false;
+
+    timeIsUp =
+        false;
+
+    score =
+        0;
+
+    timeLeft =
+        60;
+
+
+    hidePopup();
+
+
+    document
+        .getElementById(
+            "scoreNum"
+        )
+        .textContent =
+        "0";
+
+
+    document
+        .getElementById(
+            "paneIdle"
+        )
+        .style
+        .display =
+        "";
+
+
+    document
+        .getElementById(
+            "paneInfo"
+        )
+        .classList
+        .remove(
+            "visible"
+        );
+
+
+    document
+        .getElementById(
+            "theoryLabel"
+        )
+        .classList
+        .remove(
+            "visible"
+        );
+
+
+    document
+        .getElementById(
+            "bottomStudioBtn"
+        )
+        .classList
+        .remove(
+            "visible"
+        );
+
+
+    updateTimerDisplay();
+
+
+    const cards =
+        [];
+
+
+    PAIRS.forEach(
+        function(p) {
+
+            cards.push({
+
+                pairId:
+                    p.id,
+
+                type:
+                    "state",
+
+                label:
+                    p.state,
+
+                icon:
+                    p.stateIcon,
+
+                image:
+                    STATE_IMGS[
+                        p.stateImg
+                    ]
+
+            });
+
+
+            cards.push({
+
+                pairId:
+                    p.id,
+
+                type:
+                    "dance",
+
+                label:
+                    p.dance,
+
+                icon:
+                    p.danceIcon
+
+            });
+
+        }
+    );
+
+
+    const shuffled =
+        shuffle(cards);
+
+
+    const area =
+        document.getElementById(
+            "cardsArea"
+        );
+
+
+    area.innerHTML =
+        "";
+
+
+    const theoryLabel =
+        document.createElement(
+            "div"
+        );
+
+
+    theoryLabel.className =
+        "theory-label";
+
+
+    theoryLabel.id =
+        "theoryLabel";
+
+
+    theoryLabel.textContent =
+        "Theory mode, Explore the dance cards";
+
+
+    area.appendChild(
+        theoryLabel
+    );
+
+
+    for (
+        let row = 0;
+        row < 3;
+        row++
+    ) {
+
+        const rowEl =
+            document.createElement(
+                "div"
+            );
+
+
+        rowEl.className =
+            "card-row";
+
+
+        for (
+            let col = 0;
+            col < 4;
+            col++
+        ) {
+
+            rowEl.appendChild(
+                makeCard(
+                    shuffled[
+                        row * 4 + col
+                    ]
+                )
+            );
+
+        }
+
+
+        area.appendChild(
+            rowEl
+        );
+
+    }
+
+
+    setTimeout(
+        startTimer,
+        5800
+    );
+
+}
+
+
+/* =========================================================
+   CREATE CARD
+========================================================= */
+
+function makeCard(card) {
+
+    const fc =
+        document.createElement(
+            "div"
+        );
+
+
+    fc.className =
+        "flip-card";
+
+
+    fc.dataset.pairId =
+        card.pairId;
+
+
+    fc.dataset.type =
+        card.type;
+
+
+    if (
+        card.type === "state"
+    ) {
+
+        fc.innerHTML = `
+
+            <div
+                class="flip-card-inner"
+            >
+
+                <div
+                    class="flip-card-front"
+                ></div>
+
+                <div
+                    class="
+                        flip-card-back
+                        type-state
+                    "
+                >
+
+                    <div
+                        class="state-image"
+                    >
+
+                        <img
+                            src="${card.image}"
+                            alt=""
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+    else {
+
+        let imageClass =
+            "";
+
+
+        if (
+            card.pairId === "raj"
+        ) {
+
+            imageClass =
+                "ghoomar-image";
+
+        }
+
+
+        if (
+            card.pairId === "ker"
+        ) {
+
+            imageClass =
+                "kathakali-image";
+
+        }
+
+
+        fc.innerHTML = `
+
+            <div
+                class="flip-card-inner"
+            >
+
+                <div
+                    class="flip-card-front"
+                ></div>
+
+                <div
+                    class="
+                        flip-card-back
+                        type-dance
+                    "
+                >
+
+                    <div
+                        class="dance-image"
+                    >
+
+                        <img
+                            class="${imageClass}"
+                            src="${DANCE_IMGS[card.pairId]}"
+                            alt=""
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* CLICK */
+
+    fc.addEventListener(
+        "click",
+        function() {
+
+            onCardClick(
+                fc
+            );
+
+        }
+    );
+
+
+    /* HOVER */
+
+    fc.addEventListener(
+        "mouseenter",
+        function() {
+
+            if (
+                timeIsUp
+            ) {
+
+                showInfo(
+                    fc.dataset.pairId
+                );
+
+            }
+
+        }
+    );
+
+
+    return fc;
+
+}
+
+
+/* =========================================================
+   CARD CLICK
+========================================================= */
+
+function onCardClick(el) {
+
+    if (
+        timeIsUp
+    ) {
+
+        showInfo(
+            el.dataset.pairId
+        );
+
+        return;
+
+    }
+
+
+    if (
+        locked
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        timeLeft <= 0
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        el.classList.contains(
+            "revealed"
+        )
+        ||
+        el.classList.contains(
+            "matched"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        flipped.length === 2
+    ) {
+
+        return;
+
+    }
+
+
+    el.classList.add(
+        "revealed"
+    );
+
+
+    flipped.push({
+
+        el:
+            el,
+
+        pairId:
+            el.dataset.pairId,
+
+        type:
+            el.dataset.type
+
+    });
+
+
+    if (
+        flipped.length === 2
+    ) {
+
+        locked =
+            true;
+
+
+        setTimeout(
+            evaluate,
+            950
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   EVALUATE MATCH
+========================================================= */
+
+function evaluate() {
+
+    if (
+        timeLeft <= 0
+    ) {
+
+        return;
+
+    }
+
+
+    const [a,b] =
+        flipped;
+
+
+    if (
+        a.pairId === b.pairId
+        &&
+        a.type !== b.type
+    ) {
+
+        a.el.classList.add(
+            "matched",
+            "locked"
+        );
+
+        b.el.classList.add(
+            "matched",
+            "locked"
+        );
+
+
+        matched.add(
+            a.pairId
+        );
+
+
+        score++;
+
+
+        document
+            .getElementById(
+                "scoreNum"
+            )
+            .textContent =
+            score;
+
+
+        showInfo(
+            a.pairId
+        );
+
+
+        if (
+            score === 6
+        ) {
+
+            clearInterval(
+                timerInterval
+            );
+
+
+            timeIsUp =
+                true;
+
+            locked =
+                false;
+
+
+            const allCards =
+                document.querySelectorAll(
+                    ".flip-card"
+                );
+
+
+            allCards.forEach(
+                function(card) {
+
+                    card.classList.remove(
+                        "locked"
+                    );
+
+                    card.classList.add(
+                        "revealed"
+                    );
+
+                    card.classList.remove(
+                        "selected-card"
+                    );
+
+                    card.classList.add(
+                        "after-timer"
+                    );
+
+                }
+            );
+
+
+            document
+                .getElementById(
+                    "theoryLabel"
+                )
+                .classList
+                .add(
+                    "visible"
+                );
+
+
+            document
+                .getElementById(
+                    "bottomStudioBtn"
+                )
+                .classList
+                .add(
+                    "visible"
+                );
+
+
+            setTimeout(
+                function() {
+
+                    showPopup(
+                        "complete"
+                    );
+
+                },
+                500
+            );
+
+        }
+
+    }
+
+    else {
+
+        a.el.classList.remove(
+            "revealed"
+        );
+
+        b.el.classList.remove(
+            "revealed"
+        );
+
+    }
+
+
+    flipped =
+        [];
+
+
+    if (
+        score < 6
+        &&
+        timeLeft > 0
+    ) {
+
+        locked =
+            false;
+
+    }
+
+}
+
+
+/* =========================================================
+   INFORMATION PANEL
+========================================================= */
+
+function showInfo(pairId) {
+
+    const p =
+        PAIRS.find(
+            function(x) {
+
+                return x.id === pairId;
+
+            }
+        );
+
+
+    if (!p) {
+
+        return;
+
+    }
+
+
+    document
+        .getElementById(
+            "paneIdle"
+        )
+        .style
+        .display =
+        "none";
+
+
+    const paneInfo =
+        document.getElementById(
+            "paneInfo"
+        );
+
+
+    paneInfo.classList.remove(
+        "visible"
+    );
+
+
+    void paneInfo.offsetWidth;
+
+
+    document
+        .getElementById(
+            "infoState"
+        )
+        .textContent =
+        p.state;
+
+
+    document
+        .getElementById(
+            "infoDance"
+        )
+        .textContent =
+        p.dance;
+
+
+    document
+        .getElementById(
+            "infoDesc"
+        )
+        .textContent =
+        p.desc;
+
+
+    document
+        .getElementById(
+            "infoTag"
+        )
+        .textContent =
+        p.tag;
+
+
+    paneInfo.classList.add(
+        "visible"
+    );
+
+}
+
+
+/* =========================================================
+   GOOGLE TRANSLATE INITIALISATION
+========================================================= */
+
+function googleTranslateElementInit() {
+
+    new google.translate.TranslateElement(
+
+        {
+
+            pageLanguage:
+                "en",
+
+            includedLanguages:
+                "en,hi,bn,or,ta,te,ml,mr,gu,pa",
+
+            autoDisplay:
+                false
+
+        },
+
+        "google_translate_element"
+
+    );
+
+}
+
+
+/* =========================================================
+   HIDE GOOGLE TRANSLATE UI
+========================================================= */
+
+function hideGoogleTranslateUI() {
+
+    document.documentElement.style.top =
+        "0px";
+
+    document.documentElement.style.marginTop =
+        "0px";
+
+    document.body.style.top =
+        "0px";
+
+    document.body.style.marginTop =
+        "0px";
+
+
+    const selectors = [
+
+        ".goog-te-banner-frame",
+
+        "iframe.goog-te-banner-frame",
+
+        "body > .goog-te-banner-frame",
+
+        "body > .skiptranslate",
+
+        "iframe.skiptranslate",
+
+        ".goog-te-balloon-frame",
+
+        "iframe.goog-te-balloon-frame",
+
+        ".goog-te-menu-frame",
+
+        "iframe.goog-te-menu-frame"
+
+    ];
+
+
+    selectors.forEach(
+        function(selector) {
+
+            document
+                .querySelectorAll(
+                    selector
+                )
+                .forEach(
+                    function(element) {
+
+                        element.style.display =
+                            "none";
+
+                        element.style.visibility =
+                            "hidden";
+
+                        element.style.opacity =
+                            "0";
+
+                        element.style.height =
+                            "0";
+
+                        element.style.width =
+                            "0";
+
+                        element.style.pointerEvents =
+                            "none";
+
+                    }
+                );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SELECT GOOGLE LANGUAGE
+========================================================= */
+
+function setGoogleLanguage(language) {
+
+    const tryTranslate =
+        function(attemptsLeft) {
+
+            const combo =
+                document.querySelector(
+                    ".goog-te-combo"
+                );
+
+
+            if (combo) {
+
+                combo.value =
+                    language;
+
+
+                combo.dispatchEvent(
+                    new Event(
+                        "change"
+                    )
+                );
+
+
+                hideGoogleTranslateUI();
+
+                return;
+
+            }
+
+
+            if (
+                attemptsLeft > 0
+            ) {
+
+                setTimeout(
+                    function() {
+
+                        tryTranslate(
+                            attemptsLeft - 1
+                        );
+
+                    },
+                    300
+                );
+
+            }
+
+        };
+
+
+    tryTranslate(
+        20
+    );
+
+}
+
+
+/* =========================================================
+   LANGUAGE DROPDOWN
+========================================================= */
+
+const languageArea =
+    document.getElementById(
+        "languageArea"
+    );
+
+const languageButton =
+    document.getElementById(
+        "languageButton"
+    );
+
+const languageMenu =
+    document.getElementById(
+        "languageMenu"
+    );
+
+
+languageButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+
+        const isOpen =
+            languageArea.classList.contains(
+                "open"
+            );
+
+
+        languageArea.classList.toggle(
+            "open",
+            !isOpen
+        );
+
+
+        languageButton.setAttribute(
+            "aria-expanded",
+            String(!isOpen)
+        );
+
+    }
+);
+
+
+/* =========================================================
+   LANGUAGE OPTIONS
+========================================================= */
+
+languageMenu
+    .querySelectorAll("button")
+    .forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                function(event) {
+
+                    event.stopPropagation();
+
+
+                    const language =
+                        button.dataset.lang;
+
+
+                    setGoogleLanguage(
+                        language
+                    );
+
+
+                    languageArea.classList.remove(
+                        "open"
+                    );
+
+
+                    languageButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   CLOSE LANGUAGE MENU
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function() {
+
+        languageArea.classList.remove(
+            "open"
+        );
+
+        languageButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CONTINUOUS GOOGLE BANNER PROTECTION
+========================================================= */
+
+const googleObserver =
+    new MutationObserver(
+        function() {
+
+            hideGoogleTranslateUI();
+
+        }
+    );
+
+
+googleObserver.observe(
+    document.documentElement,
+    {
+        childList:
+            true,
+
+        subtree:
+            true
+    }
+);
+
+
+setInterval(
+    hideGoogleTranslateUI,
+    300
+);
+
+
+/* =========================================================
+   START GAME
+========================================================= */
+
+initGame();
+
+
+</script>
+
+
+<!-- =========================================================
+     GOOGLE TRANSLATE SCRIPT
+========================================================= -->
+
+<script
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+></script>
+
+
+</body>
+
+</html>

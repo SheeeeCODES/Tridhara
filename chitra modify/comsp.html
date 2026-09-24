@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Levels</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cinzel+Decorative:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+<style>
+
+/* ========================================================= */
+/* BASIC PAGE                                                 */
+/* ========================================================= */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    top: 0 !important;
+    position: relative !important;
+}
+
+body {
+    background-image: url("bbgg.jpeg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #e7c879;
+
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+
+/* ========================================================= */
+/* GOOGLE TRANSLATE — REMOVE THE BLOODY BANNER COMPLETELY   */
+/* ========================================================= */
+
+/*
+   Google creates the top banner as a separate
+   .skiptranslate element / iframe.
+
+   We hide ONLY Google's top-level UI.
+   The hidden translation selector is still kept
+   so the custom LANGUAGE menu can work.
+*/
+
+
+/* Google top banner */
+
+body > .skiptranslate {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+
+    width: 0 !important;
+    height: 0 !important;
+
+    position: fixed !important;
+
+    top: -10000px !important;
+    left: -10000px !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Google banner iframe */
+
+iframe.skiptranslate {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+
+    width: 0 !important;
+    height: 0 !important;
+
+    position: fixed !important;
+
+    top: -10000px !important;
+    left: -10000px !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Google banner frame */
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+
+    width: 0 !important;
+    height: 0 !important;
+
+    position: fixed !important;
+
+    top: -10000px !important;
+    left: -10000px !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Google menu */
+
+.goog-te-menu-frame,
+iframe.goog-te-menu-frame {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+
+    width: 0 !important;
+    height: 0 !important;
+}
+
+
+/* Google translation balloon */
+
+.goog-te-balloon-frame,
+iframe.goog-te-balloon-frame {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+
+    width: 0 !important;
+    height: 0 !important;
+}
+
+
+/* Google's original visible gadget */
+
+.goog-te-gadget {
+    font-size: 0 !important;
+}
+
+
+/* Hidden Google Translate container */
+
+#google_translate_element {
+    position: fixed !important;
+
+    top: -10000px !important;
+    left: -10000px !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    overflow: hidden !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+
+    pointer-events: none !important;
+
+    z-index: -999999 !important;
+}
+
+
+/* Hidden Google selector */
+
+.goog-te-combo {
+    position: fixed !important;
+
+    top: -10000px !important;
+    left: -10000px !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+
+    pointer-events: none !important;
+}
+
+
+/* ========================================================= */
+/* FORCE PAGE BACK TO THE TOP                                */
+/* ========================================================= */
+
+html {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+html body {
+    top: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+
+/* ========================================================= */
+/* CUSTOM NAV — NEVER TRANSLATE                            */
+/* ========================================================= */
+
+.nav-shell,
+.nav-shell *,
+.notranslate,
+[translate="no"] {
+    -webkit-translate: no;
+    translate: no !important;
+}
+
+
+/* ========================================================= */
+/* NAVIGATION SHELL                                           */
+/* ========================================================= */
+
+.nav-shell {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 90px;
+
+    z-index: 9000;
+
+    pointer-events: none;
+}
+
+
+/* ========================================================= */
+/* MOVING NAV GROUP                                           */
+/* ========================================================= */
+
+.nav-group {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 90px;
+
+    transition:
+        transform 0.6s
+        cubic-bezier(0.22, 0.61, 0.36, 1);
+
+    pointer-events: none;
+}
+
+
+/* ========================================================= */
+/* MAIN NAV                                                   */
+/* ========================================================= */
+
+.top-nav {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 64px;
+
+    box-sizing: border-box;
+
+    padding: 0 72px 0 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(78,48,28,0.98) 0%,
+            rgba(60,35,21,0.98) 48%,
+            rgba(40,23,14,0.99) 100%
+        );
+
+    border-bottom:
+        2px solid
+        rgba(198,151,61,0.82);
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.68),
+        inset 0 -1px 0 rgba(242,205,118,0.24);
+
+    pointer-events: auto;
+}
+
+
+/* ========================================================= */
+/* NAV TOP HIGHLIGHT                                          */
+/* ========================================================= */
+
+.top-nav::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(240,205,120,0.55),
+            rgba(240,205,120,0.2),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* ========================================================= */
+/* LEFT NAV                                                   */
+/* ========================================================= */
+
+.nav-left {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    height: 100%;
+}
+
+
+/* ========================================================= */
+/* RIGHT NAV                                                  */
+/* ========================================================= */
+
+.nav-right {
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+}
+
+
+/* ========================================================= */
+/* NAV BUTTONS                                                */
+/* ========================================================= */
+
+.nav-button {
+    position: relative;
+
+    height: 40px;
+    min-width: 135px;
+
+    padding: 0 23px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(17,13,10,0.98),
+            rgba(5,4,3,0.99)
+        );
+
+    color: #e4c77a;
+
+    border:
+        1px solid
+        rgba(195,151,67,0.52);
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 3px 7px rgba(0,0,0,0.58),
+        inset 0 1px 0 rgba(255,229,158,0.07);
+
+    font-family:
+        "Cinzel",
+        Georgia,
+        serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 2.8px;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.nav-button::after {
+    content: "";
+
+    position: absolute;
+
+    left: 22%;
+    right: 22%;
+
+    bottom: 5px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(209,169,78,0.75),
+            transparent
+        );
+
+    opacity: 0.55;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+
+.nav-button:hover {
+    color: #fff0b2;
+
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(229,193,106,0.85);
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,0.72),
+        0 0 10px rgba(202,158,65,0.22),
+        inset 0 1px 0 rgba(255,229,158,0.1);
+}
+
+
+.nav-button:hover::after {
+    opacity: 1;
+}
+
+
+/* ========================================================= */
+/* LANGUAGE AREA                                             */
+/* ========================================================= */
+
+.language-area {
+    position: relative;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* ========================================================= */
+/* LANGUAGE BUTTON                                            */
+/* ========================================================= */
+
+.language-button {
+    height: 40px;
+    min-width: 145px;
+
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(17,13,10,0.98),
+            rgba(5,4,3,0.99)
+        );
+
+    color: #e4c77a;
+
+    border:
+        1px solid
+        rgba(195,151,67,0.52);
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 3px 7px rgba(0,0,0,0.58),
+        inset 0 1px 0 rgba(255,229,158,0.07);
+
+    font-family:
+        "Cinzel",
+        Georgia,
+        serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+
+    outline: none;
+
+    pointer-events: auto;
+}
+
+
+.language-button:hover {
+    color: #fff0b2;
+
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(229,193,106,0.85);
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,0.72),
+        0 0 10px rgba(202,158,65,0.22);
+}
+
+
+.language-icon {
+    color: #d5ad55;
+
+    font-size: 15px;
+
+    line-height: 1;
+
+    pointer-events: none;
+}
+
+
+.language-arrow {
+    font-size: 10px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+/* ========================================================= */
+/* LANGUAGE DROPDOWN                                          */
+/* ========================================================= */
+
+.language-menu {
+    position: absolute;
+
+    top: 56px;
+    right: 0;
+
+    width: 185px;
+
+    padding: 7px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #2c1b12,
+            #0b0806
+        );
+
+    border:
+        1px solid
+        rgba(198,151,61,0.78);
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.75),
+        0 0 14px rgba(183,137,48,0.18);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(-8px)
+        scale(0.98);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+
+    z-index: 99999;
+
+    pointer-events: none;
+}
+
+
+.language-menu.open {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    pointer-events: auto;
+}
+
+
+/* ========================================================= */
+/* LANGUAGE OPTIONS                                          */
+/* ========================================================= */
+
+.language-option {
+    width: 100%;
+
+    height: 34px;
+
+    padding: 0 12px;
+
+    border: none;
+
+    border-radius: 3px;
+
+    background: transparent;
+
+    color: #e4c77a;
+
+    font-family:
+        "Cinzel",
+        Georgia,
+        serif;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.8px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        padding-left 0.2s ease;
+
+    user-select: none;
+
+    pointer-events: auto;
+}
+
+
+.language-option:hover {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(194,149,58,0.22),
+            rgba(194,149,58,0.06)
+        );
+
+    color: #fff0b2;
+
+    padding-left: 16px;
+}
+
+
+/* ========================================================= */
+/* ROLL UP / DOWN                                             */
+/* ========================================================= */
+
+.nav-toggle {
+    position: absolute;
+
+    right: 7px;
+    top: 64px;
+
+    width: 31px;
+    height: 23px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            180deg,
+            #3d2517,
+            #1b0e08
+        );
+
+    color: #e5c46f;
+
+    border:
+        1px solid
+        rgba(215,174,83,0.75);
+
+    border-radius: 0 0 4px 4px;
+
+    box-shadow:
+        0 3px 8px rgba(0,0,0,0.65),
+        inset 0 1px 0 rgba(255,229,158,0.1);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 11px;
+
+    line-height: 1;
+
+    z-index: 10001;
+
+    pointer-events: auto;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.nav-toggle:hover {
+    color: #fff1b5;
+
+    background:
+        linear-gradient(
+            180deg,
+            #4a2c1a,
+            #211109
+        );
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.75),
+        0 0 8px rgba(210,166,67,0.3);
+}
+
+
+.nav-group.collapsed {
+    transform: translateY(-50px);
+}
+
+
+/* ========================================================= */
+/* RESPONSIVE NAV                                             */
+/* ========================================================= */
+
+@media (max-width: 700px) {
+
+    .nav-shell {
+        height: 82px;
+    }
+
+    .nav-group {
+        height: 82px;
+    }
+
+    .top-nav {
+        height: 57px;
+        padding: 0 48px 0 8px;
+    }
+
+    .nav-left {
+        gap: 5px;
+    }
+
+    .nav-button {
+        min-width: auto;
+        height: 36px;
+        padding: 0 10px;
+        font-size: 10px;
+        letter-spacing: 1.3px;
+    }
+
+    .language-button {
+        min-width: auto;
+        height: 36px;
+        padding: 0 9px;
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .language-icon {
+        display: none;
+    }
+
+    .nav-toggle {
+        right: 5px;
+        top: 57px;
+        width: 27px;
+        height: 21px;
+        font-size: 10px;
+    }
+
+    .nav-group.collapsed {
+        transform: translateY(-43px);
+    }
+}
+
+
+/* ========================================================= */
+/* INTRO VIDEO                                                */
+/* ========================================================= */
+
+#intro-video {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    object-fit: cover;
+
+    background: #000;
+
+    z-index: 9999;
+
+    display: block;
+}
+
+
+/* ========================================================= */
+/* MAIN CONTENT                                               */
+/* ========================================================= */
+
+#main-content {
+    opacity: 0;
+
+    transition:
+        opacity 1s ease;
+}
+
+
+#main-content.show {
+    opacity: 1;
+}
+
+
+/* ========================================================= */
+/* LEVELS                                                     */
+/* ========================================================= */
+
+.levels {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    gap: 55px;
+
+    width: 95%;
+
+    transform: translateY(-65px);
+}
+
+
+/* ========================================================= */
+/* LEVEL BOX                                                  */
+/* ========================================================= */
+
+.level-box {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    width: 250px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition:
+        transform 0.45s ease;
+}
+
+
+/* ========================================================= */
+/* LOCKED LEVELS                                              */
+/* ========================================================= */
+
+.level-box.locked {
+    cursor: not-allowed;
+}
+
+.level-box.locked .level {
+    filter:
+        brightness(0.32)
+        grayscale(0.55)
+        drop-shadow(
+            0 14px 18px
+            rgba(0,0,0,0.75)
+        );
+}
+
+.level-box.locked:hover .level {
+    transform: none;
+
+    filter:
+        brightness(0.32)
+        grayscale(0.55)
+        drop-shadow(
+            0 14px 18px
+            rgba(0,0,0,0.75)
+        );
+}
+
+.level-box.locked:hover {
+    transform: none;
+}
+
+.level-box.locked .label {
+    opacity: 0.5;
+}
+
+.level-box.locked:hover .label {
+    transform: none;
+
+    color: #d8b75a;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,0.95),
+        0 0 7px rgba(120,85,15,0.45);
+}
+
+.lock-badge {
+    display: none;
+}
+
+.level-box.locked .lock-badge {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -60%);
+
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(30,20,10,0.9) 0%,
+            rgba(10,6,3,0.85) 70%
+        );
+
+    border:
+        1px solid
+        rgba(215,174,83,0.7);
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,0.65);
+
+    font-size: 26px;
+
+    color: #e5c46f;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* ========================================================= */
+/* LEVEL IMAGES                                               */
+/* ========================================================= */
+
+.level {
+    width: 220px;
+
+    height: 380px;
+
+    object-fit: contain;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
+
+    filter:
+        brightness(0.88)
+        drop-shadow(
+            0 14px 18px
+            rgba(0,0,0,0.75)
+        )
+        drop-shadow(
+            0 4px 8px
+            rgba(0,0,0,0.6)
+        );
+}
+
+
+/* ========================================================= */
+/* LEVEL HOVER                                                */
+/* ========================================================= */
+
+.level-box:hover .level {
+    transform:
+        translateY(-14px)
+        scale(1.06);
+
+    filter:
+        brightness(1.08)
+        drop-shadow(
+            0 0 6px
+            rgba(155,115,25,0.85)
+        )
+        drop-shadow(
+            0 0 14px
+            rgba(120,85,15,0.75)
+        )
+        drop-shadow(
+            0 12px 25px
+            rgba(0,0,0,0.8)
+        );
+}
+
+
+/* ========================================================= */
+/* LABELS                                                     */
+/* ========================================================= */
+
+.label {
+    margin-top: 12px;
+
+    padding: 8px 24px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    color: #d8b75a;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,0.95),
+        0 0 7px rgba(120,85,15,0.45);
+
+    border-top:
+        1px solid
+        rgba(155,115,25,0.8);
+
+    border-bottom:
+        1px solid
+        rgba(155,115,25,0.8);
+
+    transition:
+        transform 0.45s ease,
+        text-shadow 0.45s ease,
+        color 0.45s ease;
+}
+
+
+.level-box:hover .label {
+    transform:
+        translateY(-5px);
+
+    color: #e0bd5c;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,0.95),
+        0 0 8px rgba(155,115,25,0.8),
+        0 0 15px rgba(120,85,15,0.7);
+}
+
+
+.level-box:link,
+.level-box:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.level-box:hover {
+    transform:
+        translateY(-3px);
+}
+
+.player-profile-display{
+    position:relative;
+    display:flex;align-items:center;gap:7px;
+    margin-left:26px;
+    padding:8px 18px;
+    border-radius:999px;
+    color:#f5d98b;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:13px;
+    letter-spacing:.08em;
+    white-space:nowrap;
+    pointer-events:none;
+    isolation:isolate;
+}
+.player-profile-display::before{
+    content:"";
+    position:absolute;
+    inset:-6px -14px;
+    z-index:-1;
+    border-radius:999px;
+    background:radial-gradient(
+        ellipse at center,
+        rgba(240,205,120,0.32) 0%,
+        rgba(198,151,61,0.18) 45%,
+        rgba(198,151,61,0) 75%
+    );
+    pointer-events:none;
+}
+.player-profile-display span:first-child{font-size:17px}
+
+</style>
+
+<!-- PROGRESS GATE: must load synchronously, before the level-lock script
+     below runs, so guests never see stale unlocked levels. -->
+<script src="../tridhara homepage modify/progress-guard.js"></script>
+<script src="../tridhara homepage modify/player-profile.js" defer></script>
+</head>
+
+
+<body>
+
+
+<!-- ========================================================= -->
+<!-- HIDDEN GOOGLE TRANSLATE ENGINE                            -->
+<!-- ========================================================= -->
+
+<div
+    id="google_translate_element"
+    aria-hidden="true">
+</div>
+
+
+<!-- ========================================================= -->
+<!-- NAVIGATION                                                -->
+<!-- ========================================================= -->
+
+<div
+    class="nav-shell notranslate"
+    id="nav-shell"
+    translate="no">
+
+
+    <div
+        class="nav-group"
+        id="nav-group">
+
+
+        <!-- MAIN NAV -->
+
+        <nav
+            class="top-nav notranslate"
+            translate="no">
+
+
+            <!-- LEFT -->
+
+            <div class="nav-left">
+
+                <a
+                    href="../tridhara homepage modify/index.html"
+                    class="nav-button notranslate"
+                    translate="no">
+                    TRIDHARA
+                </a>
+
+
+                <a
+                    href="bg2.html"
+                    class="nav-button notranslate"
+                    translate="no">
+                    CHITRA
+                </a>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div class="nav-right">
+
+                <div
+                    class="language-area notranslate"
+                    translate="no">
+
+
+                    <!-- LANGUAGE BUTTON -->
+
+                    <button
+                        type="button"
+                        id="language-button"
+                        class="language-button notranslate"
+                        translate="no"
+                        aria-label="Language"
+                        aria-expanded="false">
+
+                        <span
+                            class="language-icon notranslate"
+                            translate="no">
+                            ◉
+                        </span>
+
+                        <span
+                            class="notranslate"
+                            translate="no">
+                            LANGUAGE
+                        </span>
+
+                        <span
+                            id="language-arrow"
+                            class="language-arrow notranslate"
+                            translate="no">
+                            ▼
+                        </span>
+
+                    </button>
+
+
+                    <!-- LANGUAGE MENU -->
+
+                    <div
+                        id="language-menu"
+                        class="language-menu notranslate"
+                        translate="no">
+
+
+                        <button
+                            type="button"
+                            class="language-option notranslate"
+                            translate="no"
+                            data-lang="en">
+                            English
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="language-option notranslate"
+                            translate="no"
+                            data-lang="hi">
+                            हिन्दी
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="language-option notranslate"
+                            translate="no"
+                            data-lang="bn">
+                            বাংলা
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="language-option notranslate"
+                            translate="no"
+                            data-lang="or">
+                            ଓଡ଼ିଆ
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="language-option notranslate"
+                            translate="no"
+                            data-lang="ta">
+                            தமிழ்
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="language-option notranslate"
+                            translate="no"
+                            data-lang="te">
+                            తెలుగు
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="language-option notranslate"
+                            translate="no"
+                            data-lang="ml">
+                            മലയാളം
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="language-option notranslate"
+                            translate="no"
+                            data-lang="mr">
+                            मराठी
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="language-option notranslate"
+                            translate="no"
+                            data-lang="gu">
+                            ગુજરાતી
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="language-option notranslate"
+                            translate="no"
+                            data-lang="pa">
+                            ਪੰਜਾਬੀ
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <span class="player-profile-display" aria-label="Student profile" title="Student profile">
+                    <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+                    <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+                </span>
+
+            </div>
+
+        </nav>
+
+
+        <!-- ROLL BUTTON -->
+
+        <button
+            id="nav-toggle"
+            class="nav-toggle notranslate"
+            translate="no"
+            type="button"
+            aria-label="Roll navigation bar up">
+
+            ▲
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- INTRO VIDEO                                               -->
+<!-- ========================================================= -->
+
+<video
+    id="intro-video"
+    autoplay
+    muted
+    playsinline
+    preload="auto">
+
+    <source
+        src="vdo.mp4"
+        type="video/mp4">
+
+</video>
+
+
+<!-- ========================================================= -->
+<!-- MAIN LEVELS                                               -->
+<!-- ========================================================= -->
+
+<div id="main-content">
+
+    <div class="levels">
+
+
+        <!-- LEVEL 1 -->
+
+        <a
+            href="level1.html"
+            class="level-box">
+
+            <img
+                src="lev1.jpeg"
+                class="level"
+                alt="Level 1">
+
+            <div class="label">
+                LEVEL 1
+            </div>
+
+        </a>
+
+
+        <!-- LEVEL 2 -->
+
+        <a
+            href="level2.html"
+            id="level2-box"
+            class="level-box locked">
+
+            <div class="lock-badge" aria-hidden="true">&#128274;</div>
+
+            <img
+                src="lev2.jpeg"
+                class="level"
+                alt="Level 2">
+
+            <div class="label">
+                LEVEL 2
+            </div>
+
+        </a>
+
+
+        <!-- LEVEL 3 -->
+
+        <a
+            href="level3.html"
+            id="level3-box"
+            class="level-box locked">
+
+            <div class="lock-badge" aria-hidden="true">&#128274;</div>
+
+            <img
+                src="lev3.jpeg"
+                class="level"
+                alt="Level 3">
+
+            <div class="label">
+                LEVEL 3
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ========================================================= */
+/* INTRO VIDEO                                                */
+/* ========================================================= */
+
+const introVideo =
+    document.getElementById("intro-video");
+
+const mainContent =
+    document.getElementById("main-content");
+
+
+/* ========================================================= */
+/* LEVEL LOCKING                                              */
+/* ========================================================= */
+
+(function() {
+
+    const level2Box =
+        document.getElementById("level2-box");
+
+    const level3Box =
+        document.getElementById("level3-box");
+
+    function applyLock(box, unlocked) {
+
+        if (!box) return;
+
+        if (unlocked) {
+
+            box.classList.remove("locked");
+
+        } else {
+
+            box.classList.add("locked");
+
+        }
+
+    }
+
+    function refreshLockState() {
+
+        applyLock(
+            level2Box,
+            localStorage.getItem("chitraLevel2Unlocked") === "true"
+        );
+
+        applyLock(
+            level3Box,
+            localStorage.getItem("chitraLevel3Unlocked") === "true"
+        );
+
+    }
+
+    refreshLockState();
+
+    [level2Box, level3Box].forEach(function(box) {
+
+        if (!box) return;
+
+        box.addEventListener("click", function(event) {
+
+            if (box.classList.contains("locked")) {
+
+                event.preventDefault();
+
+            }
+
+        });
+
+    });
+
+})();
+
+
+function showMainContent() {
+
+    introVideo.style.transition =
+        "opacity 1s ease";
+
+    introVideo.style.opacity =
+        "0";
+
+    mainContent.classList.add("show");
+
+    setTimeout(function() {
+
+        introVideo.style.display =
+            "none";
+
+    }, 1000);
+}
+
+
+introVideo.addEventListener(
+    "ended",
+    showMainContent
+);
+
+
+introVideo.addEventListener(
+    "error",
+    function() {
+
+        introVideo.style.display =
+            "none";
+
+        mainContent.classList.add("show");
+
+    }
+);
+
+
+/* ========================================================= */
+/* NAV ROLL UP / DOWN                                         */
+/* ========================================================= */
+
+const navGroup =
+    document.getElementById("nav-group");
+
+const navToggle =
+    document.getElementById("nav-toggle");
+
+let navCollapsed = false;
+
+
+navToggle.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        navCollapsed =
+            !navCollapsed;
+
+
+        if (navCollapsed) {
+
+            navGroup.classList.add("collapsed");
+
+            navToggle.innerHTML =
+                "▼";
+
+            navToggle.setAttribute(
+                "aria-label",
+                "Roll navigation bar down"
+            );
+
+        }
+
+        else {
+
+            navGroup.classList.remove("collapsed");
+
+            navToggle.innerHTML =
+                "▲";
+
+            navToggle.setAttribute(
+                "aria-label",
+                "Roll navigation bar up"
+            );
+
+        }
+
+    }
+);
+
+
+/* ========================================================= */
+/* LANGUAGE MENU                                              */
+/* ========================================================= */
+
+const languageButton =
+    document.getElementById("language-button");
+
+const languageMenu =
+    document.getElementById("language-menu");
+
+const languageArrow =
+    document.getElementById("language-arrow");
+
+
+languageButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        const isOpen =
+            languageMenu.classList.toggle("open");
+
+        languageButton.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
+
+        languageArrow.style.transform =
+            isOpen
+                ? "rotate(180deg)"
+                : "rotate(0deg)";
+
+    }
+);
+
+
+/* ========================================================= */
+/* CLOSE LANGUAGE MENU                                        */
+/* ========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            !languageMenu.contains(event.target) &&
+            !languageButton.contains(event.target)
+        ) {
+
+            languageMenu.classList.remove("open");
+
+            languageButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            languageArrow.style.transform =
+                "rotate(0deg)";
+
+        }
+
+    }
+);
+
+
+/* ========================================================= */
+/* GOOGLE TRANSLATE INITIALIZATION                            */
+/* ========================================================= */
+
+function googleTranslateElementInit() {
+
+    new google.translate.TranslateElement({
+
+        pageLanguage: "en",
+
+        includedLanguages:
+            "en,hi,bn,or,ta,te,ml,mr,gu,pa",
+
+        autoDisplay: false,
+
+        multilanguagePage: true
+
+    }, "google_translate_element");
+
+
+    /* Immediately remove banner if Google creates it */
+
+    setTimeout(
+        completelyHideGoogleUI,
+        100
+    );
+
+    setTimeout(
+        completelyHideGoogleUI,
+        500
+    );
+
+    setTimeout(
+        completelyHideGoogleUI,
+        1000
+    );
+
+}
+
+
+/* ========================================================= */
+/* FIND GOOGLE TRANSLATE SELECTOR                             */
+/* ========================================================= */
+
+function getGoogleTranslateCombo(callback) {
+
+    const combo =
+        document.querySelector(".goog-te-combo");
+
+
+    if (combo) {
+
+        callback(combo);
+
+        return;
+
+    }
+
+
+    setTimeout(
+        function() {
+
+            getGoogleTranslateCombo(callback);
+
+        },
+        300
+    );
+
+}
+
+
+/* ========================================================= */
+/* TRANSLATE PAGE                                             */
+/* ========================================================= */
+
+function translatePage(language) {
+
+    getGoogleTranslateCombo(
+        function(combo) {
+
+            combo.value =
+                language;
+
+            combo.dispatchEvent(
+                new Event("change")
+            );
+
+            /* Kill banner after translation starts */
+
+            setTimeout(
+                completelyHideGoogleUI,
+                50
+            );
+
+            setTimeout(
+                completelyHideGoogleUI,
+                250
+            );
+
+            setTimeout(
+                completelyHideGoogleUI,
+                600
+            );
+
+            setTimeout(
+                completelyHideGoogleUI,
+                1200
+            );
+
+        }
+    );
+
+}
+
+
+/* ========================================================= */
+/* LANGUAGE OPTIONS                                           */
+/* ========================================================= */
+
+document
+    .querySelectorAll(".language-option")
+    .forEach(
+        function(option) {
+
+            option.addEventListener(
+                "click",
+                function(event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    const language =
+                        option.getAttribute(
+                            "data-lang"
+                        );
+
+
+                    translatePage(
+                        language
+                    );
+
+
+                    languageMenu.classList.remove(
+                        "open"
+                    );
+
+
+                    languageButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+
+                    languageArrow.style.transform =
+                        "rotate(0deg)";
+
+                }
+            );
+
+        }
+    );
+
+
+/* ========================================================= */
+/* KILL GOOGLE BANNER                                         */
+/* ========================================================= */
+
+function completelyHideGoogleUI() {
+
+    /* Hide Google's top-level banner */
+
+    document
+        .querySelectorAll(
+            "body > .skiptranslate"
+        )
+        .forEach(
+            function(element) {
+
+                element.style.setProperty(
+                    "display",
+                    "none",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "visibility",
+                    "hidden",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "opacity",
+                    "0",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "width",
+                    "0",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "height",
+                    "0",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "position",
+                    "fixed",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "top",
+                    "-10000px",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "left",
+                    "-10000px",
+                    "important"
+                );
+
+            }
+        );
+
+
+    /* Hide Google banner iframe */
+
+    document
+        .querySelectorAll(
+            "iframe.skiptranslate, " +
+            ".goog-te-banner-frame, " +
+            "iframe.goog-te-banner-frame, " +
+            ".goog-te-menu-frame, " +
+            "iframe.goog-te-menu-frame, " +
+            ".goog-te-balloon-frame, " +
+            "iframe.goog-te-balloon-frame"
+        )
+        .forEach(
+            function(element) {
+
+                element.style.setProperty(
+                    "display",
+                    "none",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "visibility",
+                    "hidden",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "opacity",
+                    "0",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "width",
+                    "0",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "height",
+                    "0",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "position",
+                    "fixed",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "top",
+                    "-10000px",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "left",
+                    "-10000px",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "pointer-events",
+                    "none",
+                    "important"
+                );
+
+            }
+        );
+
+
+    /* Force page to remain at top */
+
+    document.documentElement.style.setProperty(
+        "margin-top",
+        "0px",
+        "important"
+    );
+
+    document.documentElement.style.setProperty(
+        "padding-top",
+        "0px",
+        "important"
+    );
+
+    document.body.style.setProperty(
+        "top",
+        "0px",
+        "important"
+    );
+
+    document.body.style.setProperty(
+        "margin-top",
+        "0px",
+        "important"
+    );
+
+    document.body.style.setProperty(
+        "padding-top",
+        "0px",
+        "important"
+    );
+
+}
+
+
+/* ========================================================= */
+/* CONTINUOUS BANNER KILL                                    */
+/* ========================================================= */
+
+completelyHideGoogleUI();
+
+
+setInterval(
+    completelyHideGoogleUI,
+    100
+);
+
+
+/* ========================================================= */
+/* WATCH GOOGLE'S DOM CHANGES                                 */
+/* ========================================================= */
+
+const googleObserver =
+    new MutationObserver(
+        function() {
+
+            completelyHideGoogleUI();
+
+        }
+    );
+
+
+googleObserver.observe(
+    document.documentElement,
+    {
+        childList: true,
+        subtree: true
+    }
+);
+
+
+/* ========================================================= */
+/* CLOSE LANGUAGE WHEN NAV ROLLS UP                          */
+/* ========================================================= */
+
+navToggle.addEventListener(
+    "click",
+    function() {
+
+        languageMenu.classList.remove(
+            "open"
+        );
+
+        languageButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        languageArrow.style.transform =
+            "rotate(0deg)";
+
+    }
+);
+
+</script>
+
+
+<!-- ========================================================= -->
+<!-- GOOGLE TRANSLATE ENGINE                                  -->
+<!-- ========================================================= -->
+
+<script
+    type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+</body>
+
+</html>

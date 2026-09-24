@@ -1,0 +1,3086 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Vedic Period</title>
+
+<style>
+
+/* =========================================================
+   BASIC RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            rgba(24, 13, 7, 0.70),
+            rgba(24, 13, 7, 0.70)
+        ),
+        url("images/vedic-city.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+}
+
+/* =========================================================
+   HIDE GOOGLE TRANSLATE UI
+========================================================= */
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget,
+.goog-te-menu-value,
+.goog-te-balloon-frame,
+.goog-te-spinner-pos,
+#goog-gt-tt,
+.goog-te-ftab,
+.goog-te-menu-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+.skiptranslate {
+    display: none !important;
+}
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    background:
+        rgba(6, 21, 43, 0.96);
+
+    border-bottom:
+        1px solid
+        rgba(230, 199, 122, 0.45);
+
+    box-shadow:
+        0 4px 20px
+        rgba(0, 0, 0, 0.35);
+
+    z-index: 9999;
+
+    transition:
+        transform 0.35s ease;
+}
+
+
+/* LEFT SIDE */
+
+.nav-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.nav-left a {
+
+    color: #e6c77a;
+
+    text-decoration: none;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+}
+
+
+.nav-left a:hover {
+
+    color: #fff0b5;
+}
+
+
+/* KAALCHAKRA / TRIDHARA BRAND */
+
+.nav-left .brand {
+
+    color: #e6c77a;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+}
+
+
+/* =========================================================
+   LANGUAGE MENU
+========================================================= */
+
+.language-menu {
+
+    position: relative;
+
+    margin-left: auto;
+
+    margin-right: 20px;
+}
+
+
+.language-button {
+
+    height: 36px;
+
+    padding: 0 14px;
+
+    border:
+        1px solid
+        #8a6035;
+
+    border-radius: 5px;
+
+    background:
+        #1b2945;
+
+    color:
+        #e6c77a;
+
+    font-family:
+        Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+
+.language-button:hover {
+
+    background:
+        #2a3b5c;
+
+    color:
+        #fff0b5;
+}
+
+
+.language-dropdown {
+
+    display: none;
+
+    position: absolute;
+
+    top: 44px;
+
+    right: 0;
+
+    width: 150px;
+
+    background:
+        #1b2945;
+
+    border:
+        1px solid
+        #8a6035;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    z-index: 10001;
+}
+
+
+.language-dropdown button {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family:
+        Georgia, serif;
+
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+.language-dropdown button:hover {
+
+    background:
+        #2a3b5c;
+
+    color:
+        #e6c77a;
+}
+
+
+.language-menu.open
+.language-dropdown {
+
+    display: block;
+}
+
+
+/* =========================================================
+   NAVBAR TOGGLE
+========================================================= */
+
+.navbar-toggle {
+
+    width: 36px;
+
+    height: 36px;
+
+    border:
+        1px solid
+        #8a6035;
+
+    border-radius: 5px;
+
+    background:
+        #1b2945;
+
+    color:
+        #e6c77a;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+}
+
+
+.navbar-toggle:hover {
+
+    background:
+        #2a3b5c;
+
+    color:
+        #fff0b5;
+}
+
+
+.navbar.navbar-hidden {
+
+    transform:
+        translateY(-35px);
+}
+
+
+/* =========================================================
+   GLITTER
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.45) 1px,
+            transparent 1px
+        );
+
+    background-size: 90px 90px;
+
+    opacity: 0.20;
+
+    animation:
+        glitterMove 8s linear infinite;
+
+    z-index: -1;
+}
+
+
+@keyframes glitterMove {
+
+    from {
+        transform:
+            translate(0,0);
+    }
+
+    to {
+        transform:
+            translate(45px,45px);
+    }
+}
+
+
+/* =========================================================
+   MAIN GAME
+========================================================= */
+
+.game {
+
+    min-height: 100vh;
+
+    /*
+       Extra top space for the fixed navbar
+    */
+
+    padding:
+        100px 30px 30px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.game-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.game-header h1 {
+
+    margin: 0;
+
+    font-size: 2.5rem;
+
+    letter-spacing: 8px;
+
+    color: #e6c77a;
+
+    text-shadow:
+        0 0 18px
+        rgba(230,199,122,0.35);
+}
+
+
+.game-header p {
+
+    margin-top: 10px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 5px;
+
+    color: #c4a77d;
+}
+
+
+/* =========================================================
+   THREE COLUMN LAYOUT
+========================================================= */
+
+.game-content {
+
+    display: grid;
+
+    grid-template-columns:
+        220px
+        minmax(480px,1fr)
+        350px;
+
+    gap: 30px;
+
+    min-height: 600px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    padding: 25px;
+
+    border:
+        1px solid
+        rgba(230,199,122,0.45);
+
+    border-radius: 12px;
+
+    background:
+        rgba(20,10,5,0.82);
+
+    box-shadow:
+        0 0 30px
+        rgba(230,160,70,0.08);
+}
+
+
+.sidebar h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 30px;
+
+    text-align: center;
+
+    font-size: 1.1rem;
+
+    letter-spacing: 4px;
+}
+
+
+.stat {
+
+    margin-bottom: 25px;
+
+    text-align: center;
+}
+
+
+.label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 3px;
+
+    color: #b9a487;
+}
+
+
+.value {
+
+    display: block;
+
+    font-size: 1.4rem;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    color: #e6c77a;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.sidebar button {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 10px;
+
+    border:
+        1px solid
+        rgba(230,199,122,0.5);
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.sidebar button:hover {
+
+    background:
+        rgba(230,199,122,0.12);
+
+    box-shadow:
+        0 0 15px
+        rgba(230,199,122,0.3);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   HINT BUTTON
+========================================================= */
+
+#hintButton {
+
+    margin-top: 20px;
+
+    border-color:
+        rgba(255,190,100,0.6);
+
+    color:
+        #f0c77a;
+}
+
+
+#hintButton:hover {
+
+    background:
+        rgba(255,190,100,0.10);
+
+    box-shadow:
+        0 0 18px
+        rgba(255,190,100,0.35);
+}
+
+
+/* =========================================================
+   PUZZLE AREA
+========================================================= */
+
+.puzzle-area {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 600px;
+
+    padding: 30px;
+
+    border:
+        1px solid
+        rgba(230,199,122,0.4);
+
+    border-radius: 12px;
+
+    background:
+        rgba(20,10,5,0.48);
+
+    box-shadow:
+        inset 0 0 50px
+        rgba(230,160,70,0.05);
+}
+
+
+/* =========================================================
+   PUZZLE BOARD
+========================================================= */
+
+.puzzle-board {
+
+    position: relative;
+
+    width: 480px;
+
+    height: 480px;
+
+    border:
+        2px solid
+        rgba(230,199,122,0.7);
+
+    border-radius: 18px;
+
+    background:
+        rgba(20,10,5,0.92);
+
+    box-shadow:
+
+        0 0 30px
+        rgba(230,170,80,0.18),
+
+        inset 0 0 40px
+        rgba(230,170,80,0.06);
+
+    overflow: hidden;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    grid-template-rows:
+        repeat(4,1fr);
+
+    gap: 3px;
+
+    padding: 3px;
+}
+
+
+/* =========================================================
+   BOARD HEADER
+========================================================= */
+
+.board-header {
+
+    position: absolute;
+
+    top: 12px;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+.city-title {
+
+    font-size: 16px;
+
+    letter-spacing: 4px;
+}
+
+
+.city-subtitle {
+
+    margin-top: 5px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #c4a77d;
+}
+
+
+/* =========================================================
+   PUZZLE SLOT
+========================================================= */
+
+.puzzle-slot {
+
+    position: relative;
+
+    border:
+        1px dashed
+        rgba(230,199,122,0.38);
+
+    border-radius: 4px;
+
+    background:
+        rgba(230,199,122,0.025);
+
+    transition:
+        0.3s ease;
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+.puzzle-slot.hint-glow {
+
+    border:
+        2px solid
+        #ffd37a;
+
+    background:
+        rgba(255,190,80,0.15);
+
+    box-shadow:
+
+        0 0 10px
+        rgba(255,190,80,0.8),
+
+        0 0 25px
+        rgba(255,180,60,0.7),
+
+        inset 0 0 20px
+        rgba(255,190,60,0.3);
+
+    animation:
+        hintPulse 1s ease-in-out infinite;
+}
+
+
+.puzzle-piece.hint-glow {
+
+    border:
+        2px solid
+        #ffd37a !important;
+
+    box-shadow:
+
+        0 0 12px
+        rgba(255,200,100,0.9),
+
+        0 0 28px
+        rgba(255,180,60,0.75);
+
+    animation:
+        hintPiecePulse 1s ease-in-out infinite;
+}
+
+
+@keyframes hintPulse {
+
+    0%,100% {
+
+        box-shadow:
+            0 0 10px
+            rgba(255,190,70,0.5);
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 30px
+            rgba(255,190,70,1);
+    }
+}
+
+
+@keyframes hintPiecePulse {
+
+    0%,100% {
+
+        transform:
+            scale(1);
+
+        box-shadow:
+            0 0 12px
+            rgba(255,190,70,0.5);
+    }
+
+    50% {
+
+        transform:
+            scale(1.07);
+
+        box-shadow:
+            0 0 30px
+            rgba(255,190,70,1);
+    }
+}
+
+
+/* =========================================================
+   FILLED SLOT
+========================================================= */
+
+.puzzle-slot.filled {
+
+    border:
+        2px solid
+        rgba(230,199,122,0.8);
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(230,199,122,0.15);
+}
+
+
+/* =========================================================
+   CENTER MESSAGE
+========================================================= */
+
+.puzzle-message {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width: 80%;
+
+    text-align: center;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+.puzzle-message strong {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 20px;
+
+    letter-spacing: 4px;
+
+    color:
+        rgba(230,199,122,0.35);
+}
+
+
+.puzzle-message span {
+
+    font-family:
+        Arial,sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(190,170,140,0.5);
+}
+
+
+/* =========================================================
+   BOTTOM LABEL
+========================================================= */
+
+.water-label {
+
+    position: absolute;
+
+    bottom: 15px;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-family:
+        Arial,sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color:
+        rgba(210,170,110,0.7);
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PIECES PANEL
+========================================================= */
+
+.pieces-panel {
+
+    padding: 20px;
+
+    border:
+        1px solid
+        rgba(230,199,122,0.4);
+
+    border-radius: 12px;
+
+    background:
+        rgba(20,10,5,0.82);
+
+    min-height: 600px;
+
+    box-shadow:
+        0 0 25px
+        rgba(230,160,70,0.06);
+}
+
+
+.pieces-title {
+
+    text-align: center;
+
+    margin-bottom: 10px;
+
+    font-size: 1rem;
+
+    letter-spacing: 3px;
+}
+
+
+.pieces-subtitle {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    font-family:
+        Arial,sans-serif;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+
+    letter-spacing: 2px;
+
+    color: #b9a487;
+}
+
+
+.pieces {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,68px);
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   PUZZLE PIECES
+========================================================= */
+
+.puzzle-piece {
+
+    width: 68px;
+
+    height: 68px;
+
+    border:
+        2px solid
+        rgba(230,199,122,0.5);
+
+    border-radius: 6px;
+
+    background-image:
+        url("images/vedic-city.jpg");
+
+    background-repeat: no-repeat;
+
+    background-size:
+        400% 400%;
+
+    cursor: grab;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+    user-select: none;
+}
+
+
+.puzzle-piece:hover {
+
+    transform:
+        scale(1.05);
+
+    border-color:
+        #e6c77a;
+
+    box-shadow:
+        0 0 18px
+        rgba(230,199,122,0.35);
+}
+
+
+.puzzle-piece:active {
+
+    cursor: grabbing;
+
+    transform:
+        scale(1.08);
+}
+
+
+.puzzle-piece.dragging {
+
+    opacity: 0.5;
+}
+
+
+/* =========================================================
+   COMPLETE PICTURE HINT POPUP
+========================================================= */
+
+.complete-picture-hint {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20,10,5,0.88);
+    backdrop-filter: blur(6px);
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+
+.complete-picture-hint.fade-out {
+    opacity: 0;
+}
+
+.complete-picture-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 22px;
+    border: 2px solid rgba(230,199,122,0.7);
+    border-radius: 16px;
+    background: rgba(20,10,5,0.95);
+    box-shadow: 0 0 40px rgba(230,199,122,0.25);
+}
+
+.complete-picture-label {
+    font-family: Georgia, serif;
+    letter-spacing: 3px;
+    font-size: 13px;
+    color: #e6c77a;
+    text-align: center;
+}
+
+.complete-picture-img {
+    width: min(420px, 80vw);
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(230,199,122,0.5);
+    display: block;
+}
+
+
+/* =========================================================
+   INTRO / CONGRATULATIONS OVERLAY
+========================================================= */
+
+.intro-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(15,7,3,0.90);
+
+    backdrop-filter:
+        blur(8px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+}
+
+
+.intro-scroll {
+
+    width: 600px;
+
+    max-width: 90%;
+
+    padding: 45px;
+
+    border:
+        2px solid
+        rgba(230,199,122,0.7);
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #21170f,
+            #100b07
+        );
+
+    box-shadow:
+
+        0 0 35px
+        rgba(230,180,90,0.25),
+
+        inset 0 0 35px
+        rgba(230,180,90,0.05);
+
+    text-align: center;
+
+    animation:
+        scrollAppear 0.8s ease;
+}
+
+
+@keyframes scrollAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.95);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+.intro-scroll h2 {
+
+    margin-top: 0;
+
+    letter-spacing: 5px;
+
+    color: #e6c77a;
+}
+
+
+.intro-scroll p {
+
+    font-family:
+        Arial,sans-serif;
+
+    color: #d0c2ac;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+
+.intro-scroll ul {
+
+    text-align: left;
+
+    font-family:
+        Arial,sans-serif;
+
+    color: #b9a487;
+
+    line-height: 2;
+
+    margin: 25px auto;
+
+    max-width: 400px;
+}
+
+
+/* =========================================================
+   CONTINUE BUTTON
+========================================================= */
+
+.continue-button {
+
+    padding: 13px 35px;
+
+    border:
+        1px solid
+        #e6c77a;
+
+    border-radius: 6px;
+
+    background:
+        transparent;
+
+    color:
+        #e6c77a;
+
+    font-family:
+        Georgia,serif;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        0.3s ease;
+}
+
+
+.continue-button:hover {
+
+    background:
+        rgba(230,199,122,0.15);
+
+    box-shadow:
+        0 0 20px
+        rgba(230,199,122,0.35);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   CONGRATULATIONS STATS
+========================================================= */
+
+.congrats-stats {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 35px;
+
+    margin: 25px 0;
+
+    font-family:
+        Arial,sans-serif;
+}
+
+
+.congrats-stat {
+
+    text-align: center;
+}
+
+
+.congrats-stat small {
+
+    display: block;
+
+    color: #aaa18f;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+}
+
+
+.congrats-stat strong {
+
+    font-size: 20px;
+
+    color: #e6c77a;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width:1100px) {
+
+    .game-content {
+
+        grid-template-columns:
+            180px 1fr 280px;
+
+        gap: 15px;
+    }
+
+    .puzzle-board {
+
+        width: 420px;
+
+        height: 420px;
+    }
+
+    .pieces {
+
+        grid-template-columns:
+            repeat(4,52px);
+    }
+
+    .puzzle-piece {
+
+        width: 52px;
+
+        height: 52px;
+    }
+}
+
+
+@media (max-width:850px) {
+
+    .game-content {
+
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4,1fr);
+
+        gap: 10px;
+    }
+
+    .sidebar h2 {
+
+        grid-column:
+            1/-1;
+    }
+}
+
+.player-profile-display{
+    display:flex;align-items:center;gap:7px;
+    margin-left:15px;
+    color:#e6c77a;
+    font-family:Georgia,serif;
+    font-size:14px;
+    letter-spacing:1px;
+    white-space:nowrap;
+    pointer-events:none;
+}
+.player-profile-display span:first-child{font-size:18px}
+</style>
+<script src="../tridhara homepage modify/player-profile.js" defer></script>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav
+    class="navbar"
+    id="navbar"
+>
+
+    <div class="nav-left">
+
+        <a
+            href="../tridhara homepage modify/index.html"
+            class="brand notranslate"
+        >
+            TRIDHARA
+        </a>
+
+        <a
+            href="timeline.html"
+            class="notranslate"
+        >
+            KAALCHAKRA
+        </a>
+
+    </div>
+
+
+    <div
+        class="language-menu notranslate"
+        id="languageMenu"
+    >
+
+        <button
+            class="language-button notranslate"
+            id="languageButton"
+            type="button"
+        >
+            LANGUAGES ▾
+        </button>
+
+
+        <div
+            class="language-dropdown notranslate"
+        >
+
+            <button
+                type="button"
+                onclick="changeLanguage('en')"
+            >
+                English
+            </button>
+
+
+            <button
+                type="button"
+                onclick="changeLanguage('hi')"
+            >
+                हिन्दी
+            </button>
+
+
+            <button
+                type="button"
+                onclick="changeLanguage('bn')"
+            >
+                বাংলা
+            </button>
+
+
+            <button
+                type="button"
+                onclick="changeLanguage('or')"
+            >
+                ଓଡ଼ିଆ
+            </button>
+
+
+            <button
+                type="button"
+                onclick="changeLanguage('ta')"
+            >
+                தமிழ்
+            </button>
+
+
+            <button
+                type="button"
+                onclick="changeLanguage('te')"
+            >
+                తెలుగు
+            </button>
+
+
+            <button
+                type="button"
+                onclick="changeLanguage('ml')"
+            >
+                മലയാളം
+            </button>
+
+
+            <button
+                type="button"
+                onclick="changeLanguage('mr')"
+            >
+                मराठी
+            </button>
+
+
+            <button
+                type="button"
+                onclick="changeLanguage('gu')"
+            >
+                ગુજરાતી
+            </button>
+
+
+            <button
+                type="button"
+                onclick="changeLanguage('pa')"
+            >
+                ਪੰਜਾਬੀ
+            </button>
+
+        </div>
+
+    </div>
+
+    <span class="player-profile-display" aria-label="Student profile" title="Student profile">
+        <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+        <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+    </span>
+
+    <button
+        class="navbar-toggle notranslate"
+        id="navbarToggle"
+        type="button"
+    >
+        ↑
+    </button>
+
+</nav>
+
+
+<!-- Google Translate -->
+
+<div
+    id="google_translate_element"
+    style="display:none;"
+></div>
+
+
+<!-- =========================================================
+     INTRO OVERLAY
+========================================================= -->
+
+<div
+    class="intro-overlay"
+    id="introOverlay"
+>
+
+    <div class="intro-scroll">
+
+        <h2>
+            ENTER THE VEDIC AGE
+        </h2>
+
+        <p>
+            A new chapter of ancient India
+            awaits reconstruction.
+        </p>
+
+        <ul>
+
+            <li>
+                Drag each settlement fragment from the right.
+            </li>
+
+            <li>
+                Place it into its correct position.
+            </li>
+
+            <li>
+                Wrong placements cost you a life.
+            </li>
+
+            <li>
+                You have 3 hints to help you.
+            </li>
+
+        </ul>
+
+        <button
+            class="continue-button"
+            id="continueButton"
+        >
+            CONTINUE
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN GAME
+========================================================= -->
+
+<div class="game">
+
+<header class="game-header">
+
+    <h1>
+        VEDIC PERIOD
+    </h1>
+
+    <p>
+        c. 1500–500 BCE • RECONSTRUCT THE SETTLEMENT
+    </p>
+
+</header>
+
+
+<div class="game-content">
+
+
+<!-- =========================================================
+     SCORECARD
+========================================================= -->
+
+<div class="sidebar">
+
+    <h2>
+        SCORECARD
+    </h2>
+
+
+    <div class="stat">
+
+        <span class="label">
+            TIME
+        </span>
+
+        <span
+            class="value"
+            id="time"
+        >
+            00:00
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <span class="label">
+            SCORE
+        </span>
+
+        <span
+            class="value"
+            id="score"
+        >
+            0
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <span class="label">
+            LIVES
+        </span>
+
+        <span
+            class="value"
+            id="lives"
+        >
+            ♥ ♥ ♥
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <span class="label">
+            HINTS
+        </span>
+
+        <span
+            class="value"
+            id="hints"
+        >
+            💡 3
+        </span>
+
+    </div>
+
+
+    <button id="hintButton">
+        USE HINT
+    </button>
+
+
+    <button id="pauseButton">
+        PAUSE
+    </button>
+
+
+    <button id="restartButton">
+        RESTART
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     PUZZLE
+========================================================= -->
+
+<div class="puzzle-area">
+
+    <div
+        class="puzzle-board"
+        id="puzzleBoard"
+    >
+
+        <div class="board-header">
+
+            <div class="city-title">
+                THE VEDIC SETTLEMENT
+            </div>
+
+            <div class="city-subtitle">
+                RECONSTRUCT THE REMAINS
+            </div>
+
+        </div>
+
+
+        <div
+            class="puzzle-slot"
+            data-slot="1"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="2"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="3"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="4"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="5"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="6"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="7"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="8"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="9"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="10"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="11"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="12"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="13"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="14"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="15"
+        ></div>
+
+        <div
+            class="puzzle-slot"
+            data-slot="16"
+        ></div>
+
+
+        <div class="puzzle-message">
+
+            <strong>
+                LOST VEDIC SETTLEMENT
+            </strong>
+
+            <span>
+                DRAG THE SETTLEMENT FRAGMENTS INTO PLACE
+            </span>
+
+        </div>
+
+
+        <div class="water-label">
+            VEDIC AGE RECONSTRUCTION
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     PIECES
+========================================================= -->
+
+<div class="pieces-panel">
+
+    <div class="pieces-title">
+        SETTLEMENT FRAGMENTS
+    </div>
+
+    <div class="pieces-subtitle">
+        DRAG EACH FRAGMENT<br>
+        INTO THE CORRECT POSITION
+    </div>
+
+    <div
+        class="pieces"
+        id="pieces"
+    ></div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+const navbar =
+    document.getElementById("navbar");
+
+const navbarToggle =
+    document.getElementById("navbarToggle");
+
+
+navbarToggle.addEventListener(
+    "click",
+    function() {
+
+        navbar.classList.toggle(
+            "navbar-hidden"
+        );
+
+
+        if (
+            navbar.classList.contains(
+                "navbar-hidden"
+            )
+        ) {
+
+            navbarToggle.textContent =
+                "↓";
+
+        }
+
+        else {
+
+            navbarToggle.textContent =
+                "↑";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LANGUAGE MENU
+========================================================= */
+
+function googleTranslateElementInit() {
+
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: "en",
+
+            includedLanguages:
+                "en,hi,bn,or,ta,te,ml,mr,gu,pa"
+        },
+
+        "google_translate_element"
+    );
+
+}
+
+
+function changeLanguage(language) {
+
+    const select =
+        document.querySelector(
+            ".goog-te-combo"
+        );
+
+
+    if (!select) {
+
+        setTimeout(
+            function() {
+
+                changeLanguage(language);
+
+            },
+            500
+        );
+
+        return;
+
+    }
+
+
+    select.value =
+        language;
+
+
+    select.dispatchEvent(
+        new Event(
+            "change",
+            {
+                bubbles: true
+            }
+        )
+    );
+
+}
+
+
+const languageButton =
+    document.getElementById(
+        "languageButton"
+    );
+
+
+const languageMenu =
+    document.getElementById(
+        "languageMenu"
+    );
+
+
+languageButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        languageMenu.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    function() {
+
+        languageMenu.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const piecesContainer =
+    document.getElementById("pieces");
+
+const puzzleSlots =
+    document.querySelectorAll(
+        ".puzzle-slot"
+    );
+
+const timeDisplay =
+    document.getElementById("time");
+
+const scoreDisplay =
+    document.getElementById("score");
+
+const livesDisplay =
+    document.getElementById("lives");
+
+const hintsDisplay =
+    document.getElementById("hints");
+
+const hintButton =
+    document.getElementById("hintButton");
+
+const pauseButton =
+    document.getElementById("pauseButton");
+
+const restartButton =
+    document.getElementById("restartButton");
+
+const introOverlay =
+    document.getElementById("introOverlay");
+
+const continueButton =
+    document.getElementById("continueButton");
+
+
+/* =========================================================
+   GAME VARIABLES
+========================================================= */
+
+const totalPieces = 16;
+
+const puzzleGridSize = 4;
+
+let lives = 3;
+
+let score = 0;
+
+let hints = 3;
+
+let seconds = 0;
+
+let gameStarted = false;
+
+let gamePaused = false;
+
+let gameCompleted = false;
+
+let timer;
+
+
+/* =========================================================
+   CREATE PUZZLE PIECES
+========================================================= */
+
+for (
+    let i = 0;
+    i < totalPieces;
+    i++
+) {
+
+    const piece =
+        document.createElement("div");
+
+
+    piece.classList.add(
+        "puzzle-piece"
+    );
+
+
+    piece.draggable = true;
+
+
+    const row =
+        Math.floor(i / puzzleGridSize);
+
+
+    const column =
+        i % puzzleGridSize;
+
+
+    piece.style.backgroundSize =
+        `${puzzleGridSize * 100}% ${puzzleGridSize * 100}%`;
+
+
+    piece.style.backgroundPosition =
+        `${(column / (puzzleGridSize - 1)) * 100}% ${(row / (puzzleGridSize - 1)) * 100}%`;
+
+
+    piece.dataset.piece =
+        i + 1;
+
+
+    piece.addEventListener(
+        "dragstart",
+        function(event) {
+
+            if (
+                gamePaused ||
+                gameCompleted
+            ) {
+
+                event.preventDefault();
+
+                return;
+
+            }
+
+
+            event.dataTransfer.setData(
+                "text/plain",
+                piece.dataset.piece
+            );
+
+
+            piece.classList.add(
+                "dragging"
+            );
+
+        }
+    );
+
+
+    piece.addEventListener(
+        "dragend",
+        function() {
+
+            piece.classList.remove(
+                "dragging"
+            );
+
+        }
+    );
+
+
+    piecesContainer.appendChild(
+        piece
+    );
+
+}
+
+
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shufflePieces() {
+
+    const pieces =
+        Array.from(
+            piecesContainer.children
+        );
+
+
+    for (
+        let i = pieces.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const randomIndex =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        piecesContainer.appendChild(
+            pieces[randomIndex]
+        );
+
+
+        pieces.splice(
+            randomIndex,
+            1
+        );
+
+    }
+
+}
+
+
+shufflePieces();
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer() {
+
+    if (gameStarted) return;
+
+
+    gameStarted = true;
+
+
+    timer =
+        setInterval(
+            function() {
+
+                if (
+                    !gamePaused &&
+                    !gameCompleted
+                ) {
+
+                    seconds++;
+
+                    updateTime();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+function updateTime() {
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    const remainingSeconds =
+        seconds % 60;
+
+
+    timeDisplay.textContent =
+        String(minutes).padStart(2,"0")
+        +
+        ":"
+        +
+        String(
+            remainingSeconds
+        ).padStart(2,"0");
+
+}
+
+
+/* =========================================================
+   DRAG + DROP
+========================================================= */
+
+puzzleSlots.forEach(
+    function(slot) {
+
+        slot.addEventListener(
+            "dragover",
+            function(event) {
+
+                if (
+                    !gamePaused &&
+                    !gameCompleted
+                ) {
+
+                    event.preventDefault();
+
+                }
+
+            }
+        );
+
+
+        slot.addEventListener(
+            "drop",
+            function(event) {
+
+                event.preventDefault();
+
+
+                if (
+                    gamePaused ||
+                    gameCompleted
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    slot.children.length > 0
+                ) {
+
+                    return;
+
+                }
+
+
+                const pieceNumber =
+                    event.dataTransfer.getData(
+                        "text/plain"
+                    );
+
+
+                const piece =
+                    document.querySelector(
+                        `.puzzle-piece[data-piece="${pieceNumber}"]`
+                    );
+
+
+                if (!piece) return;
+
+
+                const correctSlot =
+                    slot.dataset.slot;
+
+
+                if (
+                    pieceNumber === correctSlot
+                ) {
+
+                    placeCorrectPiece(
+                        slot,
+                        piece
+                    );
+
+                }
+
+                else {
+
+                    wrongPlacement();
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CORRECT PIECE
+========================================================= */
+
+function placeCorrectPiece(
+    slot,
+    piece
+) {
+
+    slot.appendChild(piece);
+
+
+    piece.style.width =
+        "100%";
+
+
+    piece.style.height =
+        "100%";
+
+
+    piece.style.border =
+        "none";
+
+
+    piece.style.borderRadius =
+        "3px";
+
+
+    piece.style.transform =
+        "none";
+
+
+    piece.style.cursor =
+        "default";
+
+
+    piece.draggable =
+        false;
+
+
+    piece.classList.remove(
+        "hint-glow"
+    );
+
+
+    slot.classList.remove(
+        "hint-glow"
+    );
+
+
+    slot.classList.add(
+        "filled"
+    );
+
+
+    score += 10;
+
+
+    scoreDisplay.textContent =
+        score;
+
+
+    document
+        .querySelector(
+            ".puzzle-message"
+        )
+        .style.display =
+        "none";
+
+
+    checkPuzzle();
+
+}
+
+
+/* =========================================================
+   WRONG PLACEMENT
+========================================================= */
+
+function wrongPlacement() {
+
+    lives--;
+
+
+    updateLives();
+
+
+    showWrongPopup();
+
+
+    if (lives <= 0) {
+
+        gameOver();
+
+    }
+
+}
+
+
+/* =========================================================
+   LIVES
+========================================================= */
+
+function updateLives() {
+
+    let hearts = "";
+
+
+    for (
+        let i = 0;
+        i < lives;
+        i++
+    ) {
+
+        hearts += "♥ ";
+
+    }
+
+
+    livesDisplay.textContent =
+        hearts.trim();
+
+}
+
+
+/* =========================================================
+   WRONG POPUP
+========================================================= */
+
+function showWrongPopup() {
+
+    const popup =
+        document.createElement("div");
+
+
+    popup.textContent =
+        "WRONG FRAGMENT";
+
+
+    popup.style.position =
+        "fixed";
+
+
+    popup.style.top =
+        "50%";
+
+
+    popup.style.left =
+        "50%";
+
+
+    popup.style.transform =
+        "translate(-50%,-50%)";
+
+
+    popup.style.padding =
+        "25px 45px";
+
+
+    popup.style.border =
+        "2px solid #d99b72";
+
+
+    popup.style.borderRadius =
+        "10px";
+
+
+    popup.style.background =
+        "#21170f";
+
+
+    popup.style.color =
+        "#e6c77a";
+
+
+    popup.style.fontSize =
+        "20px";
+
+
+    popup.style.letterSpacing =
+        "4px";
+
+
+    popup.style.zIndex =
+        "2000";
+
+
+    popup.style.boxShadow =
+        "0 0 30px rgba(220,120,80,0.5)";
+
+
+    document.body.appendChild(
+        popup
+    );
+
+
+    setTimeout(
+        function() {
+
+            popup.remove();
+
+        },
+        1000
+    );
+
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+hintButton.addEventListener(
+    "click",
+    useHint
+);
+
+
+function useHint() {
+
+    if (
+        gamePaused ||
+        gameCompleted
+    ) {
+
+        return;
+
+    }
+
+
+    if (hints <= 0) {
+
+        alert(
+            "NO HINTS LEFT!"
+        );
+
+        return;
+
+    }
+
+
+    let targetSlot = null;
+
+
+    for (
+        let i = 0;
+        i < puzzleSlots.length;
+        i++
+    ) {
+
+        if (
+            puzzleSlots[i].children.length === 0
+        ) {
+
+            targetSlot =
+                puzzleSlots[i];
+
+            break;
+
+        }
+
+    }
+
+
+    if (!targetSlot) {
+
+        return;
+
+    }
+
+
+    const correctNumber =
+        targetSlot.dataset.slot;
+
+
+    const correctPiece =
+        document.querySelector(
+            `.puzzle-piece[data-piece="${correctNumber}"]`
+        );
+
+
+    if (!correctPiece) {
+
+        return;
+
+    }
+
+
+    hints--;
+
+
+    hintsDisplay.textContent =
+        "💡 " + hints;
+
+
+    targetSlot.classList.add(
+        "hint-glow"
+    );
+
+
+    correctPiece.classList.add(
+        "hint-glow"
+    );
+
+
+    setTimeout(
+        function() {
+
+            targetSlot.classList.remove(
+                "hint-glow"
+            );
+
+
+            correctPiece.classList.remove(
+                "hint-glow"
+            );
+
+        },
+        5000
+    );
+
+}
+
+
+/* =========================================================
+   CHECK PUZZLE
+========================================================= */
+
+function checkPuzzle() {
+
+    let completed = true;
+
+
+    puzzleSlots.forEach(
+        function(slot) {
+
+            if (
+                slot.children.length === 0
+            ) {
+
+                completed = false;
+
+            }
+
+        }
+    );
+
+
+    if (completed) {
+
+        completePuzzle();
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE GAME DATA
+========================================================= */
+
+function saveGameData() {
+
+    const gameData = {
+
+        score: score,
+
+        time: seconds,
+
+        lives: lives,
+
+        hints: hints,
+
+        civilization:
+            "Vedic Period",
+
+        completed: true
+
+    };
+
+
+    const storageKey =
+        "bharatTimeMachine";
+
+
+    const gameState =
+        JSON.parse(
+            localStorage.getItem(
+                storageKey
+            )
+        ) || {
+
+            levels: {},
+
+            unlocked: {
+
+                harappan: true,
+
+                vedic: true,
+
+                mauryan: false,
+
+                gupta: false,
+
+                chola: false,
+
+                sultanates: false,
+
+                mughal: false
+
+            }
+
+        };
+
+
+    if (!gameState.levels) {
+
+        gameState.levels = {};
+
+    }
+
+
+    if (!gameState.unlocked) {
+
+        gameState.unlocked = {};
+
+    }
+
+
+    gameState.levels.vedic =
+        gameData;
+
+
+    gameState.unlocked.vedic =
+        true;
+
+
+    gameState.unlocked.mauryan =
+        true;
+
+
+    gameState.lastCompleted =
+        "vedic";
+
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(gameState)
+    );
+
+}
+
+
+/* =========================================================
+   COMPLETION
+========================================================= */
+
+function completePuzzle() {
+
+    if (gameCompleted) return;
+
+
+    gameCompleted = true;
+
+
+    clearInterval(timer);
+
+
+    score = 100;
+
+
+    scoreDisplay.textContent =
+        score;
+
+
+    saveGameData();
+
+
+    setTimeout(
+        function() {
+
+            showCongratulations();
+
+        },
+        500
+    );
+
+}
+
+
+function showCongratulations() {
+
+    window.location.href = "vedic-facts.html";
+
+}
+
+/* =========================================================
+   FORMAT TIME
+========================================================= */
+
+function formatTime(
+    totalSeconds
+) {
+
+    const minutes =
+        Math.floor(
+            totalSeconds / 60
+        );
+
+
+    const secs =
+        totalSeconds % 60;
+
+
+    return (
+        String(minutes).padStart(2,"0")
+        +
+        ":"
+        +
+        String(secs).padStart(2,"0")
+    );
+
+}
+
+
+/* =========================================================
+   GAME OVER
+========================================================= */
+
+function gameOver() {
+
+    gameCompleted = true;
+
+    clearInterval(timer);
+
+    introOverlay.style.display = "flex";
+
+    introOverlay.innerHTML = `
+
+        <div class="intro-scroll">
+
+            <h2>
+                THE SETTLEMENT REMAINS LOST
+            </h2>
+
+            <p>
+                You have used all three lives.
+                The reconstruction could not be completed.
+            </p>
+
+            <p>
+                Restart the puzzle and try again.
+            </p>
+
+            <button
+                class="continue-button"
+                id="restartGameButton"
+            >
+                RESTART
+            </button>
+
+        </div>
+
+    `;
+
+    document
+        .getElementById("restartGameButton")
+        .addEventListener(
+            "click",
+            function() {
+
+                location.reload();
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   PAUSE
+========================================================= */
+
+pauseButton.addEventListener(
+    "click",
+    function() {
+
+        if (gameCompleted) return;
+
+
+        gamePaused =
+            !gamePaused;
+
+
+        this.textContent =
+            gamePaused
+            ? "RESUME"
+            : "PAUSE";
+
+    }
+);
+
+
+/* =========================================================
+   RESTART
+========================================================= */
+
+restartButton.addEventListener(
+    "click",
+    function() {
+
+        location.reload();
+
+    }
+);
+
+
+/* =========================================================
+   COMPLETE PICTURE HINT
+========================================================= */
+
+function showCompletePictureHint(
+    imageSrc,
+    labelText,
+    callback
+) {
+
+    const overlay =
+        document.createElement("div");
+
+    overlay.className =
+        "complete-picture-hint";
+
+    overlay.innerHTML =
+        '<div class="complete-picture-box">' +
+            '<div class="complete-picture-label">' + labelText + '</div>' +
+            '<img class="complete-picture-img" src="' + imageSrc + '" alt="Complete picture">' +
+        '</div>';
+
+    document.body.appendChild(overlay);
+
+    setTimeout(
+        function() {
+
+            overlay.classList.add("fade-out");
+
+            setTimeout(
+                function() {
+
+                    overlay.remove();
+
+                    if (callback) callback();
+
+                },
+                350
+            );
+
+        },
+        2000
+    );
+
+}
+
+
+/* =========================================================
+   INTRO CONTINUE
+========================================================= */
+
+continueButton.addEventListener(
+    "click",
+    function() {
+
+        introOverlay.style.display =
+            "none";
+
+
+        showCompletePictureHint(
+            "images/vedic-city.jpg",
+            "MEMORIZE THE COMPLETE SETTLEMENT",
+            startTimer
+        );
+
+    }
+);
+
+</script>
+
+
+<!-- =========================================================
+     GOOGLE TRANSLATE SCRIPT
+========================================================= -->
+
+<script
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+</body>
+
+</html>

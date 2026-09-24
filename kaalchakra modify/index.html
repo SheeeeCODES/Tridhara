@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&display=swap"
+      rel="stylesheet">
+
+<title>KAALCHAKRA</title>
+```
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background-color: #06152b;
+
+    background-image:
+        linear-gradient(
+            rgba(3, 12, 25, 0.45),
+            rgba(3, 12, 25, 0.45)
+        ),
+        url("images/mandala.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+
+    font-family: "Cinzel", serif;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.title {
+
+    position: absolute;
+
+    top: 14%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    margin: 0;
+
+    color: #e6c77a;
+
+    font-size: 4rem;
+
+    letter-spacing: 14px;
+
+    text-align: center;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 8px rgba(230, 199, 122, 0.35),
+        0 0 25px rgba(230, 199, 122, 0.18);
+
+    opacity: 0;
+
+    animation:
+        titleReveal
+        1.5s
+        ease-out
+        forwards;
+}
+
+
+@keyframes titleReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.92);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.subtitle {
+
+    position: absolute;
+
+    top: 20%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    margin: 0;
+
+    color: #d8c9a3;
+
+    font-size: 1.05rem;
+
+    font-weight: 400;
+
+    letter-spacing: 7px;
+
+    text-align: center;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 8px rgba(216, 201, 163, 0.25);
+
+    opacity: 0;
+
+    animation:
+        subtitleReveal
+        1.2s
+        ease-out
+        forwards;
+
+    animation-delay: 1.6s;
+}
+
+
+@keyframes subtitleReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   PUZZLE INTRO
+========================================================= */
+
+.puzzle-container {
+
+    width: 35%;
+
+    aspect-ratio: 16 / 9;
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+
+/* =========================================================
+   PUZZLE PIECES
+========================================================= */
+
+.puzzle-piece {
+
+    position: absolute;
+
+    width: 33.333%;
+
+    height: 33.333%;
+
+    background-image:
+        url("images/main puzzle.jpg");
+
+    background-size: 300% 300%;
+
+    border:
+        1px solid
+        rgba(230, 199, 122, 0.35);
+
+    box-shadow:
+        0 0 12px rgba(0, 0, 0, 0.5),
+        inset 0 0 8px rgba(255, 255, 255, 0.08);
+
+    opacity: 0;
+}
+
+
+/* =========================================================
+   PIECE 1
+========================================================= */
+
+.piece-1 {
+
+    top: 0;
+
+    left: 0;
+
+    background-position: 0% 0%;
+
+    animation:
+        pieceOne
+        1.2s
+        ease-out
+        forwards;
+
+    animation-delay: 3s;
+}
+
+
+@keyframes pieceOne {
+
+    0% {
+
+        transform:
+            translate(-400px, -250px)
+            rotate(-25deg)
+            scale(0.9);
+
+        opacity: 0;
+    }
+
+    75% {
+
+        transform:
+            translate(15px, 10px)
+            rotate(2deg)
+            scale(1.02);
+
+        opacity: 1;
+    }
+
+    90% {
+
+        transform:
+            translate(-5px, -3px)
+            rotate(-1deg)
+            scale(0.99);
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PIECE 2
+========================================================= */
+
+.piece-2 {
+
+    top: 0;
+
+    left: 33.333%;
+
+    background-position: 50% 0%;
+
+    animation:
+        pieceTwo
+        1.1s
+        ease-out
+        forwards;
+
+    animation-delay: 3.15s;
+}
+
+
+@keyframes pieceTwo {
+
+    0% {
+
+        transform:
+            translate(0, -450px)
+            rotate(30deg)
+            scale(0.9);
+
+        opacity: 0;
+    }
+
+    75% {
+
+        transform:
+            translate(0, 15px)
+            rotate(-2deg)
+            scale(1.02);
+
+        opacity: 1;
+    }
+
+    90% {
+
+        transform:
+            translate(0, -5px)
+            rotate(1deg)
+            scale(0.99);
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PIECE 3
+========================================================= */
+
+.piece-3 {
+
+    top: 0;
+
+    left: 66.666%;
+
+    background-position: 100% 0%;
+
+    animation:
+        pieceThree
+        1.3s
+        ease-out
+        forwards;
+
+    animation-delay: 3.3s;
+}
+
+
+@keyframes pieceThree {
+
+    0% {
+
+        transform:
+            translate(450px, -300px)
+            rotate(25deg)
+            scale(0.9);
+
+        opacity: 0;
+    }
+
+    75% {
+
+        transform:
+            translate(-15px, 10px)
+            rotate(-2deg)
+            scale(1.02);
+
+        opacity: 1;
+    }
+
+    90% {
+
+        transform:
+            translate(5px, -3px)
+            rotate(1deg)
+            scale(0.99);
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PIECE 4
+========================================================= */
+
+.piece-4 {
+
+    top: 33.333%;
+
+    left: 0;
+
+    background-position: 0% 50%;
+
+    animation:
+        pieceFour
+        1s
+        ease-out
+        forwards;
+
+    animation-delay: 3.45s;
+}
+
+
+@keyframes pieceFour {
+
+    0% {
+
+        transform:
+            translate(-500px, 0)
+            rotate(-20deg)
+            scale(0.9);
+
+        opacity: 0;
+    }
+
+    75% {
+
+        transform:
+            translate(15px, 0)
+            rotate(2deg)
+            scale(1.02);
+
+        opacity: 1;
+    }
+
+    90% {
+
+        transform:
+            translate(-5px, 0)
+            rotate(-1deg)
+            scale(0.99);
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PIECE 5
+========================================================= */
+
+.piece-5 {
+
+    top: 33.333%;
+
+    left: 33.333%;
+
+    background-position: 50% 50%;
+
+    animation:
+        pieceFive
+        1.4s
+        ease-out
+        forwards;
+
+    animation-delay: 3.65s;
+}
+
+
+@keyframes pieceFive {
+
+    0% {
+
+        transform:
+            scale(0.3)
+            rotate(45deg);
+
+        opacity: 0;
+    }
+
+    70% {
+
+        transform:
+            scale(1.08)
+            rotate(-3deg);
+
+        opacity: 1;
+    }
+
+    88% {
+
+        transform:
+            scale(0.98)
+            rotate(1deg);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            scale(1)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PIECE 6
+========================================================= */
+
+.piece-6 {
+
+    top: 33.333%;
+
+    left: 66.666%;
+
+    background-position: 100% 50%;
+
+    animation:
+        pieceSix
+        1.15s
+        ease-out
+        forwards;
+
+    animation-delay: 3.75s;
+}
+
+
+@keyframes pieceSix {
+
+    0% {
+
+        transform:
+            translate(500px, 0)
+            rotate(20deg)
+            scale(0.9);
+
+        opacity: 0;
+    }
+
+    75% {
+
+        transform:
+            translate(-15px, 0)
+            rotate(-2deg)
+            scale(1.02);
+
+        opacity: 1;
+    }
+
+    90% {
+
+        transform:
+            translate(5px, 0)
+            rotate(1deg)
+            scale(0.99);
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PIECE 7
+========================================================= */
+
+.piece-7 {
+
+    top: 66.666%;
+
+    left: 0;
+
+    background-position: 0% 100%;
+
+    animation:
+        pieceSeven
+        1.25s
+        ease-out
+        forwards;
+
+    animation-delay: 3.9s;
+}
+
+
+@keyframes pieceSeven {
+
+    0% {
+
+        transform:
+            translate(-350px, 350px)
+            rotate(-30deg)
+            scale(0.9);
+
+        opacity: 0;
+    }
+
+    75% {
+
+        transform:
+            translate(12px, -12px)
+            rotate(2deg)
+            scale(1.02);
+
+        opacity: 1;
+    }
+
+    90% {
+
+        transform:
+            translate(-4px, 4px)
+            rotate(-1deg)
+            scale(0.99);
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PIECE 8
+========================================================= */
+
+.piece-8 {
+
+    top: 66.666%;
+
+    left: 33.333%;
+
+    background-position: 50% 100%;
+
+    animation:
+        pieceEight
+        1.05s
+        ease-out
+        forwards;
+
+    animation-delay: 4.05s;
+}
+
+
+@keyframes pieceEight {
+
+    0% {
+
+        transform:
+            translate(0, 450px)
+            rotate(-25deg)
+            scale(0.9);
+
+        opacity: 0;
+    }
+
+    75% {
+
+        transform:
+            translate(0, -15px)
+            rotate(2deg)
+            scale(1.02);
+
+        opacity: 1;
+    }
+
+    90% {
+
+        transform:
+            translate(0, 5px)
+            rotate(-1deg)
+            scale(0.99);
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PIECE 9
+========================================================= */
+
+.piece-9 {
+
+    top: 66.666%;
+
+    left: 66.666%;
+
+    background-position: 100% 100%;
+
+    animation:
+        pieceNine
+        1.35s
+        ease-out
+        forwards;
+
+    animation-delay: 4.2s;
+}
+
+
+@keyframes pieceNine {
+
+    0% {
+
+        transform:
+            translate(400px, 300px)
+            rotate(30deg)
+            scale(0.9);
+
+        opacity: 0;
+    }
+
+    75% {
+
+        transform:
+            translate(-12px, -10px)
+            rotate(-2deg)
+            scale(1.02);
+
+        opacity: 1;
+    }
+
+    90% {
+
+        transform:
+            translate(4px, 3px)
+            rotate(1deg)
+            scale(0.99);
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.quote {
+
+    position: absolute;
+
+    top: 82%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 80%;
+
+    margin: 0;
+
+    color: #d8c9a3;
+
+    font-size: 1.05rem;
+
+    font-weight: 400;
+
+    letter-spacing: 3px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    animation:
+        quoteReveal
+        1.5s
+        ease-out
+        forwards;
+
+    animation-delay: 5.2s;
+}
+
+
+@keyframes quoteReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(15px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   BEGIN JOURNEY BUTTON
+========================================================= */
+
+.journey-btn {
+
+    position: absolute;
+
+    top: 89%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 12px 30px;
+
+    background: rgba(6, 21, 43, 0.4);
+
+    border:
+        1px solid
+        #e6c77a;
+
+    border-radius: 2px;
+
+    color: #e6c77a;
+
+    font-family: "Cinzel", serif;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 4px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    animation:
+        buttonReveal
+        1.2s
+        ease-out
+        forwards;
+
+    animation-delay: 6.2s;
+
+    transition:
+        all 0.3s ease;
+
+    z-index: 20;
+}
+
+
+.journey-btn:hover {
+
+    background:
+        rgba(230, 199, 122, 0.15);
+
+    box-shadow:
+        0 0 20px
+        rgba(230, 199, 122, 0.45);
+
+    transform:
+        translateX(-50%)
+        translateY(-3px);
+}
+
+
+@keyframes buttonReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(12px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   HIDDEN IMAGE
+   This is only kept as the source for the intro puzzle.
+========================================================= */
+
+.main-puzzle {
+
+    display: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .title {
+
+        font-size: 2.5rem;
+
+        letter-spacing: 8px;
+    }
+
+    .subtitle {
+
+        font-size: 0.75rem;
+
+        letter-spacing: 4px;
+    }
+
+    .puzzle-container {
+
+        width: 60%;
+    }
+
+    .quote {
+
+        font-size: 0.8rem;
+    }
+
+    .journey-btn {
+
+        font-size: 0.7rem;
+
+        letter-spacing: 2px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     KAALCHAKRA TITLE
+===================================================== -->
+
+<h1 class="title">
+    KAALCHAKRA
+</h1>
+
+<p class="subtitle">
+    THE WHEEL OF TIME
+</p>
+
+<!-- =====================================================
+     INTRO PUZZLE
+===================================================== -->
+
+<div class="puzzle-container">
+
+```
+<div class="puzzle-piece piece-1"></div>
+
+<div class="puzzle-piece piece-2"></div>
+
+<div class="puzzle-piece piece-3"></div>
+
+<div class="puzzle-piece piece-4"></div>
+
+<div class="puzzle-piece piece-5"></div>
+
+<div class="puzzle-piece piece-6"></div>
+
+<div class="puzzle-piece piece-7"></div>
+
+<div class="puzzle-piece piece-8"></div>
+
+<div class="puzzle-piece piece-9"></div>
+```
+
+</div>
+
+<!-- =====================================================
+     QUOTE
+===================================================== -->
+
+<p class="quote">
+
+```
+Every civilization leaves a mark on the wheel of time.
+```
+
+</p>
+
+<!-- =====================================================
+     BEGIN JOURNEY
+===================================================== -->
+
+<button
+ type="button"
+ class="journey-btn"
+ id="beginJourney">
+
+```
+BEGIN THE JOURNEY →
+```
+
+</button>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/*
+===========================================================
+IMPORTANT GAME FLOW
+
+INDEX
+  ↓
+TIMELINE
+  ↓
+HARAPPA
+
+The index page NEVER opens harappa.html directly.
+===========================================================
+*/
+
+
+document
+    .getElementById("beginJourney")
+    .addEventListener("click", function () {
+
+        window.location.href = "timeline.html";
+
+    });
+
+
+</script>
+
+</body>
+
+</html>

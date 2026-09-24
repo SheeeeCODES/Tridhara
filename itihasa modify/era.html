@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOOSE THE ERA</title>
+    <script src="language.js"></script>
+    <script src="../tridhara homepage modify/player-profile.js" defer></script>
+    <style>
+        .player-profile-display{
+            display:flex;align-items:center;gap:7px;
+            margin-left:18px;
+            color:#e6c77a;
+            font-family:"Cinzel",serif;
+            font-size:14px;
+            letter-spacing:1px;
+            white-space:nowrap;
+            pointer-events:none;
+        }
+        .player-profile-display span:first-child{font-size:18px}
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="era.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-left">
+            <a href="../tridhara homepage modify/index.html" class="brand notranslate">TRIDHARA</a>
+            <a href="era.html" class="nav-link notranslate">Itihasa</a>
+        </div>
+        <div class="nav-right">
+            <div class="language-menu notranslate">
+                <div class="language-label">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>LANGUAGE</span>
+                </div>
+                <select id="language-select" onchange="changeLanguage(this.value)" aria-label="Select language">
+                    <option value="">SELECT LANGUAGE</option>
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="bn">বাংলা</option>
+                    <option value="or">ଓଡ଼ିଆ</option>
+                    <option value="ta">தமிழ்</option>
+                    <option value="te">తెలుగు</option>
+                    <option value="ml">മലയാളം</option>
+                    <option value="mr">मराठी</option>
+                    <option value="gu">ગુજરાતી</option>
+                    <option value="pa">ਪੰਜਾਬੀ</option>
+                </select>
+            </div>
+            <span class="player-profile-display" aria-label="Student profile" title="Student profile">
+                <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+                <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+            </span>
+        </div>
+    </nav>
+
+    <!-- GOOGLE TRANSLATE - KEEP HIDDEN, MUST STILL EXIST -->
+    <div id="google_translate_element" translate="no"></div>
+
+    <div class="hero">
+        <img src="itihasa full banner.jpg" >
+    </div>
+       <div class="era">
+        <div class="history">
+           <p>Ancient History</p>
+           <div class="info"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9JtWS0sAidMtnrRAT83nmhetrdFKa1GrtTOISmGNPDw&s=10">
+               <p>
+                Discover the civilizations, empires and ideas that shaped the foundations of India.
+               </p>
+            </div>
+            <a href="ancient-intro.html" target="main"><button style="color: rgb(245, 197, 6) ;">Play Game</button></a>
+        </div>
+        <div class="history">
+            <p>Medieval History</p>
+            <div class="info"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQagbhWxIFN6XhjdceIVpI55hXeexc9IzJ5XGYmSHVYsA&s=10">
+                <p>
+                Meet legendary rulers, explore great kingdoms and uncover India's rich medieval heritage.
+               </p>
+            </div>
+            <a href="medieval-intro.html" target="main"><button style="color: rgb(247, 215, 8) ;">Play Game</button></a>
+        </div>
+        <div class="history">
+            <p>Modern History</p>
+            <div class="info"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ8h_xPcQ4xUxGOL7qSuRnL-ljRO5sCKn-2CoSRhDjAg&s=10">
+                <p>
+                Experience the struggle, sacrifices and movements that shaped modern independent India.
+                </p>
+            </div>
+            <a href="modern-intro.html" target="main"><button style="color: rgb(253, 212, 5) ;">Play Game</button></a>
+        </div>
+    </div>
+
+    <!-- GOOGLE TRANSLATE SCRIPT -->
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

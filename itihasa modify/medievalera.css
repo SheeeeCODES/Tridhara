@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   BODY
+========================================== */
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 65px 20px 80px;
+
+    color: #d9bd78;
+
+    font-family: "Cormorant Garamond", serif;
+
+    background:
+        linear-gradient(
+            rgba(29, 6, 0, 0.4),
+            rgba(0, 43, 11, 0.5)
+        ),
+        url(medievalhistorymughalarchbg.jpg);
+
+    background-size: 100% auto;
+    background-position: center 10%;
+    background-attachment: fixed;
+
+    position: relative;
+
+    overflow-x: hidden;
+}
+
+
+/* ==========================================
+   SUBTLE BACKGROUND GLOW
+========================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(154, 113, 47, 0.14),
+            transparent 55%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ==========================================
+   TITLE
+========================================== */
+
+body > div:first-child {
+
+    position: relative;
+
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+
+h1 {
+
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(40px, 5vw, 65px);
+
+    font-weight: 900;
+
+    letter-spacing: 7px;
+
+    text-transform: uppercase;
+
+    color: #dfaf41;
+
+    text-shadow:
+        0 7px 8px rgba(0, 0, 0, 0.9),
+        0 5px 15px rgba(22, 6, 1, 0.9);
+}
+
+
+/* ==========================================
+   DECORATIVE LINE BELOW TITLE
+========================================== */
+
+body > div:first-child::after {
+
+    content: "";
+
+    display: block;
+
+    width: 420px;
+
+    max-width: 80vw;
+
+    height: 4px;
+
+    margin: 22px auto 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #80602d,
+            #d5ae5e,
+            #80602d,
+            transparent
+        );
+}
+
+
+/* ==========================================
+   LEVEL BUTTON
+========================================== */
+
+.level-button {
+
+    position: relative;
+
+    width: min(650px, 90vw);
+
+    min-height: 82px;
+
+    margin: 10px 0;
+
+    padding: 0;
+
+    border: 1px solid #86662f;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(87, 26, 2, 0.8),
+            rgba(0, 36, 13, 0.8)),
+
+            url(https://dvncorestorageprod.blob.core.windows.net/files/page/134/Image/The%20Afghan-Sikh%20Wars_20240726091820997.jpg);
+         
+    background-position: center 15% ; 
+    background-size: 120% auto;       
+
+    color: #d9b968;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, 0.55),
+        inset 0 0 25px rgba(0, 0, 0, 0.45);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* ==========================================
+   INNER BORDER
+========================================== */
+
+.level-button::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 5px;
+
+    border: 1px solid
+        rgba(204, 163, 81, 0.2);
+
+    border-radius: 8px;
+
+    pointer-events: none;
+}
+
+#tridharaButton {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    padding: 10px 18px;
+    background: rgba(6, 21, 43, 0.8);
+    border: 1px solid #d8b75a;
+    color: #d8b75a;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#tridharaButton:hover {
+    background: rgba(216, 183, 90, 0.15);
+}
+/* ==========================================
+   GOLD LIGHT EFFECT
+========================================== */
+
+.level-button::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+
+    height: 180px;
+
+    right: -100px;
+
+    top: -80px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(199, 154, 65, 0.18),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ==========================================
+   UNLOCKED LEVEL HOVER
+========================================== */
+
+.level-button:not(.locked):hover {
+
+    transform: translateX(8px);
+
+    border-color: #d5ad5b;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(201, 157, 69, 0.18);
+}
+
+
+/* ==========================================
+   LEVEL LINK
+========================================== */
+
+.level-button a {
+
+    position: relative;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    width: 100%;
+
+    height: 80px;
+
+    padding: 0 35px;
+
+    text-decoration: none;
+
+    font-family: "Cinzel", serif;
+
+    font-size: 19px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: #dfbd6d;
+}
+
+
+/* ==========================================
+   LOCKED LEVELS
+========================================== */
+
+.level-button.locked {
+
+    opacity: 0.52;
+
+    cursor: not-allowed;
+
+    filter: grayscale(15%);
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(30, 28, 24, 0.75),
+            rgba(9, 14, 17, 0.92)
+        );
+}
+
+
+/* Don't let locked cards move */
+
+.level-button.locked:hover {
+
+    transform: none;
+
+    border-color: #86662f;
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, 0.55),
+        inset 0 0 25px rgba(0, 0, 0, 0.45);
+}
+
+
+/* ==========================================
+   LOCKED LEVEL TEXT
+========================================== */
+
+.level-button.locked {
+
+    font-family: "Cinzel", serif;
+
+    font-size: 19px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    color: #887c65;
+}
+
+
+/* ==========================================
+   LEVEL NUMBER DECORATION
+========================================== */
+
+.level-button:not(.locked)::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    right: 1px;
+
+    top: 68%;
+
+    transform: translateY(-20%);
+
+    color: #d4aa56;
+
+    font-size: 30px;
+
+    z-index: 5;
+
+    background: none;
+}
+
+
+/* ==========================================
+   ACTIVE LEVEL GLOW
+========================================== */
+
+#level1 {
+
+    border-color: #c29748;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.6),
+        0 0 18px rgba(194, 150, 66, 0.16);
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding-top: 45px;
+
+        background-attachment: scroll;
+    }
+
+
+    h1 {
+
+        font-size: 34px;
+
+        letter-spacing: 4px;
+    }
+
+
+    .level-button {
+
+        width: 92vw;
+
+        min-height: 70px;
+    }
+
+
+    .level-button a {
+
+        height: 68px;
+
+        padding: 0 22px;
+
+        font-size: 15px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .level-button.locked {
+
+        font-size: 15px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .level-button:not(.locked)::after {
+
+        right: 22px;
+    }
+
+}

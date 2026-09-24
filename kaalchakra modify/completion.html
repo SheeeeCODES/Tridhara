@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Harappa Reconstructed</title>
+
+<style>
+
+/* =========================================================
+   BASIC RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(5,10,20,0.78),
+            rgba(5,10,20,0.88)
+        ),
+        url("images/harappa-bg.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    background: rgba(6,21,43,0.96);
+
+    border-bottom:
+        1px solid
+        rgba(230,199,122,0.45);
+
+    box-shadow:
+        0 4px 20px
+        rgba(0,0,0,0.35);
+
+    z-index: 9999;
+
+    transition:
+        transform 0.35s ease;
+
+}
+
+.nav-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+}
+
+.nav-left a {
+
+    color: #e6c77a;
+
+    text-decoration: none;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+
+}
+
+.navbar .brand {
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+}
+
+
+/* =========================================================
+   LANGUAGE MENU
+========================================================= */
+
+.language-menu {
+
+    position: relative;
+
+    margin-left: auto;
+
+    margin-right: 20px;
+
+}
+
+.language-button {
+
+    height: 36px;
+
+    padding: 0 14px;
+
+    border:
+        1px solid
+        #8a6035;
+
+    border-radius: 5px;
+
+    background: #1b2945;
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+}
+
+.language-dropdown {
+
+    display: none;
+
+    position: absolute;
+
+    top: 44px;
+
+    right: 0;
+
+    width: 150px;
+
+    background: #1b2945;
+
+    border:
+        1px solid
+        #8a6035;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    z-index: 10001;
+
+}
+
+.language-dropdown button {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+}
+
+.language-dropdown button:hover {
+
+    background: #2a3b5c;
+
+    color: #e6c77a;
+
+}
+
+.language-menu.open .language-dropdown {
+
+    display: block;
+
+}
+
+
+/* =========================================================
+   NAVBAR TOGGLE
+========================================================= */
+
+.navbar-toggle {
+
+    width: 36px;
+
+    height: 36px;
+
+    border:
+        1px solid
+        #8a6035;
+
+    border-radius: 5px;
+
+    background: #1b2945;
+
+    color: #e6c77a;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+}
+
+.navbar.navbar-hidden {
+
+    transform:
+        translateY(-35px);
+
+}
+
+
+/* =========================================================
+   GOOGLE TRANSLATE
+========================================================= */
+
+#google_translate_element {
+
+    display: none !important;
+
+}
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.goog-te-menu-frame,
+#goog-gt-tt {
+
+    display: none !important;
+
+    visibility: hidden !important;
+
+}
+
+body > .skiptranslate {
+
+    display: none !important;
+
+}
+
+html {
+
+    margin-top: 0 !important;
+
+}
+
+body {
+
+    top: 0 !important;
+
+    position: static !important;
+
+}
+
+
+/* =========================================================
+   AMBIENT GLITTER
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.45) 1px,
+            transparent 1px
+        );
+
+    background-size: 90px 90px;
+
+    opacity: 0.18;
+
+    animation:
+        glitterMove 8s linear infinite;
+
+}
+
+@keyframes glitterMove {
+
+    from {
+        transform: translate(0,0);
+    }
+
+    to {
+        transform: translate(45px,45px);
+    }
+
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.completion-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px;
+
+}
+
+
+/* =========================================================
+   COMPLETION SCROLL
+========================================================= */
+
+.completion-scroll {
+
+    width: 850px;
+
+    max-width: 95vw;
+
+    padding: 45px 55px;
+
+    border:
+        2px solid
+        rgba(230,199,122,0.7);
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(23,29,44,0.96),
+            rgba(7,13,25,0.97)
+        );
+
+    box-shadow:
+
+        0 0 50px
+        rgba(230,199,122,0.22),
+
+        inset 0 0 45px
+        rgba(230,199,122,0.04);
+
+    text-align: center;
+
+    animation:
+        revealScroll 1s ease;
+
+}
+
+@keyframes revealScroll {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(0.94);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   TOP LABEL
+========================================================= */
+
+.era-label {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    color: #aaa18f;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* =========================================================
+   MAIN TITLE
+========================================================= */
+
+.completion-scroll h1 {
+
+    margin: 0;
+
+    font-size: 2.8rem;
+
+    letter-spacing: 8px;
+
+    color: #e6c77a;
+
+    text-shadow:
+        0 0 20px
+        rgba(230,199,122,0.35);
+
+}
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.subtitle {
+
+    margin-top: 12px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    color: #aaa18f;
+
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.divider {
+
+    width: 70%;
+
+    height: 1px;
+
+    margin: 30px auto;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            rgba(230,199,122,0.7),
+            transparent
+        );
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message {
+
+    max-width: 650px;
+
+    margin: 0 auto 30px;
+
+}
+
+.message h2 {
+
+    margin-bottom: 15px;
+
+    font-size: 1.35rem;
+
+    letter-spacing: 4px;
+
+    color: #e6c77a;
+
+}
+
+.message p {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    color: #c5bfae;
+
+}
+
+
+/* =========================================================
+   SCORECARD
+========================================================= */
+
+.scorecard {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 15px;
+
+    margin: 30px auto;
+
+    max-width: 700px;
+
+}
+
+
+/* =========================================================
+   SCORE BOX
+========================================================= */
+
+.score-box {
+
+    padding: 18px 10px;
+
+    border:
+        1px solid
+        rgba(230,199,122,0.35);
+
+    border-radius: 10px;
+
+    background:
+        rgba(3,11,24,0.65);
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(230,199,122,0.03);
+
+}
+
+.score-label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #aaa18f;
+
+}
+
+.score-value {
+
+    display: block;
+
+    font-size: 1.4rem;
+
+    font-weight: bold;
+
+    color: #e6c77a;
+
+}
+
+
+
+/* =========================================================
+   CONTINUE BUTTON
+========================================================= */
+
+.continue-button {
+
+    margin-top: 25px;
+
+    padding: 14px 45px;
+
+    border:
+        1px solid
+        #e6c77a;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    cursor: pointer;
+
+    transition:
+        0.3s ease;
+
+}
+
+.continue-button:hover {
+
+    background:
+        rgba(230,199,122,0.14);
+
+    box-shadow:
+        0 0 25px
+        rgba(230,199,122,0.35);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width:700px) {
+
+    .completion-scroll {
+
+        padding:
+            35px 25px;
+
+    }
+
+    .completion-scroll h1 {
+
+        font-size: 2rem;
+
+        letter-spacing: 5px;
+
+    }
+
+    .scorecard {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .nav-left {
+
+        gap: 12px;
+
+    }
+
+    .nav-left a {
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+
+    }
+
+}
+
+.player-profile-display{
+    display:flex;align-items:center;gap:7px;
+    margin-left:15px;
+    color:#e6c77a;
+    font-family:Georgia,serif;
+    font-size:14px;
+    letter-spacing:1px;
+    white-space:nowrap;
+    pointer-events:none;
+}
+.player-profile-display span:first-child{font-size:18px}
+</style>
+<script src="../tridhara homepage modify/player-profile.js" defer></script>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar" id="navbar">
+
+    <div class="nav-left">
+
+        <a
+            href="../tridhara homepage modify/index.html"
+            class="brand notranslate"
+        >
+            TRIDHARA
+        </a>
+
+        <a
+            href="timeline.html"
+            class="notranslate"
+        >
+            KAALCHAKRA
+        </a>
+
+    </div>
+
+
+    <div
+        class="language-menu notranslate"
+        id="languageMenu"
+    >
+
+        <button
+            class="language-button notranslate"
+            id="languageButton"
+            type="button"
+        >
+            LANGUAGES ▾
+        </button>
+
+
+        <div class="language-dropdown notranslate">
+
+            <button
+                type="button"
+                onclick="changeLanguage('en')"
+            >
+                English
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('hi')"
+            >
+                हिन्दी
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('bn')"
+            >
+                বাংলা
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('or')"
+            >
+                ଓଡ଼ିଆ
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('ta')"
+            >
+                தமிழ்
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('te')"
+            >
+                తెలుగు
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('ml')"
+            >
+                മലയാളം
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('mr')"
+            >
+                मराठी
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('gu')"
+            >
+                ગુજરાતી
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('pa')"
+            >
+                ਪੰਜਾਬੀ
+            </button>
+
+        </div>
+
+    </div>
+
+    <span class="player-profile-display" aria-label="Student profile" title="Student profile">
+        <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+        <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+    </span>
+
+    <button
+        class="navbar-toggle notranslate"
+        id="navbarToggle"
+        type="button"
+    >
+        ↑
+    </button>
+
+</nav>
+
+
+<!-- =========================================================
+     MAIN COMPLETION PAGE
+========================================================= -->
+
+<div class="completion-page">
+
+    <div class="completion-scroll">
+
+
+        <div
+            class="era-label"
+            id="eraLabel"
+        >
+
+            01 • c. 2500 BCE
+
+        </div>
+
+
+        <h1 id="completionTitle">
+
+            HARAPPA RESTORED
+
+        </h1>
+
+
+        <div
+            class="subtitle"
+            id="completionSubtitle"
+        >
+
+            THE ANCIENT CITY LIVES AGAIN
+
+        </div>
+
+
+        <div class="divider"></div>
+
+
+        <div class="message">
+
+            <h2>
+
+                CONGRATULATIONS, ARCHAEOLOGIST
+
+            </h2>
+
+            <p id="completionMessage">
+
+                You have successfully reconstructed
+                the lost city of Harappa.
+
+                <br>
+
+                The streets, structures and ancient
+                urban network have been restored.
+
+            </p>
+
+        </div>
+
+
+        <div class="scorecard">
+
+
+            <div class="score-box">
+
+                <span class="score-label">
+                    SCORE
+                </span>
+
+                <span
+                    class="score-value"
+                    id="finalScore"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="score-box">
+
+                <span class="score-label">
+                    TIME
+                </span>
+
+                <span
+                    class="score-value"
+                    id="finalTime"
+                >
+                    00:00
+                </span>
+
+            </div>
+
+
+            <div class="score-box">
+
+                <span class="score-label">
+                    LIVES
+                </span>
+
+                <span
+                    class="score-value"
+                    id="finalLives"
+                >
+                    ♥ ♥ ♥
+                </span>
+
+            </div>
+
+
+            <div class="score-box">
+
+                <span class="score-label">
+                    HINTS LEFT
+                </span>
+
+                <span
+                    class="score-value"
+                    id="finalHints"
+                >
+                    💡 3
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <button
+            class="continue-button"
+            id="continueButton"
+        >
+
+            CONTINUE TO TIMELINE
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     GOOGLE TRANSLATE
+========================================================= -->
+
+<div
+    id="google_translate_element"
+    translate="no"
+></div>
+
+
+<script>
+
+/* =========================================================
+   GOOGLE TRANSLATE
+========================================================= */
+
+function googleTranslateElementInit() {
+
+    new google.translate.TranslateElement(
+
+        {
+
+            pageLanguage: "en",
+
+            includedLanguages:
+                "en,hi,bn,or,ta,te,ml,mr,gu,pa"
+
+        },
+
+        "google_translate_element"
+
+    );
+
+}
+
+
+function changeLanguage(language) {
+
+    const select =
+        document.querySelector(".goog-te-combo");
+
+
+    if (!select) {
+
+        setTimeout(
+            function() {
+
+                changeLanguage(language);
+
+            },
+            500
+        );
+
+        return;
+
+    }
+
+
+    select.value =
+        language;
+
+
+    select.dispatchEvent(
+        new Event(
+            "change",
+            {
+                bubbles: true
+            }
+        )
+    );
+
+}
+
+
+/* =========================================================
+   LANGUAGE DROPDOWN
+========================================================= */
+
+const languageButton =
+    document.getElementById(
+        "languageButton"
+    );
+
+
+const languageMenu =
+    document.getElementById(
+        "languageMenu"
+    );
+
+
+languageButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        languageMenu.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    function() {
+
+        languageMenu.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   NAVBAR TOGGLE
+========================================================= */
+
+const navbar =
+    document.getElementById(
+        "navbar"
+    );
+
+
+const navbarToggle =
+    document.getElementById(
+        "navbarToggle"
+    );
+
+
+navbarToggle.addEventListener(
+    "click",
+    function() {
+
+        navbar.classList.toggle(
+            "navbar-hidden"
+        );
+
+
+        if (
+            navbar.classList.contains(
+                "navbar-hidden"
+            )
+        ) {
+
+            navbarToggle.textContent =
+                "↓";
+
+        } else {
+
+            navbarToggle.textContent =
+                "↑";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   GET SAVED GAME DATA
+========================================================= */
+
+const storageKey =
+    "bharatTimeMachine";
+
+
+const gameState =
+    JSON.parse(
+        localStorage.getItem(storageKey)
+    ) || {};
+
+
+/* =========================================================
+   FIND LAST COMPLETED LEVEL
+========================================================= */
+
+const lastCompleted =
+    gameState.lastCompleted
+        || "harappan";
+
+
+const levelData =
+    gameState.levels &&
+    gameState.levels[lastCompleted]
+        ? gameState.levels[lastCompleted]
+        : {};
+
+
+/* =========================================================
+   COMPLETION INFORMATION
+========================================================= */
+
+const completionInfo = {
+
+    harappan: {
+
+        era:
+            "01 • c. 2500 BCE",
+
+        title:
+            "HARAPPA RESTORED",
+
+        subtitle:
+            "THE ANCIENT CITY LIVES AGAIN",
+
+        message:
+            `You have successfully reconstructed
+            the lost city of Harappa.
+
+            <br>
+
+            The streets, structures and ancient
+            urban network have been restored.`,
+
+        fact:
+            `Harappan cities were known for their
+            carefully planned streets and sophisticated
+            drainage systems — remarkable achievements
+            of Bronze Age urban planning.`
+
+    },
+
+
+    vedic: {
+
+        era:
+            "02 • c. 1500–500 BCE",
+
+        title:
+            "VEDIC AGE RESTORED",
+
+        subtitle:
+            "THE ANCIENT SETTLEMENT LIVES AGAIN",
+
+        message:
+            `You have successfully reconstructed
+            a settlement from the Vedic age.
+
+            <br>
+
+            The homes, sacred spaces and everyday
+            life of the settlement have been restored.`,
+
+        fact:
+            `The Vedic period is associated with the
+            development of early settlements, pastoral
+            communities, agriculture and important
+            religious traditions in ancient India.`
+
+    },
+
+
+    mauryan: {
+
+        era:
+            "03 • c. 322–185 BCE",
+
+        title:
+            "MAURYAN EMPIRE RESTORED",
+
+        subtitle:
+            "THE GREAT EMPIRE RISES AGAIN",
+
+        message:
+            `You have successfully reconstructed
+            a scene from the Mauryan age.
+
+            <br>
+
+            Another chapter of India's ancient
+            history has been restored.`,
+
+        fact:
+            `The Mauryan Empire became one of the
+            largest and most influential empires
+            of ancient India.`
+
+    }
+
+};
+
+
+/* =========================================================
+   SELECT CURRENT COMPLETION INFORMATION
+========================================================= */
+
+const currentInfo =
+    completionInfo[lastCompleted]
+        || completionInfo.harappan;
+
+
+/* =========================================================
+   UPDATE PAGE CONTENT
+========================================================= */
+
+document.title =
+    currentInfo.title;
+
+
+document.getElementById(
+    "eraLabel"
+).textContent =
+    currentInfo.era;
+
+
+document.getElementById(
+    "completionTitle"
+).textContent =
+    currentInfo.title;
+
+
+document.getElementById(
+    "completionSubtitle"
+).textContent =
+    currentInfo.subtitle;
+
+
+document.getElementById(
+    "completionMessage"
+).innerHTML =
+    currentInfo.message;
+
+
+
+
+/* =========================================================
+   GET SAVED SCORE / TIME / LIVES / HINTS
+========================================================= */
+
+const savedScore =
+    levelData.score ?? 0;
+
+
+const savedTime =
+    levelData.time ?? 0;
+
+
+const savedLives =
+    levelData.lives ?? 3;
+
+
+const savedHints =
+    levelData.hints ?? 3;
+
+
+/* =========================================================
+   DISPLAY GAME DATA
+========================================================= */
+
+document.getElementById(
+    "finalScore"
+).textContent =
+    savedScore;
+
+
+document.getElementById(
+    "finalTime"
+).textContent =
+    savedTime;
+
+
+/* =========================================================
+   LIVES
+========================================================= */
+
+if (savedLives !== null) {
+
+    const lives =
+        parseInt(savedLives);
+
+    let hearts = "";
+
+
+    for (
+        let i = 0;
+        i < lives;
+        i++
+    ) {
+
+        hearts += "♥ ";
+
+    }
+
+
+    document.getElementById(
+        "finalLives"
+    ).textContent =
+        hearts.trim();
+
+}
+
+
+/* =========================================================
+   HINTS
+========================================================= */
+
+if (savedHints !== null) {
+
+    document.getElementById(
+        "finalHints"
+    ).textContent =
+        "💡 " + savedHints;
+
+}
+
+
+/* =========================================================
+   CONTINUE TO TIMELINE
+========================================================= */
+
+document.getElementById(
+    "continueButton"
+).addEventListener(
+    "click",
+    function() {
+
+        window.location.href =
+            "timeline.html";
+
+    }
+);
+
+
+/* =========================================================
+   HIDE GOOGLE TRANSLATE BAR
+========================================================= */
+
+setInterval(
+    function() {
+
+        const bar =
+            document.querySelector(
+                "body > .skiptranslate"
+            );
+
+
+        if (bar) {
+
+            bar.style.display =
+                "none";
+
+        }
+
+
+        document.body.style.top =
+            "0px";
+
+    },
+    100
+);
+
+</script>
+
+
+<script
+    type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+</body>
+
+</html>

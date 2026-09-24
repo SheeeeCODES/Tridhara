@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Did You Know? — Vedic Age</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: #000;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            rgba(6,21,43,0.35),
+            rgba(6,21,43,0.35)
+        ),
+        url("images/vedic-city.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #f5ead2;
+    font-family: Georgia, serif;
+
+    top: 0 !important;
+    position: static !important;
+}
+
+
+/* =========================
+   GOOGLE TRANSLATE HIDDEN
+========================= */
+
+#google_translate_element {
+    display: none !important;
+}
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.goog-te-menu-frame,
+#goog-gt-tt {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+body > .skiptranslate {
+    display: none !important;
+}
+
+html {
+    margin-top: 0 !important;
+}
+
+body {
+    top: 0 !important;
+    position: static !important;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    background: rgba(6,21,43,0.96);
+
+    border-bottom:
+        1px solid rgba(230,199,122,0.45);
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.35);
+
+    z-index: 9999;
+
+    transition:
+        transform 0.35s ease;
+}
+
+.nav-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+.nav-left a {
+
+    color: #e6c77a;
+
+    text-decoration: none;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+}
+
+.navbar .brand {
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+}
+
+
+/* =========================
+   LANGUAGE MENU
+========================= */
+
+.language-menu {
+
+    position: relative;
+
+    margin-left: auto;
+
+    margin-right: 20px;
+}
+
+.language-button {
+
+    height: 36px;
+
+    padding: 0 14px;
+
+    border:
+        1px solid #8a6035;
+
+    border-radius: 5px;
+
+    background: #1b2945;
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+.language-dropdown {
+
+    display: none;
+
+    position: absolute;
+
+    top: 44px;
+
+    right: 0;
+
+    width: 150px;
+
+    background: #1b2945;
+
+    border:
+        1px solid #8a6035;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    z-index: 10001;
+}
+
+.language-dropdown button {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.language-dropdown button:hover {
+
+    background: #2a3b5c;
+
+    color: #e6c77a;
+}
+
+.language-menu.open
+.language-dropdown {
+
+    display: block;
+}
+
+
+/* =========================
+   NAVBAR TOGGLE
+========================= */
+
+.navbar-toggle {
+
+    width: 36px;
+
+    height: 36px;
+
+    border:
+        1px solid #8a6035;
+
+    border-radius: 5px;
+
+    background: #1b2945;
+
+    color: #e6c77a;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+.navbar.navbar-hidden {
+
+    transform:
+        translateY(-35px);
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+
+    min-height: 100vh;
+
+    padding:
+        120px 40px 70px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.eyebrow {
+
+    margin-bottom: 14px;
+
+    color: #e6c77a;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    text-align: center;
+}
+
+h1 {
+
+    margin: 0;
+
+    color: #f4dfad;
+
+    font-size: clamp(
+        42px,
+        7vw,
+        82px
+    );
+
+    letter-spacing: 8px;
+
+    text-align: center;
+
+    text-shadow:
+        0 4px 15px rgba(0,0,0,0.6);
+}
+
+.intro {
+
+    max-width: 720px;
+
+    margin:
+        20px auto 50px;
+
+    color: #eadfc9;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    text-align: center;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,0.8);
+}
+
+
+/* =========================
+   FACTS GRID
+========================= */
+
+.facts {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 22px;
+}
+
+.fact {
+
+    padding: 28px;
+
+    background:
+        rgba(6,21,43,0.88);
+
+    border:
+        1px solid rgba(
+            230,
+            199,
+            122,
+            0.38
+        );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,0.35);
+
+    backdrop-filter:
+        blur(5px);
+}
+
+.fact.featured {
+
+    grid-column:
+        1 / -1;
+
+    text-align: center;
+
+    padding: 34px;
+}
+
+.number {
+
+    margin-bottom: 12px;
+
+    color: #b98a52;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+}
+
+.fact h2 {
+
+    margin:
+        0 0 12px;
+
+    color: #e6c77a;
+
+    font-size: 22px;
+
+    letter-spacing: 2px;
+}
+
+.fact p {
+
+    margin: 0;
+
+    color: #e7dcc6;
+
+    font-size: 15px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================
+   CONTINUE
+========================= */
+
+.continue {
+
+    margin-top: 55px;
+
+    text-align: center;
+}
+
+.chapter {
+
+    margin-bottom: 12px;
+
+    color: #b98a52;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.continue-button {
+
+    padding:
+        15px 28px;
+
+    border:
+        1px solid #e6c77a;
+
+    border-radius: 5px;
+
+    background:
+        rgba(6,21,43,0.9);
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        all 0.25s ease;
+}
+
+.continue-button:hover {
+
+    background: #e6c77a;
+
+    color: #06152b;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(230,199,122,0.2);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+
+        padding:
+            0 15px;
+    }
+
+    .nav-left {
+
+        gap: 15px;
+    }
+
+    .nav-left a {
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
+
+    .navbar .brand {
+
+        font-size: 14px;
+
+        letter-spacing: 3px;
+    }
+
+    .language-menu {
+
+        margin-right: 10px;
+    }
+
+    .language-button {
+
+        padding:
+            0 8px;
+
+        font-size: 11px;
+    }
+
+    .page {
+
+        padding:
+            110px 20px 50px;
+    }
+
+    .facts {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .fact.featured {
+
+        grid-column:
+            auto;
+    }
+
+    h1 {
+
+        letter-spacing:
+            5px;
+    }
+}
+
+.player-profile-display{
+    display:flex;align-items:center;gap:7px;
+    margin-left:15px;
+    color:#e6c77a;
+    font-family:Georgia,serif;
+    font-size:14px;
+    letter-spacing:1px;
+    white-space:nowrap;
+    pointer-events:none;
+}
+.player-profile-display span:first-child{font-size:18px}
+</style>
+<script src="../tridhara homepage modify/player-profile.js" defer></script>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     GOOGLE TRANSLATE
+========================= -->
+
+<div
+    id="google_translate_element"
+    translate="no"
+></div>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav
+    class="navbar"
+    id="navbar"
+>
+
+    <div class="nav-left">
+
+        <a
+            href="../tridhara homepage modify/index.html"
+            class="brand notranslate"
+        >
+            TRIDHARA
+        </a>
+
+        <a
+            href="../timeline.html"
+            class="notranslate"
+        >
+            KAALCHAKRA
+        </a>
+
+    </div>
+
+
+    <div
+        class="language-menu notranslate"
+        id="languageMenu"
+    >
+
+        <button
+            class="language-button notranslate"
+            id="languageButton"
+            type="button"
+        >
+            LANGUAGES ▾
+        </button>
+
+
+        <div
+            class="language-dropdown notranslate"
+        >
+
+            <button
+                type="button"
+                onclick="changeLanguage('en')"
+            >
+                English
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('hi')"
+            >
+                हिन्दी
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('bn')"
+            >
+                বাংলা
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('or')"
+            >
+                ଓଡ଼ିଆ
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('ta')"
+            >
+                தமிழ்
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('te')"
+            >
+                తెలుగు
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('ml')"
+            >
+                മലയാളം
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('mr')"
+            >
+                मराठी
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('gu')"
+            >
+                ગુજરાતી
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('pa')"
+            >
+                ਪੰਜਾਬੀ
+            </button>
+
+        </div>
+
+    </div>
+
+    <span class="player-profile-display" aria-label="Student profile" title="Student profile">
+        <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+        <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+    </span>
+
+    <button
+        class="navbar-toggle notranslate"
+        id="navbarToggle"
+        type="button"
+    >
+        ↑
+    </button>
+
+</nav>
+
+
+<!-- =========================
+     MAIN PAGE
+========================= -->
+
+<main class="page">
+
+
+    <div class="eyebrow">
+        YOU RESTORED THE VEDIC AGE
+    </div>
+
+
+    <h1>
+        DID YOU KNOW?
+    </h1>
+
+
+    <p class="intro">
+        Before you continue, discover a few remarkable facts
+        about the Vedic Age you just reconstructed.
+    </p>
+
+
+    <!-- =========================
+         FACTS
+    ========================= -->
+
+    <section class="facts">
+
+
+        <article class="fact featured">
+
+            <div class="number">
+                01 · VEDIC TEXTS
+            </div>
+
+            <h2>
+                THE VEDAS
+            </h2>
+
+            <p>
+                The Vedas are among the oldest surviving
+                sacred texts of India. They preserve hymns,
+                prayers, rituals and ideas that provide
+                important evidence about early Vedic society.
+            </p>
+
+        </article>
+
+
+        <article class="fact">
+
+            <div class="number">
+                02 · SOCIETY
+            </div>
+
+            <h2>
+                TRIBES AND COMMUNITIES
+            </h2>
+
+            <p>
+                Early Vedic society was organised around
+                families, clans and tribes. Communities were
+                closely connected through kinship, shared
+                rituals and pastoral life.
+            </p>
+
+        </article>
+
+
+        <article class="fact">
+
+            <div class="number">
+                03 · AGRICULTURE
+            </div>
+
+            <h2>
+                FROM PASTORAL LIFE TO FARMING
+            </h2>
+
+            <p>
+                Cattle were highly important during the
+                early Vedic period. Over time, agriculture
+                became increasingly significant, especially
+                as communities expanded towards the
+                fertile Ganga plains.
+            </p>
+
+        </article>
+
+
+        <article class="fact">
+
+            <div class="number">
+                04 · RITUAL & BELIEF
+            </div>
+
+            <h2>
+                FIRE AND SACRIFICE
+            </h2>
+
+            <p>
+                Rituals played an important role in Vedic
+                religious life. Fire, known as Agni, held
+                a central place in many ceremonies and
+                was associated with offerings to the gods.
+            </p>
+
+        </article>
+
+
+        <article class="fact">
+
+            <div class="number">
+                05 · LANGUAGE & CULTURE
+            </div>
+
+            <h2>
+                THE LANGUAGE OF THE VEDAS
+            </h2>
+
+            <p>
+                The Vedic hymns were composed in an early
+                form of Sanskrit. Their oral transmission
+                preserved the texts with remarkable
+                attention to pronunciation and recitation.
+            </p>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- =========================
+         CONTINUE
+    ========================= -->
+
+    <div class="continue">
+
+        <div class="chapter">
+            KNOWLEDGE UNLOCKED · CHAPTER 02
+        </div>
+
+        <button
+            class="continue-button"
+            id="continueButton"
+            type="button"
+        >
+            CONTINUE TO COMPLETION
+        </button>
+
+    </div>
+
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+
+/* =========================
+   GOOGLE TRANSLATE
+========================= */
+
+function googleTranslateElementInit() {
+
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: "en",
+            includedLanguages:
+                "en,hi,bn,or,ta,te,ml,mr,gu,pa",
+            autoDisplay: false
+        },
+
+        "google_translate_element"
+    );
+}
+
+
+function changeLanguage(language) {
+
+    const select =
+        document.querySelector(
+            ".goog-te-combo"
+        );
+
+    if (!select) {
+        return;
+    }
+
+    select.value = language;
+
+    select.dispatchEvent(
+        new Event("change")
+    );
+}
+
+
+/* =========================
+   LANGUAGE MENU
+========================= */
+
+const languageButton =
+    document.getElementById(
+        "languageButton"
+    );
+
+const languageMenu =
+    document.getElementById(
+        "languageMenu"
+    );
+
+
+languageButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        languageMenu.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    function() {
+
+        languageMenu.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================
+   NAVBAR TOGGLE
+========================= */
+
+const navbar =
+    document.getElementById(
+        "navbar"
+    );
+
+const navbarToggle =
+    document.getElementById(
+        "navbarToggle"
+    );
+
+
+navbarToggle.addEventListener(
+    "click",
+    function() {
+
+        navbar.classList.toggle(
+            "navbar-hidden"
+        );
+
+
+        if (
+            navbar.classList.contains(
+                "navbar-hidden"
+            )
+        ) {
+
+            navbarToggle.textContent =
+                "↓";
+
+        }
+
+        else {
+
+            navbarToggle.textContent =
+                "↑";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CONTINUE
+========================= */
+
+const continueButton =
+    document.getElementById(
+        "continueButton"
+    );
+
+
+continueButton.addEventListener(
+    "click",
+    function() {
+
+        window.location.href =
+            "completion.html";
+
+    }
+);
+
+
+/* =========================
+   KEEP GOOGLE TRANSLATE BAR HIDDEN
+========================= */
+
+setInterval(
+    function() {
+
+        const bar =
+            document.querySelector(
+                "body > .skiptranslate"
+            );
+
+        if (bar) {
+
+            bar.style.display =
+                "none";
+
+        }
+
+        document.body.style.top =
+            "0px";
+
+    },
+    100
+);
+
+</script>
+
+
+<script
+    type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+></script>
+
+
+</body>
+
+</html>

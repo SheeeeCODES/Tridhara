@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Did You Know? — Harappa</title>
+
+
+<style>
+
+/* =========================================================
+   BASIC RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+
+    min-height: 100vh;
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            rgba(5,12,27,0.82),
+            rgba(5,12,27,0.92)
+        ),
+        url("images/harappa-bg.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-attachment: fixed;
+}
+
+
+/* =========================================================
+   GLITTER
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.45) 1px,
+            transparent 1px
+        );
+
+    background-size: 90px 90px;
+
+    opacity: 0.18;
+
+    animation:
+        glitterMove 8s linear infinite;
+
+    z-index: -1;
+}
+
+
+@keyframes glitterMove {
+
+    from {
+        transform: translate(0,0);
+    }
+
+    to {
+        transform: translate(45px,45px);
+    }
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    background:
+        rgba(6,21,43,0.96);
+
+    border-bottom:
+        1px solid
+        rgba(230,199,122,0.45);
+
+    box-shadow:
+        0 4px 20px
+        rgba(0,0,0,0.35);
+
+    z-index: 9999;
+
+    transition:
+        transform 0.35s ease;
+}
+
+
+.nav-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.nav-left a {
+
+    color: #e6c77a;
+
+    text-decoration: none;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+}
+
+
+.navbar .brand {
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+}
+
+
+/* =========================================================
+   LANGUAGE MENU
+========================================================= */
+
+.language-menu {
+
+    position: relative;
+
+    margin-left: auto;
+
+    margin-right: 20px;
+}
+
+
+.language-button {
+
+    height: 36px;
+
+    padding: 0 14px;
+
+    border:
+        1px solid
+        #8a6035;
+
+    border-radius: 5px;
+
+    background:
+        #1b2945;
+
+    color: #e6c77a;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+
+.language-dropdown {
+
+    display: none;
+
+    position: absolute;
+
+    top: 44px;
+
+    right: 0;
+
+    width: 150px;
+
+    background:
+        #1b2945;
+
+    border:
+        1px solid
+        #8a6035;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    z-index: 10001;
+}
+
+
+.language-dropdown button {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+.language-dropdown button:hover {
+
+    background:
+        #2a3b5c;
+
+    color:
+        #e6c77a;
+}
+
+
+.language-menu.open
+.language-dropdown {
+
+    display: block;
+}
+
+
+/* =========================================================
+   NAVBAR TOGGLE
+========================================================= */
+
+.navbar-toggle {
+
+    width: 36px;
+
+    height: 36px;
+
+    border:
+        1px solid
+        #8a6035;
+
+    border-radius: 5px;
+
+    background:
+        #1b2945;
+
+    color:
+        #e6c77a;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+
+.navbar.navbar-hidden {
+
+    transform:
+        translateY(-35px);
+}
+
+
+/* =========================================================
+   GOOGLE TRANSLATE
+========================================================= */
+
+#google_translate_element {
+
+    display: none !important;
+}
+
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.goog-te-menu-frame,
+#goog-gt-tt {
+
+    display: none !important;
+
+    visibility: hidden !important;
+}
+
+
+body > .skiptranslate {
+
+    display: none !important;
+}
+
+
+html {
+
+    margin-top: 0 !important;
+}
+
+
+body {
+
+    top: 0 !important;
+
+    position: static !important;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+
+    min-height: 100vh;
+
+    padding:
+        120px 40px 70px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.page-header {
+
+    text-align: center;
+
+    max-width: 800px;
+
+    margin-bottom: 40px;
+
+    animation:
+        fadeDown 0.8s ease;
+}
+
+
+.eyebrow {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    color:
+        #aaa18f;
+
+    margin-bottom: 15px;
+}
+
+
+.page-header h1 {
+
+    margin: 0;
+
+    font-size: 3rem;
+
+    letter-spacing: 8px;
+
+    color:
+        #e6c77a;
+
+    text-shadow:
+        0 0 20px
+        rgba(230,199,122,0.25);
+}
+
+
+.page-header p {
+
+    margin-top: 15px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    color:
+        #c5bfae;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FACT GRID
+========================================================= */
+
+.facts {
+
+    width: min(1050px, 100%);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 22px;
+
+    animation:
+        fadeUp 1s ease;
+}
+
+
+/* =========================================================
+   FACT CARD
+========================================================= */
+
+.fact-card {
+
+    position: relative;
+
+    min-height: 210px;
+
+    padding: 28px;
+
+    border:
+        1px solid
+        rgba(230,199,122,0.38);
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,29,51,0.92),
+            rgba(5,13,28,0.92)
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.25),
+
+        inset 0 0 25px
+        rgba(230,199,122,0.025);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.fact-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(230,199,122,0.75);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,0.35),
+
+        0 0 20px
+        rgba(230,199,122,0.08);
+}
+
+
+.fact-number {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color:
+        #8fdcff;
+
+    margin-bottom: 15px;
+}
+
+
+.fact-card h2 {
+
+    margin: 0 0 12px;
+
+    font-size: 21px;
+
+    letter-spacing: 2px;
+
+    color:
+        #e6c77a;
+}
+
+
+.fact-card p {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    color:
+        #c5bfae;
+}
+
+
+/* =========================================================
+   SPECIAL FACT
+========================================================= */
+
+.fact-card.featured {
+
+    grid-column:
+        1 / -1;
+
+    min-height: 180px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-color:
+        rgba(143,220,255,0.4);
+}
+
+
+.fact-card.featured h2 {
+
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   CONTINUE
+========================================================= */
+
+.continue-area {
+
+    margin-top: 45px;
+
+    text-align: center;
+
+    animation:
+        fadeUp 1.2s ease;
+}
+
+
+.continue-text {
+
+    margin-bottom: 15px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color:
+        #aaa18f;
+}
+
+
+.continue-button {
+
+    padding:
+        14px 38px;
+
+    border:
+        1px solid
+        #e6c77a;
+
+    border-radius: 6px;
+
+    background:
+        transparent;
+
+    color:
+        #e6c77a;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        0.3s ease;
+}
+
+
+.continue-button:hover {
+
+    background:
+        rgba(230,199,122,0.13);
+
+    box-shadow:
+        0 0 22px
+        rgba(230,199,122,0.3);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeDown {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .facts {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .fact-card.featured {
+
+        grid-column:
+            auto;
+    }
+
+    .page {
+
+        padding-left: 20px;
+
+        padding-right: 20px;
+    }
+
+    .page-header h1 {
+
+        font-size: 2rem;
+
+        letter-spacing: 5px;
+    }
+
+    .nav-left {
+
+        gap: 12px;
+    }
+
+    .nav-left a {
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
+}
+
+.player-profile-display{
+    display:flex;align-items:center;gap:7px;
+    margin-left:15px;
+    color:#e6c77a;
+    font-family:Georgia,serif;
+    font-size:14px;
+    letter-spacing:1px;
+    white-space:nowrap;
+    pointer-events:none;
+}
+.player-profile-display span:first-child{font-size:18px}
+</style>
+<script src="../tridhara homepage modify/player-profile.js" defer></script>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar" id="navbar">
+
+    <div class="nav-left">
+
+        <a
+            href="../tridhara homepage modify/index.html"
+            class="brand notranslate"
+        >
+            TRIDHARA
+        </a>
+
+        <a
+            href="../timeline.html"
+            class="notranslate"
+        >
+            KAALCHAKRA
+        </a>
+
+    </div>
+
+
+    <div
+        class="language-menu notranslate"
+        id="languageMenu"
+    >
+
+        <button
+            class="language-button notranslate"
+            id="languageButton"
+            type="button"
+        >
+            LANGUAGES ▾
+        </button>
+
+
+        <div class="language-dropdown notranslate">
+
+            <button
+                type="button"
+                onclick="changeLanguage('en')"
+            >
+                English
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('hi')"
+            >
+                हिन्दी
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('bn')"
+            >
+                বাংলা
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('or')"
+            >
+                ଓଡ଼ିଆ
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('ta')"
+            >
+                தமிழ்
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('te')"
+            >
+                తెలుగు
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('ml')"
+            >
+                മലയാളം
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('mr')"
+            >
+                मराठी
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('gu')"
+            >
+                ગુજરાતી
+            </button>
+
+            <button
+                type="button"
+                onclick="changeLanguage('pa')"
+            >
+                ਪੰਜਾਬੀ
+            </button>
+
+        </div>
+
+    </div>
+
+    <span class="player-profile-display" aria-label="Student profile" title="Student profile">
+        <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+        <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+    </span>
+
+    <button
+        class="navbar-toggle notranslate"
+        id="navbarToggle"
+        type="button"
+    >
+        ↑
+    </button>
+
+</nav>
+
+
+<!-- =========================================================
+     MAIN PAGE
+========================================================= -->
+
+<main class="page">
+
+
+    <header class="page-header">
+
+        <div class="eyebrow">
+            YOU RESTORED HARAPPA
+        </div>
+
+        <h1>
+            DID YOU KNOW?
+        </h1>
+
+        <p>
+            Before you continue, discover a few remarkable
+            facts about the civilization you just reconstructed.
+        </p>
+
+    </header>
+
+
+    <section class="facts">
+
+
+        <article class="fact-card featured">
+
+            <div class="fact-number">
+                01 · URBAN PLANNING
+            </div>
+
+            <h2>
+                HARAPPA WAS A PLANNED URBAN WORLD
+            </h2>
+
+            <p>
+                Mature Harappan settlements show organized
+                layouts, streets and purposefully constructed
+                urban spaces. At Harappa, the mature phase
+                dates roughly to 2600–1900 BCE.
+            </p>
+
+        </article>
+
+
+        <article class="fact-card">
+
+            <div class="fact-number">
+                02 · WATER
+            </div>
+
+            <h2>
+                WATER MANAGEMENT WAS A PRIORITY
+            </h2>
+
+            <p>
+                Harappan cities developed sophisticated ways
+                of managing water. Dholavira, for example,
+                had reservoirs and systems for collecting,
+                storing and directing water.
+            </p>
+
+        </article>
+
+
+        <article class="fact-card">
+
+            <div class="fact-number">
+                03 · TRADE
+            </div>
+
+            <h2>
+                THEY WERE PART OF LONG-DISTANCE TRADE
+            </h2>
+
+            <p>
+                Archaeological evidence from Dholavira shows
+                inter-regional trade with other Harappan
+                settlements and with regions including
+                Mesopotamia and the Oman peninsula.
+            </p>
+
+        </article>
+
+
+        <article class="fact-card">
+
+            <div class="fact-number">
+                04 · CRAFT
+            </div>
+
+            <h2>
+                CRAFTSMEN CREATED SPECIALIZED GOODS
+            </h2>
+
+            <p>
+                Excavations at Dholavira have revealed
+                workshops and objects made from materials
+                including copper, shell, stone, terracotta,
+                gold and semi-precious stones.
+            </p>
+
+        </article>
+
+
+        <article class="fact-card">
+
+            <div class="fact-number">
+                05 · A LONG HISTORY
+            </div>
+
+            <h2>
+                HARAPPA WAS NOT BUILT IN A SINGLE ERA
+            </h2>
+
+            <p>
+                The archaeological sequence at Harappa spans
+                several periods, from early settlements through
+                the mature Harappan phase and later phases.
+                The site grew into a major urban centre.
+            </p>
+
+        </article>
+
+
+    </section>
+
+
+    <div class="continue-area">
+
+        <div class="continue-text">
+            KNOWLEDGE UNLOCKED · CHAPTER 01
+        </div>
+
+        <button
+            class="continue-button"
+            id="continueButton"
+        >
+            CONTINUE TO COMPLETION
+        </button>
+
+    </div>
+
+
+</main>
+
+
+<!-- =========================================================
+     GOOGLE TRANSLATE
+========================================================= -->
+
+<div
+    id="google_translate_element"
+    translate="no"
+></div>
+
+
+<script>
+
+function googleTranslateElementInit() {
+
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: "en",
+            includedLanguages:
+                "en,hi,bn,or,ta,te,ml,mr,gu,pa"
+        },
+        "google_translate_element"
+    );
+
+}
+
+
+function changeLanguage(language) {
+
+    const select =
+        document.querySelector(".goog-te-combo");
+
+
+    if (!select) {
+
+        setTimeout(
+            function() {
+                changeLanguage(language);
+            },
+            500
+        );
+
+        return;
+    }
+
+
+    select.value = language;
+
+
+    select.dispatchEvent(
+        new Event(
+            "change",
+            {
+                bubbles: true
+            }
+        )
+    );
+
+}
+
+
+/* =========================================================
+   LANGUAGE DROPDOWN
+========================================================= */
+
+const languageButton =
+    document.getElementById(
+        "languageButton"
+    );
+
+const languageMenu =
+    document.getElementById(
+        "languageMenu"
+    );
+
+
+languageButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        languageMenu.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    function() {
+
+        languageMenu.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   NAVBAR TOGGLE
+========================================================= */
+
+const navbar =
+    document.getElementById(
+        "navbar"
+    );
+
+const navbarToggle =
+    document.getElementById(
+        "navbarToggle"
+    );
+
+
+navbarToggle.addEventListener(
+    "click",
+    function() {
+
+        navbar.classList.toggle(
+            "navbar-hidden"
+        );
+
+
+        if (
+            navbar.classList.contains(
+                "navbar-hidden"
+            )
+        ) {
+
+            navbarToggle.textContent =
+                "↓";
+
+        }
+
+        else {
+
+            navbarToggle.textContent =
+                "↑";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CONTINUE
+========================================================= */
+
+document
+    .getElementById(
+        "continueButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            window.location.href =
+                "completion.html";
+
+        }
+    );
+
+
+/* =========================================================
+   HIDE GOOGLE TRANSLATE BAR
+========================================================= */
+
+setInterval(
+    function() {
+
+        const bar =
+            document.querySelector(
+                "body > .skiptranslate"
+            );
+
+
+        if (bar) {
+
+            bar.style.display =
+                "none";
+
+        }
+
+
+        document.body.style.top =
+            "0px";
+
+    },
+    100
+);
+
+</script>
+
+
+<script
+    type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+></script>
+
+
+</body>
+
+</html>

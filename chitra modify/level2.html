@@ -1,0 +1,4696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nrityam — Level 2</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    font-family: Georgia, serif;
+}
+
+html {
+    top: 0 !important;
+    margin-top: 0 !important;
+}
+
+body {
+    background-image: url("bg.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: #f5d98b;
+
+    overflow-x: hidden;
+
+    top: 0 !important;
+    margin-top: 0 !important;
+}
+
+
+/* =========================================================
+   GOOGLE TRANSLATE — HIDDEN ENGINE
+   THE GOOGLE PANE / BAR MUST NEVER APPEAR
+========================================================= */
+
+#google_translate_element {
+
+    position: fixed;
+
+    left: -10000px;
+    top: -10000px;
+
+    width: 1px;
+    height: 1px;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: -9999;
+}
+
+
+/* Google top banner */
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame {
+
+    display: none !important;
+
+    visibility: hidden !important;
+
+    height: 0 !important;
+
+    width: 0 !important;
+
+    opacity: 0 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Google menu / popup */
+
+.goog-te-menu-frame,
+.goog-te-balloon-frame,
+iframe.goog-te-menu-frame,
+iframe.goog-te-balloon-frame {
+
+    display: none !important;
+
+    visibility: hidden !important;
+
+    opacity: 0 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Google top-level skiptranslate container */
+
+body > .skiptranslate {
+
+    display: none !important;
+
+    visibility: hidden !important;
+
+    height: 0 !important;
+
+}
+
+
+/* Keep page exactly in place */
+
+body.translated-ltr,
+body.translated-rtl {
+
+    top: 0 !important;
+
+    margin-top: 0 !important;
+}
+
+
+/* =========================================================
+   NAVIGATION BAR
+========================================================= */
+
+.nav-shell {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 68px;
+
+    z-index: 50000;
+
+    pointer-events: none;
+
+    font-family: Georgia, serif;
+}
+
+
+/* =========================================================
+   MAIN NAVIGATION
+========================================================= */
+
+.top-nav {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 62px;
+
+    padding:
+        0
+        70px
+        0
+        22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(58,35,21,0.98),
+            rgba(39,23,14,0.98)
+        );
+
+    border-bottom:
+        1px solid
+        rgba(202,163,75,0.75);
+
+    box-shadow:
+
+        0 4px 18px
+        rgba(0,0,0,0.5),
+
+        inset 0 -1px 0
+        rgba(245,217,139,0.12);
+
+    pointer-events: auto;
+
+    translate: no;
+
+    transition:
+        transform 0.45s
+        cubic-bezier(0.22,0.61,0.36,1);
+}
+
+
+/* =========================================================
+   NAVIGATION ROLL-UP
+========================================================= */
+
+.nav-shell.collapsed .top-nav {
+
+    transform:
+        translateY(-55px);
+}
+
+
+/* =========================================================
+   NAV ROLL BUTTON
+   ALWAYS REMAINS ACCESSIBLE
+========================================================= */
+
+.nav-toggle {
+
+    position: absolute;
+
+    right: 7px;
+
+    top: 13px;
+
+    width: 42px;
+
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(25,17,10,0.98),
+            rgba(5,4,2,0.98)
+        );
+
+    border:
+        1px solid
+        rgba(202,163,75,0.8);
+
+    border-radius: 4px;
+
+    color: #f5d98b;
+
+    font-family: Georgia, serif;
+
+    font-size: 1rem;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    z-index: 70000;
+
+    box-shadow:
+
+        0 3px 12px
+        rgba(0,0,0,0.5),
+
+        inset 0 0 8px
+        rgba(212,168,71,0.08);
+
+    transition:
+
+        background 0.25s ease,
+
+        border-color 0.25s ease,
+
+        box-shadow 0.25s ease,
+
+        color 0.25s ease,
+
+        transform 0.25s ease;
+}
+
+
+.nav-toggle:hover {
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(55,34,17,1),
+            rgba(12,8,4,1)
+        );
+
+    border-color:
+        #f0c968;
+
+    color:
+        #ffe7a6;
+
+    box-shadow:
+
+        0 0 14px
+        rgba(212,168,71,0.35),
+
+        inset 0 0 10px
+        rgba(212,168,71,0.1);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.nav-toggle-arrow {
+
+    display: block;
+
+    transition:
+        transform 0.35s
+        cubic-bezier(0.22,0.61,0.36,1);
+}
+
+
+.nav-shell.collapsed .nav-toggle-arrow {
+
+    transform:
+        rotate(180deg);
+}
+
+
+/* =========================================================
+   NAV LEFT
+========================================================= */
+
+.nav-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   NAV RIGHT
+========================================================= */
+
+.nav-right {
+
+    display: flex;
+
+    align-items: center;
+
+    margin-left: auto;
+}
+
+
+/* =========================================================
+   NAV BUTTONS
+========================================================= */
+
+.nav-button,
+.language-button {
+
+    position: relative;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        0
+        18px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(18,13,9,0.98),
+            rgba(7,5,3,0.98)
+        );
+
+    border:
+        1px solid
+        rgba(196,151,63,0.62);
+
+    border-radius: 4px;
+
+    color: #f5d98b !important;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+
+    text-decoration: none;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    box-shadow:
+
+        inset 0 1px 0
+        rgba(255,255,255,0.04),
+
+        0 3px 10px
+        rgba(0,0,0,0.35);
+
+    transition:
+
+        background 0.25s ease,
+
+        border-color 0.25s ease,
+
+        color 0.25s ease,
+
+        box-shadow 0.25s ease,
+
+        transform 0.25s ease;
+}
+
+
+.nav-button:hover,
+.language-button:hover {
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(42,27,16,1),
+            rgba(12,8,5,1)
+        );
+
+    border-color:
+        #d4a847;
+
+    color:
+        #ffe7a6 !important;
+
+    box-shadow:
+
+        0 0 10px
+        rgba(212,168,71,0.25),
+
+        inset 0 0 8px
+        rgba(212,168,71,0.08);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   LANGUAGE AREA
+========================================================= */
+
+.language-area {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   LANGUAGE BUTTON
+========================================================= */
+
+.language-button {
+
+    gap: 9px;
+
+    min-width: 136px;
+}
+
+
+/* Small decorative symbol */
+
+.language-icon {
+
+    color: #d4a847;
+
+    font-size: 0.75rem;
+
+    line-height: 1;
+
+    pointer-events: none;
+}
+
+
+/* Arrow */
+
+.language-arrow {
+
+    color: #d4a847;
+
+    font-size: 0.65rem;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.language-area.open .language-arrow {
+
+    transform:
+        rotate(180deg);
+}
+
+
+/* =========================================================
+   LANGUAGE DROPDOWN
+========================================================= */
+
+.language-menu {
+
+    position: absolute;
+
+    top: 47px;
+
+    right: 0;
+
+    width: 170px;
+
+    max-height: 360px;
+
+    overflow-y: auto;
+
+    padding: 6px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(38,23,14,0.99),
+            rgba(14,9,5,0.99)
+        );
+
+    border:
+        1px solid
+        rgba(196,151,63,0.72);
+
+    border-radius: 4px;
+
+    box-shadow:
+
+        0 10px 30px
+        rgba(0,0,0,0.65),
+
+        0 0 18px
+        rgba(184,151,42,0.12);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(-7px);
+
+    transition:
+
+        opacity 0.2s ease,
+
+        transform 0.2s ease,
+
+        visibility 0.2s ease;
+
+    z-index: 60000;
+
+    pointer-events: none;
+}
+
+
+.language-area.open .language-menu {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   LANGUAGE OPTIONS
+========================================================= */
+
+.language-option {
+
+    width: 100%;
+
+    padding:
+        9px
+        11px;
+
+    border: none;
+
+    border-bottom:
+        1px solid
+        rgba(184,151,42,0.15);
+
+    background: transparent;
+
+    color: #f1d68b !important;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 0.04em;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+
+        background 0.2s ease,
+
+        color 0.2s ease,
+
+        padding-left 0.2s ease;
+}
+
+
+.language-option:last-child {
+
+    border-bottom: none;
+}
+
+
+.language-option:hover {
+
+    background:
+        rgba(184,151,42,0.14);
+
+    color:
+        #ffe7a6 !important;
+
+    padding-left: 15px;
+}
+
+
+/* =========================================================
+   LANGUAGE DROPDOWN SCROLLBAR
+========================================================= */
+
+.language-menu::-webkit-scrollbar {
+
+    width: 5px;
+}
+
+.language-menu::-webkit-scrollbar-track {
+
+    background:
+        rgba(0,0,0,0.35);
+}
+
+.language-menu::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(184,151,42,0.55);
+
+    border-radius: 5px;
+}
+
+
+/* =========================================================
+   OPENING REVEAL
+========================================================= */
+
+.opening-reveal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    display: flex;
+}
+
+.opening-reveal img {
+
+    position: absolute;
+
+    top: 0;
+
+    width: 50vw;
+    height: 100vh;
+
+    object-fit: fill;
+
+    opacity: 1;
+
+    will-change: transform;
+}
+
+.opening-left {
+
+    left: 0;
+
+    transform: translateX(0);
+
+    animation:
+        openingLeft
+        4s
+        cubic-bezier(0.22,0.61,0.36,1)
+        forwards;
+}
+
+.opening-right {
+
+    right: 0;
+
+    transform: translateX(0);
+
+    animation:
+        openingRight
+        4s
+        cubic-bezier(0.22,0.61,0.36,1)
+        forwards;
+}
+
+@keyframes openingLeft {
+
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    25% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+}
+
+@keyframes openingRight {
+
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    25% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.layout {
+
+    display: flex;
+
+    min-height: 100vh;
+
+    padding:
+        88px
+        180px
+        28px
+        12px;
+
+    align-items: flex-start;
+}
+
+
+/* =========================================================
+   LEFT NRITYAM PANEL
+========================================================= */
+
+.left-pane {
+
+    flex: 0 0 310px;
+
+    position: sticky;
+
+    top: 88px;
+
+    min-height: 600px;
+
+    border:
+        1px solid
+        #b8972a;
+
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+
+        linear-gradient(
+            rgba(0,0,0,0.72),
+            rgba(0,0,0,0.78)
+        ),
+        url("cbg.avif");
+
+    background-size: cover;
+
+    background-position: center;
+
+    box-shadow:
+
+        0 0 25px
+        rgba(0,0,0,0.45),
+
+        inset 0 0 35px
+        rgba(0,0,0,0.4);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.pane-title-wrap {
+
+    width: 100%;
+
+    overflow: hidden;
+
+    border-radius:
+        4px
+        4px
+        0
+        0;
+
+    line-height: 0;
+}
+
+.pane-title-img {
+
+    width: 184%;
+
+    margin-left: -42%;
+
+    display: block;
+
+    mix-blend-mode: screen;
+
+    margin-top: -8px;
+
+    margin-bottom: -20px;
+
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 22%,
+            black 78%,
+            transparent 100%
+        );
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 22%,
+            black 78%,
+            transparent 100%
+        );
+}
+
+
+/* =========================================================
+   PANE BODY
+========================================================= */
+
+.pane-body {
+
+    padding:
+        0
+        18px
+        18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+}
+
+.pane-divider {
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            #b8972a,
+            transparent
+        );
+
+    margin-bottom: 16px;
+}
+
+
+/* =========================================================
+   IDLE TEXT
+========================================================= */
+
+.pane-idle {
+
+    text-align: center;
+
+    color: #c9a84c;
+
+    font-size: 0.76rem;
+
+    letter-spacing: 0.1em;
+
+    line-height: 2;
+
+    text-transform: uppercase;
+}
+
+.pane-idle .flow-line {
+
+    display: block;
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    animation:
+        paneFlow
+        0.8s
+        ease-out
+        forwards;
+}
+
+.pane-idle .flow-line:nth-child(1) {
+    animation-delay: 0.15s;
+}
+
+.pane-idle .flow-line:nth-child(2) {
+    animation-delay: 0.38s;
+}
+
+.pane-idle .flow-line:nth-child(3) {
+    animation-delay: 0.61s;
+}
+
+.pane-idle .flow-line:nth-child(4) {
+    animation-delay: 0.84s;
+}
+
+.pane-idle .flow-line:nth-child(5) {
+    animation-delay: 1.07s;
+}
+
+.pane-idle .flow-line:nth-child(6) {
+    animation-delay: 1.30s;
+}
+
+.pane-idle .hint {
+
+    margin-top: 12px;
+
+    font-size: 0.63rem;
+
+    opacity: 0.5;
+}
+
+
+/* =========================================================
+   INFORMATION PANEL
+========================================================= */
+
+.pane-info {
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.pane-info.visible {
+
+    display: flex;
+}
+
+.pane-info .flow-item {
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    animation:
+        paneFlow
+        0.75s
+        ease-out
+        forwards;
+}
+
+.pane-info .info-state {
+    animation-delay: 0.05s;
+}
+
+.pane-info .info-dance {
+    animation-delay: 0.25s;
+}
+
+.pane-info .info-divider {
+    animation-delay: 0.45s;
+}
+
+.pane-info .info-desc {
+    animation-delay: 0.65s;
+}
+
+.pane-info .info-tag {
+    animation-delay: 0.90s;
+}
+
+@keyframes paneFlow {
+
+    from {
+        opacity: 0;
+        transform: translateY(9px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-state {
+
+    font-size: 1.15rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    color: #f5d98b;
+
+    text-align: center;
+}
+
+.info-dance {
+
+    font-size: 0.95rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    color: #c9a84c;
+
+    text-align: center;
+}
+
+.info-divider {
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            #b8972a,
+            transparent
+        );
+}
+
+.info-desc {
+
+    font-size: 0.78rem;
+
+    color: #d4b96a;
+
+    line-height: 1.85;
+
+    text-align: center;
+}
+
+.info-tag {
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.15em;
+
+    text-transform: uppercase;
+
+    color: #7a5c10;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+.score-bar {
+
+    margin-top: auto;
+
+    padding-top: 14px;
+
+    border-top:
+        1px solid
+        rgba(184,151,42,0.3);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.score-label {
+
+    font-size: 0.6rem;
+
+    letter-spacing: 0.15em;
+
+    text-transform: uppercase;
+
+    color: #7a5c10;
+}
+
+.score-val {
+
+    font-size: 1rem;
+
+    font-weight: 900;
+
+    color: #f5d98b;
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+.timer-box {
+
+    margin-top: 10px;
+
+    padding: 7px 10px;
+
+    border:
+        1px solid
+        rgba(184,151,42,0.55);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background:
+        rgba(0,0,0,0.28);
+}
+
+.timer-label {
+
+    font-size: 0.6rem;
+
+    letter-spacing: 0.15em;
+
+    text-transform: uppercase;
+
+    color: #7a5c10;
+}
+
+.timer {
+
+    font-size: 1rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.08em;
+
+    color: #f5d98b;
+
+    min-width: 42px;
+
+    text-align: right;
+}
+
+.timer.warning {
+
+    color: #e8a84c;
+}
+
+.timer.danger {
+
+    color: #e05a47;
+}
+
+
+/* =========================================================
+   WIN BANNER
+========================================================= */
+
+.win-banner {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 9px;
+
+    background:
+        rgba(139,0,0,0.5);
+
+    border:
+        1px solid
+        #b8972a;
+
+    border-radius: 3px;
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+
+    color: #f5d98b;
+
+    margin-top: 10px;
+
+    line-height: 1.7;
+}
+
+.win-banner.visible {
+
+    display: block;
+}
+
+
+/* =========================================================
+   RESET BUTTON
+========================================================= */
+
+.reset-btn {
+
+    margin-top: 10px;
+
+    width: 100%;
+
+    padding: 8px;
+
+    background: transparent;
+
+    border:
+        1px solid
+        #b8972a;
+
+    color: #f5d98b;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.63rem;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s;
+}
+
+.reset-btn:hover {
+
+    background:
+        rgba(184,151,42,0.15);
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards-area {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+    justify-content: center;
+
+    padding:
+        6px
+        0
+        0
+        0;
+
+    margin-left: -56px;
+}
+
+.card-row {
+
+    display: flex;
+
+    gap: 22px;
+
+    justify-content: center;
+}
+
+.flip-card {
+
+    width: 220px;
+
+    height: 270px;
+
+    perspective: 1000px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.flip-card:hover {
+
+    transform:
+        translateY(-8px)
+        scale(1.035);
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(245,217,139,0.65)
+        )
+        drop-shadow(
+            0 0 25px
+            rgba(212,168,71,0.35)
+        );
+}
+
+
+/* =========================================================
+   CARD INNER
+========================================================= */
+
+.flip-card-inner {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    transition:
+        transform 0.65s
+        cubic-bezier(0.4,0.2,0.2,1);
+
+    transform-style: preserve-3d;
+}
+
+.flip-card.revealed .flip-card-inner {
+
+    transform:
+        rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: 6px;
+
+    backface-visibility: hidden;
+
+    -webkit-backface-visibility: hidden;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CARD FRONT
+========================================================= */
+
+.flip-card-front {
+
+    border:
+        2px solid
+        #c9a840;
+
+    background-image:
+        url("cbg.avif");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+.flip-card-front::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(0,0,0,0.05) 0%,
+            rgba(0,0,0,0.42) 100%
+        );
+
+    border-radius: 4px;
+}
+
+
+/* =========================================================
+   CARD BACK
+========================================================= */
+
+.flip-card-back {
+
+    transform:
+        rotateY(180deg);
+
+    border:
+        2px solid
+        #b8972a;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 14px 10px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   STATE IMAGE
+========================================================= */
+
+.flip-card-back.type-state {
+
+    position: relative;
+
+    display: block;
+
+    padding: 0;
+
+    border-color: #d4a847;
+
+    background: #000;
+}
+
+.state-image {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.state-image img {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+
+/* =========================================================
+   KERALA IMAGE
+========================================================= */
+
+.state-image img.kerala-image {
+
+    object-position:
+        center
+        calc(50% + 1cm);
+}
+
+
+/* =========================================================
+   DANCE IMAGE
+========================================================= */
+
+.flip-card-back.type-dance {
+
+    position: relative;
+
+    display: block;
+
+    padding: 0;
+
+    border-color: #d4a847;
+
+    background: #000;
+}
+
+.dance-image {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.dance-image img {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+
+/* =========================================================
+   KATHAKALI IMAGE
+========================================================= */
+
+.dance-image img.kathakali-image {
+
+    object-position:
+        center 65%;
+}
+
+
+/* =========================================================
+   MATCHED
+========================================================= */
+
+.flip-card.matched .flip-card-back {
+
+    box-shadow:
+        0 0 20px
+        rgba(212,168,71,0.6);
+}
+
+.flip-card.locked {
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   NATARAJA
+========================================================= */
+
+.nataraja {
+
+    position: fixed;
+
+    bottom: 8px;
+
+    right: 20px;
+
+    width: 260px;
+
+    pointer-events: none;
+
+    z-index: 9;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,190,60,0.3)
+        )
+        drop-shadow(
+            0 0 22px
+            rgba(212,140,20,0.2)
+        );
+
+    animation:
+        natGlow
+        3.5s
+        ease-in-out
+        infinite;
+
+    transform-origin:
+        bottom center;
+}
+
+@keyframes natGlow {
+
+    0%,100% {
+
+        filter:
+            drop-shadow(
+                0 0 8px
+                rgba(255,190,60,0.3)
+            )
+            drop-shadow(
+                0 0 22px
+                rgba(212,140,20,0.2)
+            );
+    }
+
+    50% {
+
+        filter:
+            drop-shadow(
+                0 0 14px
+                rgba(255,210,80,0.45)
+            )
+            drop-shadow(
+                0 0 36px
+                rgba(200,140,20,0.3)
+            );
+    }
+}
+
+
+/* =========================================================
+   LAMPS
+========================================================= */
+
+.lamp-wrap {
+
+    position: fixed;
+
+    z-index: 8;
+
+    pointer-events: none;
+
+    transform-origin:
+        top center;
+
+    will-change: transform;
+}
+
+
+/* LEFT LAMP */
+
+.lamp-left {
+
+    right:
+        calc(260px - 5cm);
+
+    top: 5px;
+
+    animation:
+        lampSwayLeft
+        5.8s
+        ease-in-out
+        infinite;
+
+    animation-delay: -1.4s;
+}
+
+
+/* RIGHT LAMP */
+
+.lamp-right {
+
+    right:
+        calc(30px - 3cm);
+
+    top: 105px;
+
+    animation:
+        lampSwayRight
+        4.25s
+        ease-in-out
+        infinite;
+
+    animation-delay: -3.1s;
+}
+
+.lamp-wrap img {
+
+    width:
+        calc(200px + 3cm);
+
+    height: auto;
+
+    display: block;
+
+    animation:
+        lampGlow
+        3.2s
+        ease-in-out
+        infinite;
+}
+
+
+/* =========================================================
+   LAMP GLOW
+========================================================= */
+
+@keyframes lampGlow {
+
+    0%,100% {
+
+        filter:
+            drop-shadow(
+                0 0 10px
+                rgba(255,190,60,0.50)
+            )
+            drop-shadow(
+                0 0 22px
+                rgba(255,160,20,0.30)
+            )
+            drop-shadow(
+                0 0 38px
+                rgba(255,210,90,0.12)
+            );
+    }
+
+    50% {
+
+        filter:
+            drop-shadow(
+                0 0 18px
+                rgba(255,210,80,0.85)
+            )
+            drop-shadow(
+                0 0 38px
+                rgba(255,175,35,0.55)
+            )
+            drop-shadow(
+                0 0 65px
+                rgba(255,220,120,0.28)
+            );
+    }
+}
+
+
+/* =========================================================
+   UNSYNCHRONISED LAMP SWAY
+========================================================= */
+
+@keyframes lampSwayLeft {
+
+    0% {
+        transform: rotate(-2.8deg);
+    }
+
+    23% {
+        transform: rotate(1.4deg);
+    }
+
+    48% {
+        transform: rotate(3.2deg);
+    }
+
+    71% {
+        transform: rotate(-0.9deg);
+    }
+
+    100% {
+        transform: rotate(-2.8deg);
+    }
+}
+
+@keyframes lampSwayRight {
+
+    0% {
+        transform: rotate(2.2deg);
+    }
+
+    19% {
+        transform: rotate(-1.7deg);
+    }
+
+    43% {
+        transform: rotate(-3.4deg);
+    }
+
+    68% {
+        transform: rotate(1.1deg);
+    }
+
+    100% {
+        transform: rotate(2.2deg);
+    }
+}
+
+
+/* =========================================================
+   GNG
+========================================================= */
+
+.gng {
+
+    position: fixed;
+
+    bottom: 8px;
+
+    right: 215px;
+
+    width: auto;
+
+    height: 95px;
+
+    pointer-events: none;
+
+    z-index: 8;
+}
+
+
+/* =========================================================
+   SELECTED CARD
+========================================================= */
+
+.flip-card.selected-card {
+
+    position: relative;
+
+    z-index: 20;
+
+    transform:
+        translateY(-5px);
+}
+
+.flip-card.selected-card .flip-card-back {
+
+    border-color:
+        #f5d98b;
+
+    box-shadow:
+
+        0 0 18px
+        rgba(245,217,139,0.8),
+
+        0 0 35px
+        rgba(212,168,71,0.5);
+}
+
+
+/* =========================================================
+   END-GAME MODAL
+========================================================= */
+
+.game-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100000;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(0,0,0,0.72);
+
+    backdrop-filter:
+        blur(3px);
+
+    padding: 20px;
+}
+
+.game-modal.visible {
+
+    display: flex;
+}
+
+.modal-box {
+
+    width:
+        min(430px, 90vw);
+
+    padding:
+        30px
+        28px
+        26px;
+
+    text-align: center;
+
+    background:
+
+        linear-gradient(
+            rgba(15,8,2,0.96),
+            rgba(30,10,3,0.96)
+        );
+
+    border:
+        1px solid
+        #b8972a;
+
+    border-radius: 6px;
+
+    box-shadow:
+
+        0 0 25px
+        rgba(184,151,42,0.3),
+
+        0 0 60px
+        rgba(0,0,0,0.8);
+}
+
+.modal-symbol {
+
+    color: #d4a847;
+
+    font-size: 1.3rem;
+
+    margin-bottom: 10px;
+}
+
+.modal-title {
+
+    color: #f5d98b;
+
+    font-size: 1.35rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+}
+
+.modal-text {
+
+    color: #d4b96a;
+
+    font-size: 0.82rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 22px;
+}
+
+.modal-buttons {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+.modal-btn {
+
+    width: 100%;
+
+    padding:
+        10px
+        14px;
+
+    background: transparent;
+
+    border:
+        1px solid
+        #b8972a;
+
+    color: #f5d98b;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.15em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.modal-btn:hover {
+
+    background:
+        rgba(184,151,42,0.16);
+
+    box-shadow:
+        0 0 12px
+        rgba(184,151,42,0.25);
+
+    transform:
+        translateY(-1px);
+}
+
+.modal-btn.primary {
+
+    background:
+        rgba(139,0,0,0.45);
+
+    border-color:
+        #d4a847;
+}
+
+.modal-btn.primary:hover {
+
+    background:
+        rgba(139,0,0,0.7);
+}
+
+
+/* =========================================================
+   CONTINUE TO LEVEL 3
+========================================================= */
+
+.continue-level3 {
+
+    position: fixed;
+
+    bottom: 24px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 9999;
+
+    display: none;
+
+    padding:
+        11px
+        24px;
+
+    background:
+        rgba(0,0,0,0.88);
+
+    border:
+        1px solid
+        #b8972a;
+
+    border-radius: 4px;
+
+    color: #f5d98b;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px
+        rgba(184,151,42,0.25);
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.continue-level3.visible {
+
+    display: block;
+}
+
+.continue-level3:hover {
+
+    background:
+        rgba(139,0,0,0.65);
+
+    transform:
+        translateX(-50%)
+        translateY(-2px);
+
+    box-shadow:
+        0 0 20px
+        rgba(245,217,139,0.4);
+}
+
+
+/* =========================================================
+   THEORY MODE INDICATOR
+========================================================= */
+
+.theory-note {
+
+    position: fixed;
+
+    top: 78px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 9998;
+
+    display: none;
+
+    padding:
+        8px
+        17px;
+
+    background:
+        rgba(0,0,0,0.78);
+
+    border:
+        1px solid
+        rgba(184,151,42,0.7);
+
+    color:
+        #c9a84c;
+
+    font-size:
+        0.62rem;
+
+    letter-spacing:
+        0.14em;
+
+    text-transform:
+        uppercase;
+
+    border-radius:
+        3px;
+}
+
+.theory-note.visible {
+
+    display: block;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .layout {
+
+        padding-right:
+            100px;
+    }
+
+    .flip-card {
+
+        width: 190px;
+
+        height: 235px;
+    }
+
+    .cards-area {
+
+        margin-left:
+            -25px;
+    }
+
+    .lamp-left {
+
+        right:
+            calc(170px - 5cm);
+    }
+
+    .lamp-right {
+
+        right:
+            calc(0px - 3cm);
+    }
+
+    .gng {
+
+        right: 140px;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .top-nav {
+
+        padding:
+            0
+            62px
+            0
+            12px;
+    }
+
+    .nav-button,
+    .language-button {
+
+        padding:
+            0
+            11px;
+
+        font-size:
+            0.62rem;
+    }
+
+    .language-button {
+
+        min-width:
+            112px;
+    }
+
+    .nav-toggle {
+
+        right: 7px;
+
+        width: 38px;
+
+        height: 34px;
+
+        top: 14px;
+    }
+
+    .layout {
+
+        padding:
+            82px
+            20px
+            20px;
+
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .left-pane {
+
+        position: relative;
+
+        top: auto;
+
+        width:
+            min(310px,90vw);
+
+        flex-basis: auto;
+    }
+
+    .cards-area {
+
+        width: 100%;
+
+        margin-left: 0;
+
+        margin-top: 25px;
+    }
+
+    .flip-card {
+
+        width: 180px;
+
+        height: 225px;
+    }
+
+    .nataraja,
+    .gng,
+    .lamp-wrap {
+
+        display: none;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .nav-left {
+
+        gap: 5px;
+    }
+
+    .nav-button {
+
+        padding:
+            0
+            8px;
+
+        letter-spacing:
+            0.1em;
+    }
+
+    .language-button {
+
+        min-width:
+            100px;
+
+        padding:
+            0
+            8px;
+    }
+
+    .nav-toggle {
+
+        width: 34px;
+
+        right: 5px;
+    }
+
+    .card-row {
+
+        flex-wrap: wrap;
+    }
+
+    .flip-card {
+
+        width: 180px;
+
+        height: 225px;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .top-nav {
+
+        height: 58px;
+
+        padding:
+            0
+            47px
+            0
+            8px;
+    }
+
+    .nav-button,
+    .language-button {
+
+        height: 34px;
+
+        font-size:
+            0.55rem;
+
+        letter-spacing:
+            0.07em;
+    }
+
+    .language-button {
+
+        min-width:
+            88px;
+    }
+
+    .language-icon {
+
+        display: none;
+    }
+
+    .nav-toggle {
+
+        top: 12px;
+
+        right: 5px;
+
+        width: 34px;
+
+        height: 34px;
+
+        font-size: 0.85rem;
+    }
+
+    .language-menu {
+
+        top: 43px;
+
+        width: 145px;
+    }
+
+    .layout {
+
+        padding-top:
+            75px;
+    }
+
+    .flip-card {
+
+        width: 135px;
+
+        height: 170px;
+    }
+
+    .card-row {
+
+        gap: 10px;
+    }
+
+    .cards-area {
+
+        gap: 10px;
+    }
+
+    .modal-box {
+
+        padding:
+            25px
+            20px;
+    }
+}
+
+.player-profile-display{
+    position:relative;
+    display:flex;align-items:center;gap:7px;
+    margin-left:26px;
+    padding:8px 18px;
+    border-radius:999px;
+    color:#f5d98b;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:13px;
+    letter-spacing:.08em;
+    white-space:nowrap;
+    pointer-events:none;
+    isolation:isolate;
+}
+.player-profile-display::before{
+    content:"";
+    position:absolute;
+    inset:-6px -14px;
+    z-index:-1;
+    border-radius:999px;
+    background:radial-gradient(
+        ellipse at center,
+        rgba(240,205,120,0.32) 0%,
+        rgba(198,151,61,0.18) 45%,
+        rgba(198,151,61,0) 75%
+    );
+    pointer-events:none;
+}
+.player-profile-display span:first-child{font-size:17px}
+</style>
+<script src="../tridhara homepage modify/progress-guard.js"></script>
+<script src="../tridhara homepage modify/player-profile.js" defer></script>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION BAR
+     PROTECTED FROM GOOGLE TRANSLATE
+========================================================= -->
+
+<div
+    class="nav-shell notranslate"
+    translate="no"
+    id="navShell"
+>
+
+    <nav
+        class="top-nav notranslate"
+        translate="no"
+    >
+
+        <!-- LEFT -->
+
+        <div
+            class="nav-left notranslate"
+            translate="no"
+        >
+
+            <a
+                href="../tridhara homepage modify/index.html"
+                class="nav-button notranslate"
+                translate="no"
+            >
+                TRIDHARA
+            </a>
+
+
+            <a
+                href="bg2.html"
+                class="nav-button notranslate"
+                translate="no"
+            >
+                CHITRA
+            </a>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div
+            class="nav-right notranslate"
+            translate="no"
+        >
+
+            <div
+                class="language-area notranslate"
+                id="languageArea"
+                translate="no"
+            >
+
+                <button
+                    type="button"
+                    class="language-button notranslate"
+                    id="languageButton"
+                    translate="no"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+
+                    <span
+                        class="language-icon notranslate"
+                        translate="no"
+                    >
+                        ◉
+                    </span>
+
+                    <span
+                        class="notranslate"
+                        translate="no"
+                    >
+                        LANGUAGE
+                    </span>
+
+                    <span
+                        class="language-arrow notranslate"
+                        id="languageArrow"
+                        translate="no"
+                    >
+                        ▼
+                    </span>
+
+                </button>
+
+
+                <!-- LANGUAGE MENU -->
+
+                <div
+                    class="language-menu notranslate"
+                    id="languageMenu"
+                    translate="no"
+                >
+
+                    <button
+                        type="button"
+                        class="language-option notranslate"
+                        data-lang="en"
+                        translate="no"
+                    >
+                        English
+                    </button>
+
+                    <button
+                        type="button"
+                        class="language-option notranslate"
+                        data-lang="hi"
+                        translate="no"
+                    >
+                        हिन्दी
+                    </button>
+
+                    <button
+                        type="button"
+                        class="language-option notranslate"
+                        data-lang="bn"
+                        translate="no"
+                    >
+                        বাংলা
+                    </button>
+
+                    <button
+                        type="button"
+                        class="language-option notranslate"
+                        data-lang="or"
+                        translate="no"
+                    >
+                        ଓଡ଼ିଆ
+                    </button>
+
+                    <button
+                        type="button"
+                        class="language-option notranslate"
+                        data-lang="ta"
+                        translate="no"
+                    >
+                        தமிழ்
+                    </button>
+
+                    <button
+                        type="button"
+                        class="language-option notranslate"
+                        data-lang="te"
+                        translate="no"
+                    >
+                        తెలుగు
+                    </button>
+
+                    <button
+                        type="button"
+                        class="language-option notranslate"
+                        data-lang="ml"
+                        translate="no"
+                    >
+                        മലയാളം
+                    </button>
+
+                    <button
+                        type="button"
+                        class="language-option notranslate"
+                        data-lang="mr"
+                        translate="no"
+                    >
+                        मराठी
+                    </button>
+
+                    <button
+                        type="button"
+                        class="language-option notranslate"
+                        data-lang="gu"
+                        translate="no"
+                    >
+                        ગુજરાતી
+                    </button>
+
+                    <button
+                        type="button"
+                        class="language-option notranslate"
+                        data-lang="pa"
+                        translate="no"
+                    >
+                        ਪੰਜਾਬੀ
+                    </button>
+
+                </div>
+
+            </div>
+
+            <span class="player-profile-display" aria-label="Student profile" title="Student profile">
+                <span data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+                <span data-player-badge-name data-player-badge-default="Profile">Profile</span>
+            </span>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         NAV ROLL UP / DOWN BUTTON
+    ====================================================== -->
+
+    <button
+        type="button"
+        class="nav-toggle notranslate"
+        id="navToggle"
+        translate="no"
+        aria-label="Roll navigation bar up"
+        aria-expanded="true"
+    >
+
+        <span
+            class="nav-toggle-arrow notranslate"
+            id="navToggleArrow"
+            translate="no"
+        >
+            ▲
+        </span>
+
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     HIDDEN GOOGLE TRANSLATE ENGINE
+========================================================= -->
+
+<div
+    id="google_translate_element"
+    class="notranslate"
+    translate="no"
+></div>
+
+
+<!-- =========================================================
+     OPENING REVEAL
+========================================================= -->
+
+<div class="opening-reveal">
+
+    <img
+        src="left.jpeg"
+        class="opening-left"
+        alt=""
+    >
+
+    <img
+        src="right.jpeg"
+        class="opening-right"
+        alt=""
+    >
+
+</div>
+
+
+<!-- =========================================================
+     LAMPS
+========================================================= -->
+
+<div class="lamp-wrap lamp-left">
+
+    <img
+        src="lamp.png"
+        alt=""
+    >
+
+</div>
+
+
+<div class="lamp-wrap lamp-right">
+
+    <img
+        src="lamp.png"
+        alt=""
+    >
+
+</div>
+
+
+<!-- =========================================================
+     THEORY MODE NOTE
+========================================================= -->
+
+<div
+    class="theory-note"
+    id="theoryNote"
+>
+
+    Theory Mode • Explore the dance cards
+
+</div>
+
+
+<!-- =========================================================
+     MAIN LAYOUT
+========================================================= -->
+
+<div class="layout">
+
+
+    <!-- =====================================================
+         LEFT NRITYAM PANEL
+    ====================================================== -->
+
+    <aside class="left-pane">
+
+
+        <div class="pane-title-wrap">
+
+            <img
+                src="title.jpeg"
+                class="pane-title-img"
+                alt="Nrityam"
+            >
+
+        </div>
+
+
+        <div class="pane-body">
+
+
+            <div class="pane-divider"></div>
+
+
+            <!-- IDLE TEXT -->
+
+            <div
+                class="pane-idle"
+                id="paneIdle"
+            >
+
+                <span class="flow-line">
+                    MATCH EACH INDIAN STATE
+                </span>
+
+                <span class="flow-line">
+                    WITH ITS CLASSICAL
+                </span>
+
+                <span class="flow-line">
+                    OR FOLK DANCE FORM.
+                </span>
+
+                <span class="flow-line">
+                    &nbsp;
+                </span>
+
+                <span class="flow-line">
+                    &nbsp;
+                </span>
+
+                <span class="flow-line hint">
+                    Tap two cards to reveal.<br>
+                    Correct pairs stay open.
+                </span>
+
+            </div>
+
+
+            <!-- INFORMATION PANEL -->
+
+            <div
+                class="pane-info"
+                id="paneInfo"
+            >
+
+                <div
+                    class="info-state flow-item"
+                    id="infoState"
+                ></div>
+
+                <div
+                    class="info-dance flow-item"
+                    id="infoDance"
+                ></div>
+
+                <div
+                    class="info-divider flow-item"
+                ></div>
+
+                <div
+                    class="info-desc flow-item"
+                    id="infoDesc"
+                ></div>
+
+                <div
+                    class="info-tag flow-item"
+                    id="infoTag"
+                ></div>
+
+            </div>
+
+
+            <!-- SCORE -->
+
+            <div class="score-bar">
+
+                <span class="score-label">
+                    Pairs Found
+                </span>
+
+                <span
+                    class="score-val"
+                    id="scoreNum"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <!-- TIMER -->
+
+            <div class="timer-box">
+
+                <span class="timer-label">
+                    Time
+                </span>
+
+                <span
+                    class="timer"
+                    id="timer"
+                >
+                    45
+                </span>
+
+            </div>
+
+
+            <!-- WIN BANNER -->
+
+            <div
+                class="win-banner"
+                id="winBanner"
+            >
+
+                ✦ All pairs matched! ✦<br>
+                A true dance scholar.
+
+            </div>
+
+
+            <!-- RESET -->
+
+            <button
+                class="reset-btn"
+                onclick="initGame()"
+            >
+
+                Reset Game
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         CARDS
+    ====================================================== -->
+
+    <main
+        class="cards-area"
+        id="cardsArea"
+    ></main>
+
+
+</div>
+
+
+<!-- =========================================================
+     DECORATIVE FIGURES
+========================================================= -->
+
+<img
+    src="natraj.png"
+    class="nataraja"
+    alt=""
+>
+
+
+<img
+    src="gng.png"
+    class="gng"
+    alt=""
+>
+
+
+<!-- =========================================================
+     CONTINUE TO LEVEL 3
+========================================================= -->
+
+<button
+    id="continueLevel3"
+    class="continue-level3"
+    onclick="goToLevel3()"
+>
+
+    Continue to Level 3
+
+</button>
+
+
+<!-- =========================================================
+     END GAME MODAL
+========================================================= -->
+
+<div
+    class="game-modal"
+    id="gameModal"
+>
+
+    <div class="modal-box">
+
+        <div
+            class="modal-symbol"
+            id="modalSymbol"
+        >
+            ✦
+        </div>
+
+        <div
+            class="modal-title"
+            id="modalTitle"
+        >
+            Well Done
+        </div>
+
+        <div
+            class="modal-text"
+            id="modalText"
+        >
+            You matched all the pairs.
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn primary"
+                id="level3Btn"
+                onclick="goToLevel3()"
+            >
+                Continue to Level 3
+            </button>
+
+
+            <button
+                class="modal-btn"
+                id="laterBtn"
+                onclick="chooseLater()"
+            >
+                Later
+            </button>
+
+
+            <button
+                class="modal-btn"
+                onclick="initGame()"
+            >
+                Replay
+            </button>
+
+
+            <button
+                class="modal-btn"
+                onclick="goToStudio()"
+            >
+                Back to Nrityam Studio
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   GOOGLE TRANSLATE INITIALISATION
+========================================================= */
+
+function googleTranslateElementInit() {
+
+    new google.translate.TranslateElement({
+
+        pageLanguage: "en",
+
+        includedLanguages:
+            "en,hi,bn,or,ta,te,ml,mr,gu,pa",
+
+        autoDisplay: false
+
+    }, "google_translate_element");
+
+}
+
+
+/* =========================================================
+   HIDE GOOGLE TRANSLATE UI
+========================================================= */
+
+function hideGoogleTranslateUI() {
+
+    const selectors = [
+
+        ".goog-te-banner-frame",
+
+        "iframe.goog-te-banner-frame",
+
+        "body > .skiptranslate",
+
+        "iframe.skiptranslate",
+
+        ".goog-te-menu-frame",
+
+        "iframe.goog-te-menu-frame",
+
+        ".goog-te-balloon-frame",
+
+        "iframe.goog-te-balloon-frame"
+
+    ];
+
+
+    document
+        .querySelectorAll(
+            selectors.join(",")
+        )
+        .forEach(
+            function(element) {
+
+                element.style.setProperty(
+                    "display",
+                    "none",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "visibility",
+                    "hidden",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "height",
+                    "0",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "min-height",
+                    "0",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "opacity",
+                    "0",
+                    "important"
+                );
+
+                element.style.setProperty(
+                    "pointer-events",
+                    "none",
+                    "important"
+                );
+
+            }
+        );
+
+
+    document.documentElement.style.setProperty(
+        "top",
+        "0",
+        "important"
+    );
+
+    document.documentElement.style.setProperty(
+        "margin-top",
+        "0",
+        "important"
+    );
+
+    document.body.style.setProperty(
+        "top",
+        "0",
+        "important"
+    );
+
+    document.body.style.setProperty(
+        "margin-top",
+        "0",
+        "important"
+    );
+}
+
+
+/* =========================================================
+   GET GOOGLE TRANSLATE SELECTOR
+========================================================= */
+
+function getGoogleTranslateCombo(callback) {
+
+    const combo =
+        document.querySelector(
+            ".goog-te-combo"
+        );
+
+
+    if (combo) {
+
+        callback(combo);
+
+        return;
+
+    }
+
+
+    setTimeout(
+        function() {
+
+            getGoogleTranslateCombo(
+                callback
+            );
+
+        },
+        250
+    );
+
+}
+
+
+/* =========================================================
+   TRANSLATE PAGE
+========================================================= */
+
+function translatePage(language) {
+
+    getGoogleTranslateCombo(
+
+        function(combo) {
+
+            combo.value =
+                language;
+
+            combo.dispatchEvent(
+                new Event(
+                    "change",
+                    {
+                        bubbles: true
+                    }
+                )
+            );
+
+
+            setTimeout(
+                hideGoogleTranslateUI,
+                50
+            );
+
+            setTimeout(
+                hideGoogleTranslateUI,
+                300
+            );
+
+            setTimeout(
+                hideGoogleTranslateUI,
+                1000
+            );
+
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   LANGUAGE DROPDOWN
+========================================================= */
+
+const languageArea =
+    document.getElementById(
+        "languageArea"
+    );
+
+const languageButton =
+    document.getElementById(
+        "languageButton"
+    );
+
+const languageMenu =
+    document.getElementById(
+        "languageMenu"
+    );
+
+
+languageButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        const isOpen =
+            languageArea.classList.toggle(
+                "open"
+            );
+
+
+        languageButton.setAttribute(
+            "aria-expanded",
+            isOpen
+                ? "true"
+                : "false"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   LANGUAGE SELECTION
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".language-option"
+    )
+    .forEach(
+        function(option) {
+
+            option.addEventListener(
+                "click",
+                function(event) {
+
+                    event.stopPropagation();
+
+
+                    const language =
+                        option.dataset.lang;
+
+
+                    languageArea.classList.remove(
+                        "open"
+                    );
+
+
+                    languageButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+
+                    translatePage(
+                        language
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   CLOSE LANGUAGE MENU OUTSIDE
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            !languageArea.contains(
+                event.target
+            )
+        ) {
+
+            languageArea.classList.remove(
+                "open"
+            );
+
+            languageButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   NAVIGATION ROLL UP / DOWN
+========================================================= */
+
+const navShell =
+    document.getElementById(
+        "navShell"
+    );
+
+const navToggle =
+    document.getElementById(
+        "navToggle"
+    );
+
+
+navToggle.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+
+        const isCollapsed =
+            navShell.classList.toggle(
+                "collapsed"
+            );
+
+
+        navToggle.setAttribute(
+            "aria-expanded",
+            isCollapsed
+                ? "false"
+                : "true"
+        );
+
+
+        navToggle.setAttribute(
+            "aria-label",
+            isCollapsed
+                ? "Roll navigation bar down"
+                : "Roll navigation bar up"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CONTINUOUSLY REMOVE GOOGLE UI
+========================================================= */
+
+setInterval(
+    hideGoogleTranslateUI,
+    400
+);
+
+
+hideGoogleTranslateUI();
+
+
+/* Mutation observer catches Google-created elements */
+
+const googleObserver =
+    new MutationObserver(
+        function() {
+
+            hideGoogleTranslateUI();
+
+        }
+    );
+
+
+googleObserver.observe(
+    document.documentElement,
+    {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: [
+            "style",
+            "class"
+        ]
+    }
+);
+
+
+/* =========================================================
+   IMAGE SOURCES
+========================================================= */
+
+const STATE_IMGS = {
+
+    mn: "mn.jpeg",
+
+    kl: "kl.jpeg",
+
+    odd: "odd.jpeg"
+
+};
+
+
+const DANCE_IMGS = {
+
+    man: "mani.jpeg",
+
+    ker: "katha.jpeg",
+
+    odi: "odi.jpeg"
+
+};
+
+
+/* =========================================================
+   PAIR DATA
+========================================================= */
+
+const PAIRS = [
+
+    {
+        id: "man",
+
+        state: "Manipur",
+
+        dance: "Manipuri",
+
+        stateImg: "mn",
+
+        desc:
+            "A graceful classical tradition from Manipur, famous for its gentle movements, rounded forms and devotional themes. Manipuri dance is closely connected with Vaishnavite traditions and is known for its soft, flowing quality, expressive storytelling and distinctive costumes.",
+
+        tag:
+            "Manipur • Classical Dance"
+    },
+
+
+    {
+        id: "ker",
+
+        state: "Kerala",
+
+        dance: "Kathakali",
+
+        stateImg: "kl",
+
+        desc:
+            "Kerala's dramatic classical dance-theatre tradition, known for elaborate makeup, costumes, expressive gestures and storytelling. Kathakali combines dance, theatre, music and highly stylised facial expressions to bring epic stories and characters to life.",
+
+        tag:
+            "Kerala • Classical Dance"
+    },
+
+
+    {
+        id: "odi",
+
+        state: "Odisha",
+
+        dance: "Odissi",
+
+        stateImg: "odd",
+
+        desc:
+            "An ancient classical dance tradition from Odisha, recognised for its tribhangi posture, graceful movements and expressive storytelling. Odissi developed from temple traditions and is celebrated for its lyrical quality, sculptural poses and intricate hand gestures.",
+
+        tag:
+            "Odisha • Classical Dance"
+    }
+
+];
+
+
+/* =========================================================
+   GAME VARIABLES
+========================================================= */
+
+let flipped = [];
+
+let matched = new Set();
+
+let locked = false;
+
+let score = 0;
+
+let timeLeft = 45;
+
+let timerInterval = null;
+
+let timeIsUp = false;
+
+let gameFinished = false;
+
+let theoryMode = false;
+
+
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(array) {
+
+    const arr = [...array];
+
+    for (
+        let i = arr.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            arr[i],
+            arr[j]
+        ] =
+        [
+            arr[j],
+            arr[i]
+        ];
+
+    }
+
+    return arr;
+}
+
+
+/* =========================================================
+   START TIMER
+========================================================= */
+
+function startTimer() {
+
+    clearInterval(
+        timerInterval
+    );
+
+    timerInterval =
+        setInterval(
+            function() {
+
+                if (gameFinished) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+                    return;
+                }
+
+                timeLeft--;
+
+                const timer =
+                    document.getElementById(
+                        "timer"
+                    );
+
+                timer.textContent =
+                    timeLeft;
+
+
+                if (
+                    timeLeft <= 15
+                ) {
+
+                    timer.classList.add(
+                        "warning"
+                    );
+
+                }
+
+
+                if (
+                    timeLeft <= 10
+                ) {
+
+                    timer.classList.remove(
+                        "warning"
+                    );
+
+                    timer.classList.add(
+                        "danger"
+                    );
+
+                }
+
+
+                if (
+                    timeLeft <= 0
+                ) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+                    timeUp();
+
+                }
+
+            },
+            1000
+        );
+}
+
+
+/* =========================================================
+   TIME UP
+========================================================= */
+
+function timeUp() {
+
+    if (gameFinished)
+        return;
+
+    timeIsUp = true;
+
+    gameFinished = true;
+
+    locked = true;
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    document
+        .querySelectorAll(".flip-card")
+        .forEach(
+            function(card) {
+
+                card.classList.remove(
+                    "locked"
+                );
+
+                card.classList.add(
+                    "revealed"
+                );
+
+            }
+        );
+
+
+    showModal(
+        false,
+        "Time's Up!",
+        `You found ${score} / 3 pairs.<br><br>
+         Take a moment to explore the dances and their stories.`
+    );
+}
+
+
+/* =========================================================
+   INITIALISE GAME
+========================================================= */
+
+function initGame() {
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    flipped = [];
+
+    matched = new Set();
+
+    locked = false;
+
+    timeIsUp = false;
+
+    gameFinished = false;
+
+    theoryMode = false;
+
+    score = 0;
+
+    timeLeft = 45;
+
+
+    document
+        .getElementById("continueLevel3")
+        .classList.remove(
+            "visible"
+        );
+
+
+    document
+        .getElementById("theoryNote")
+        .classList.remove(
+            "visible"
+        );
+
+
+    document
+        .getElementById("gameModal")
+        .classList.remove(
+            "visible"
+        );
+
+
+    document
+        .getElementById("scoreNum")
+        .textContent = "0";
+
+
+    const timer =
+        document.getElementById(
+            "timer"
+        );
+
+    timer.textContent = "45";
+
+    timer.classList.remove(
+        "warning",
+        "danger"
+    );
+
+
+    const winBanner =
+        document.getElementById(
+            "winBanner"
+        );
+
+    winBanner.classList.remove(
+        "visible"
+    );
+
+    winBanner.innerHTML = `
+        ✦ All pairs matched! ✦<br>
+        A true dance scholar.
+    `;
+
+
+    document
+        .getElementById("paneIdle")
+        .style.display = "";
+
+
+    document
+        .getElementById("paneInfo")
+        .classList.remove(
+            "visible"
+        );
+
+
+    /* =====================================================
+       CARDS
+    ====================================================== */
+
+    const cards = [
+
+        {
+            pairId: "man",
+
+            type: "state",
+
+            image:
+                STATE_IMGS["mn"]
+        },
+
+        {
+            pairId: "man",
+
+            type: "dance"
+        },
+
+
+        {
+            pairId: "ker",
+
+            type: "state",
+
+            image:
+                STATE_IMGS["kl"]
+        },
+
+        {
+            pairId: "ker",
+
+            type: "dance"
+        },
+
+
+        {
+            pairId: "odi",
+
+            type: "state",
+
+            image:
+                STATE_IMGS["odd"]
+        },
+
+        {
+            pairId: "odi",
+
+            type: "dance"
+        }
+
+    ];
+
+
+    const shuffled =
+        shuffle(cards);
+
+
+    const area =
+        document.getElementById(
+            "cardsArea"
+        );
+
+    area.innerHTML = "";
+
+
+    /* =====================================================
+       TWO ROWS OF THREE
+    ====================================================== */
+
+    const row1 =
+        document.createElement(
+            "div"
+        );
+
+    row1.className =
+        "card-row";
+
+
+    const row2 =
+        document.createElement(
+            "div"
+        );
+
+    row2.className =
+        "card-row";
+
+
+    for (
+        let i = 0;
+        i < shuffled.length;
+        i++
+    ) {
+
+        if (i < 3) {
+
+            row1.appendChild(
+                makeCard(
+                    shuffled[i]
+                )
+            );
+
+        }
+        else {
+
+            row2.appendChild(
+                makeCard(
+                    shuffled[i]
+                )
+            );
+
+        }
+
+    }
+
+
+    area.appendChild(row1);
+
+    area.appendChild(row2);
+
+
+    /* Keep opening reveal timing */
+
+    setTimeout(
+        function() {
+
+            if (!gameFinished) {
+
+                startTimer();
+
+            }
+
+        },
+        5800
+    );
+}
+
+
+/* =========================================================
+   MAKE CARD
+========================================================= */
+
+function makeCard(card) {
+
+    const fc =
+        document.createElement(
+            "div"
+        );
+
+    fc.className =
+        "flip-card";
+
+
+    fc.dataset.pairId =
+        card.pairId;
+
+
+    fc.dataset.type =
+        card.type;
+
+
+    /* STATE CARD */
+
+    if (
+        card.type === "state"
+    ) {
+
+        const stateClass =
+            card.pairId === "ker"
+                ? "kerala-image"
+                : "";
+
+
+        fc.innerHTML = `
+
+            <div class="flip-card-inner">
+
+                <div
+                    class="flip-card-front"
+                ></div>
+
+
+                <div
+                    class="flip-card-back type-state"
+                >
+
+                    <div class="state-image">
+
+                        <img
+                            class="${stateClass}"
+                            src="${card.image}"
+                            alt=""
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* DANCE CARD */
+
+    else {
+
+        let imageClass = "";
+
+
+        if (
+            card.pairId === "ker"
+        ) {
+
+            imageClass =
+                "kathakali-image";
+
+        }
+
+
+        fc.innerHTML = `
+
+            <div class="flip-card-inner">
+
+                <div
+                    class="flip-card-front"
+                ></div>
+
+
+                <div
+                    class="flip-card-back type-dance"
+                >
+
+                    <div class="dance-image">
+
+                        <img
+                            class="${imageClass}"
+                            src="${DANCE_IMGS[card.pairId]}"
+                            alt=""
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* CLICK */
+
+    fc.addEventListener(
+        "click",
+        function() {
+
+            onCardClick(fc);
+
+        }
+    );
+
+
+    /* HOVER */
+
+    fc.addEventListener(
+        "mouseenter",
+        function() {
+
+            if (
+                gameFinished ||
+                theoryMode
+            ) {
+
+                if (
+                    !fc.classList.contains(
+                        "matched"
+                    )
+                ) {
+
+                    showInfo(
+                        fc.dataset.pairId
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    return fc;
+}
+
+
+/* =========================================================
+   CARD CLICK
+========================================================= */
+
+function onCardClick(el) {
+
+    if (gameFinished) {
+
+        document
+            .querySelectorAll(
+                ".flip-card.selected-card"
+            )
+            .forEach(
+                function(card) {
+
+                    card.classList.remove(
+                        "selected-card"
+                    );
+
+                }
+            );
+
+
+        el.classList.add(
+            "selected-card"
+        );
+
+
+        showInfo(
+            el.dataset.pairId
+        );
+
+
+        return;
+    }
+
+
+    if (locked)
+        return;
+
+
+    if (timeLeft <= 0)
+        return;
+
+
+    if (
+        el.classList.contains(
+            "revealed"
+        ) ||
+        el.classList.contains(
+            "matched"
+        )
+    ) {
+
+        return;
+    }
+
+
+    if (
+        flipped.length === 2
+    ) {
+
+        return;
+    }
+
+
+    el.classList.add(
+        "revealed"
+    );
+
+
+    flipped.push({
+
+        el: el,
+
+        pairId:
+            el.dataset.pairId,
+
+        type:
+            el.dataset.type
+
+    });
+
+
+    if (
+        flipped.length === 2
+    ) {
+
+        locked = true;
+
+
+        setTimeout(
+            evaluate,
+            950
+        );
+
+    }
+}
+
+
+/* =========================================================
+   EVALUATE TWO CARDS
+========================================================= */
+
+function evaluate() {
+
+    if (
+        timeLeft <= 0 ||
+        gameFinished
+    ) {
+
+        return;
+    }
+
+
+    const [a,b] =
+        flipped;
+
+
+    /* CORRECT PAIR */
+
+    if (
+        a.pairId === b.pairId &&
+        a.type !== b.type
+    ) {
+
+        a.el.classList.add(
+            "matched",
+            "locked"
+        );
+
+        b.el.classList.add(
+            "matched",
+            "locked"
+        );
+
+
+        matched.add(
+            a.pairId
+        );
+
+
+        score++;
+
+
+        document
+            .getElementById("scoreNum")
+            .textContent =
+            score;
+
+
+        showInfo(
+            a.pairId
+        );
+
+
+        /* ALL PAIRS COMPLETE */
+
+        if (
+            score === 3
+        ) {
+
+            clearInterval(
+                timerInterval
+            );
+
+
+            locked = true;
+
+            gameFinished = true;
+
+
+            /* Only remember this unlock for a signed-in player.
+               Guests never persist progress (see progress-guard.js). */
+
+            if (
+                window.TridharaProgress &&
+                window.TridharaProgress.canSave()
+            ) {
+
+                localStorage.setItem(
+                    "chitraLevel3Unlocked",
+                    "true"
+                );
+
+            }
+
+
+            setTimeout(
+                function() {
+
+                    const winBanner =
+                        document.getElementById(
+                            "winBanner"
+                        );
+
+
+                    winBanner.innerHTML = `
+                        ✦ All pairs matched! ✦<br>
+                        A true dance scholar.
+                    `;
+
+
+                    winBanner.classList.add(
+                        "visible"
+                    );
+
+
+                    showModal(
+                        true,
+                        "Level 2 Complete",
+                        "Beautifully done.<br>You matched every state with its dance tradition."
+                    );
+
+                },
+                500
+            );
+
+        }
+
+    }
+
+
+    /* WRONG PAIR */
+
+    else {
+
+        a.el.classList.remove(
+            "revealed"
+        );
+
+        b.el.classList.remove(
+            "revealed"
+        );
+
+    }
+
+
+    flipped = [];
+
+
+    if (
+        score < 3 &&
+        timeLeft > 0 &&
+        !gameFinished
+    ) {
+
+        locked = false;
+
+    }
+}
+
+
+/* =========================================================
+   SHOW INFORMATION
+========================================================= */
+
+function showInfo(pairId) {
+
+    const p =
+        PAIRS.find(
+            function(x) {
+
+                return x.id === pairId;
+
+            }
+        );
+
+
+    if (!p)
+        return;
+
+
+    document
+        .getElementById("paneIdle")
+        .style.display =
+        "none";
+
+
+    const paneInfo =
+        document.getElementById(
+            "paneInfo"
+        );
+
+
+    paneInfo.classList.remove(
+        "visible"
+    );
+
+
+    void paneInfo.offsetWidth;
+
+
+    document
+        .getElementById("infoState")
+        .textContent =
+        p.state;
+
+
+    document
+        .getElementById("infoDance")
+        .textContent =
+        p.dance;
+
+
+    document
+        .getElementById("infoDesc")
+        .textContent =
+        p.desc;
+
+
+    document
+        .getElementById("infoTag")
+        .textContent =
+        p.tag;
+
+
+    paneInfo.classList.add(
+        "visible"
+    );
+}
+
+
+/* =========================================================
+   SHOW END MODAL
+========================================================= */
+
+function showModal(
+    won,
+    title,
+    text
+) {
+
+    const modal =
+        document.getElementById(
+            "gameModal"
+        );
+
+
+    const symbol =
+        document.getElementById(
+            "modalSymbol"
+        );
+
+
+    const modalTitle =
+        document.getElementById(
+            "modalTitle"
+        );
+
+
+    const modalText =
+        document.getElementById(
+            "modalText"
+        );
+
+
+    const level3Btn =
+        document.getElementById(
+            "level3Btn"
+        );
+
+
+    const laterBtn =
+        document.getElementById(
+            "laterBtn"
+        );
+
+
+    symbol.textContent =
+        won
+            ? "✦"
+            : "✧";
+
+
+    modalTitle.textContent =
+        title;
+
+
+    modalText.innerHTML =
+        text;
+
+
+    if (won) {
+
+        level3Btn.style.display =
+            "block";
+
+        laterBtn.style.display =
+            "block";
+
+    }
+    else {
+
+        level3Btn.style.display =
+            "none";
+
+        laterBtn.style.display =
+            "none";
+
+    }
+
+
+    modal.classList.add(
+        "visible"
+    );
+}
+
+
+/* =========================================================
+   LATER
+========================================================= */
+
+function chooseLater() {
+
+    document
+        .getElementById("gameModal")
+        .classList.remove(
+            "visible"
+        );
+
+
+    theoryMode = true;
+
+
+    document
+        .getElementById("theoryNote")
+        .classList.add(
+            "visible"
+        );
+
+
+    document
+        .querySelectorAll(".flip-card")
+        .forEach(
+            function(card) {
+
+                card.classList.add(
+                    "revealed"
+                );
+
+            }
+        );
+
+
+    document
+        .getElementById("continueLevel3")
+        .classList.add(
+            "visible"
+        );
+}
+
+
+/* =========================================================
+   GO TO LEVEL 3
+========================================================= */
+
+function goToLevel3() {
+
+    window.location.href =
+        "level3.html";
+}
+
+
+/* =========================================================
+   GO BACK TO NRITYAM STUDIO
+========================================================= */
+
+function goToStudio() {
+
+    window.location.href =
+        "comsp.html";
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+initGame();
+
+</script>
+
+
+<!-- =========================================================
+     GOOGLE TRANSLATE SCRIPT
+========================================================= -->
+
+<script
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+></script>
+
+
+</body>
+
+</html>

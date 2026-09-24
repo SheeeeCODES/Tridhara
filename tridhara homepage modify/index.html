@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Itihasa — Exact Reference + Hotspots V6.1</title>
+<style>
+*{box-sizing:border-box}
+html{background:#000}
+body{
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  overflow-y:auto;
+  background:#000;
+  font-family:Georgia,"Times New Roman",serif;
+}
+.stage{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  background:#000;
+}
+.scene{
+  position:relative;
+  width:100vw;
+  aspect-ratio:1536/857;
+  flex:0 0 auto;
+  overflow:visible;
+}
+.reference{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:fill;
+  display:block;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+/* Hotspot hit areas are invisible at rest.
+   The glow is soft and organic rather than a visible rectangle. */
+.hotspot{
+  position:absolute;
+  z-index:8;
+  cursor:pointer;
+  background:transparent;
+  border:0;
+  outline:0;
+  clip-path:polygon(8% 8%,92% 5%,98% 45%,91% 92%,12% 97%,3% 52%);
+}
+.hotspot::before{
+  content:"";
+  position:absolute;
+  inset:-12%;
+  background:radial-gradient(ellipse at center,
+    rgba(255,226,145,.42) 0%,
+    rgba(255,190,65,.20) 25%,
+    rgba(255,155,35,.07) 48%,
+    rgba(255,155,35,0) 74%);
+  opacity:0;
+  filter:blur(12px);
+  transition:opacity .2s ease;
+  pointer-events:none;
+}
+.hotspot:hover::before,
+.hotspot.active::before{opacity:1}
+
+/* Larger, readable hover names */
+.label{
+  position:absolute;
+  z-index:30;
+  opacity:0;
+  pointer-events:none;
+  transform:translate(-50%,-100%) translateY(-12px);
+  white-space:nowrap;
+  padding:11px 18px;
+  border-radius:14px;
+  color:#fff8dc;
+  background:linear-gradient(135deg,#7b2030,#145c4a);
+  border:2px solid rgba(246,210,111,.95);
+  box-shadow:0 8px 26px rgba(0,0,0,.62),0 0 18px rgba(255,205,85,.25);
+  font-size:clamp(16px,1.35vw,24px);
+  line-height:1.05;
+  font-weight:700;
+  text-shadow:0 1px 2px #000;
+  transition:opacity .15s ease,transform .15s ease;
+}
+.label.show{
+  opacity:1;
+  transform:translate(-50%,-100%) translateY(-8px);
+}
+.label.clicked{
+  transform:translate(-50%,-100%) translateY(-18px) scale(1.06);
+  box-shadow:0 14px 34px rgba(0,0,0,.66),0 0 20px rgba(255,205,85,.30);
+}
+
+/* Shared look for the five caption boxes. */
+.culture-panel,.literature-panel,.tradition-panel,.performing-panel,.icons-panel{
+  position:absolute;
+  z-index:12;
+  pointer-events:none;
+  text-align:left;
+  color:#fff8df;
+}
+.culture-panel h3,.literature-panel h3,.tradition-panel h3,.performing-panel h3,.icons-panel h3{
+  margin:0 0 .45em;
+  line-height:1.05;
+  font-weight:700;
+  color:#ffe7a1;
+}
+.culture-panel p,.literature-panel p,.tradition-panel p,.performing-panel p,.icons-panel p{
+  margin:0;
+  font-family:Arial,sans-serif;
+  font-weight:400;
+  color:#fff;
+}
+
+/* Cuisine & Flavours — over the thali illustration, upper left. */
+.culture-panel{
+  left:1.6%;top:25.6%;width:21%;
+  min-height:13.8%;
+  padding:1.15% 1.25%;
+  border-radius:8px;
+  background:linear-gradient(135deg,#174d73 0%,#216c86 55%,#123c5d 100%);
+  border:2px solid rgba(241,205,105,.78);
+  box-shadow:0 10px 28px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.16);
+}
+.culture-panel h3{font-size:clamp(16px,1.5vw,26px)}
+.culture-panel p{font-size:clamp(11px,.88vw,15px);line-height:1.32}
+
+/* Literature — beside the Tagore portrait. */
+.literature-panel{
+  left:68.2%;top:44.6%;width:15%;
+  min-height:17.4%;
+  padding:1.05% 1.05%;
+  border-radius:9px;
+  background:linear-gradient(135deg,#7a2738 0%,#a4423e 52%,#5b1e35 100%);
+  border:2px solid rgba(241,205,105,.82);
+  box-shadow:0 10px 28px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.16);
+}
+.literature-panel h3{font-size:clamp(16px,1.4vw,25px)}
+.literature-panel p{font-size:clamp(10px,.82vw,14px);line-height:1.3}
+
+/* Tradition and People — lower left, beneath the food panel. */
+.tradition-panel{
+  left:1.6%;top:70.6%;width:21%;
+  min-height:16%;
+  padding:1.15% 1.25%;
+  border-radius:8px;
+  background:linear-gradient(135deg,#6a3a1a 0%,#8a5426 55%,#4a2810 100%);
+  border:2px solid rgba(241,205,105,.78);
+  box-shadow:0 10px 28px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.16);
+}
+.tradition-panel h3{font-size:clamp(14px,1.35vw,23px)}
+.tradition-panel p{font-size:clamp(10px,.8vw,14px);line-height:1.32}
+
+/* Performing Arts — beside the Kathakali mask, upper right. */
+.performing-panel{
+  left:84.2%;top:35.6%;width:15.4%;
+  min-height:18%;
+  padding:1.15% 1.15%;
+  border-radius:8px;
+  background:linear-gradient(135deg,#1d5c3f 0%,#237a52 55%,#123c29 100%);
+  border:2px solid rgba(241,205,105,.78);
+  box-shadow:0 10px 28px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.16);
+}
+.performing-panel h3{font-size:clamp(13px,1.25vw,21px)}
+.performing-panel p{font-size:clamp(9px,.74vw,13px);line-height:1.3}
+
+/* Icons of India — beneath the Taj Mahal. */
+.icons-panel{
+  left:38.3%;top:87.2%;width:23.4%;
+  min-height:13%;
+  padding:1.0% 1.2%;
+  border-radius:8px;
+  background:linear-gradient(135deg,#7a3a1c 0%,#9a552a 55%,#5a2a10 100%);
+  border:2px solid rgba(241,205,105,.78);
+  box-shadow:0 10px 28px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.16);
+}
+.icons-panel h3{font-size:clamp(13px,1.25vw,21px)}
+.icons-panel p{font-size:clamp(9px,.72vw,13px);line-height:1.24}
+
+@media(max-width:700px){
+  .culture-panel h3,.literature-panel h3,.tradition-panel h3,.performing-panel h3,.icons-panel h3{font-size:14px}
+  .culture-panel p,.literature-panel p,.tradition-panel p,.performing-panel p,.icons-panel p{font-size:9.5px}
+}
+
+/* Exact-reference hotspot zones */
+.hs-akbar{left:19.0%;top:25.0%;width:17.5%;height:43%}
+.hs-birbal{left:20.0%;top:65.0%;width:16.5%;height:34%}
+.hs-food{left:.3%;top:39.0%;width:21.0%;height:31%}
+.hs-tagore{left:68.5%;top:17.0%;width:16.8%;height:45%}
+.hs-draupadi{left:84.0%;top:48.0%;width:15.7%;height:40%}
+.hs-durga{left:66.0%;top:61.0%;width:19.0%;height:39%}
+.hs-kathakali{left:82.0%;top:3.0%;width:18.0%;height:39%}
+.hs-taj{left:34.0%;top:46.0%;width:33.0%;height:54%}
+
+/* Label anchors */
+#lab-akbar{left:28%;top:24%}
+#lab-birbal{left:28%;top:64%}
+#lab-food{left:10.5%;top:38%}
+#lab-tagore{left:76.5%;top:16.5%}
+#lab-draupadi{left:91.5%;top:47.5%}
+#lab-durga{left:75.2%;top:60.5%}
+#lab-kathakali{left:89%;top:32%;}
+#lab-taj{left:50%;top:45.5%}
+
+
+
+/* --- Royal opening scroll --- */
+#royalIntro{
+  position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;
+  padding:4vw;background:rgba(12,8,5,.80);backdrop-filter:blur(5px);
+  opacity:1;visibility:visible;transition:opacity .5s ease,visibility .5s ease;
+}
+#royalIntro.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.royal-scroll{
+  position:relative;width:min(760px,88vw);height:92px;cursor:pointer;
+  filter:drop-shadow(0 24px 30px rgba(0,0,0,.65));
+  transition:height .75s cubic-bezier(.2,.85,.2,1),transform .35s ease;
+}
+.royal-scroll:hover{transform:translateY(-2px)}
+.royal-scroll.open{height:min(640px,82vh);cursor:default}
+.royal-paper{
+  position:absolute;left:10px;right:10px;top:25px;height:50px;overflow:hidden;
+  border:3px solid #70401d;border-radius:10px;
+  background:
+    radial-gradient(circle at 18% 15%,rgba(255,255,255,.28),transparent 26%),
+    linear-gradient(135deg,#b87332,#f0d394 16%,#e7c27c 82%,#a85f2b);
+  box-shadow:inset 0 0 32px rgba(73,34,12,.28),0 10px 20px rgba(0,0,0,.32);
+  transition:height .7s cubic-bezier(.2,.85,.2,1);
+}
+.royal-scroll.open .royal-paper{height:calc(100% - 34px)}
+.royal-paper::before{content:"";position:absolute;inset:13px;border:2px solid rgba(104,49,20,.36);border-radius:7px;pointer-events:none}
+.royal-rod{
+  position:absolute;z-index:5;left:0;right:0;top:9px;height:34px;border-radius:50%;
+  background:linear-gradient(#f6df9e,#b76c30 48%,#6f371b);
+  border:3px solid #603015;box-shadow:inset 0 3px 4px rgba(255,255,255,.35),0 5px 8px rgba(0,0,0,.4);
+}
+.royal-rod.bottom{top:auto;bottom:9px;opacity:0;transition:opacity .25s}
+.royal-scroll.open .royal-rod.bottom{opacity:1}
+.royal-ribbon{
+  position:absolute;z-index:8;left:50%;top:1px;width:26px;height:105px;transform:translateX(-50%);
+  background:linear-gradient(90deg,#68111b,#c3313d 48%,#68111b);border:1px solid #4d0d15;
+  box-shadow:0 4px 8px rgba(0,0,0,.4);transition:opacity .25s;
+}
+.royal-ribbon::after{content:"";position:absolute;left:50%;bottom:-14px;width:22px;height:22px;
+  transform:translateX(-50%) rotate(45deg);background:#9e202c;border-right:1px solid #4d0d15;border-bottom:1px solid #4d0d15}
+.royal-scroll.open .royal-ribbon{opacity:.08}
+.royal-content{position:relative;z-index:12;text-align:center;padding:65px 8% 35px;opacity:0;transition:opacity .3s .35s;pointer-events:none}
+.royal-scroll.open .royal-content{opacity:1;pointer-events:auto}
+.royal-seal{width:78px;height:78px;margin:0 auto 14px;border:3px double #7c1f2d;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;color:#7c1f2d;font:700 13px Georgia,serif;
+  background:rgba(255,245,205,.22);box-shadow:inset 0 0 0 5px rgba(124,31,45,.10)}
+.royal-content h1{margin:0 0 16px;color:#7c1f2d;font-size:clamp(28px,4vw,52px);letter-spacing:.06em;text-transform:uppercase}
+.royal-content p{margin:0 auto 24px;max-width:600px;color:#4b2414;font-size:clamp(16px,1.6vw,23px);line-height:1.5}
+#enterItihasa{position:relative;z-index:30;pointer-events:auto;touch-action:manipulation;border:2px solid #f1d17c;border-radius:999px;padding:12px 30px;cursor:pointer;color:#fff7dc;
+  background:linear-gradient(135deg,#7b2030,#155a48);box-shadow:0 7px 18px rgba(60,25,10,.35);
+  font:700 17px Georgia,"Times New Roman",serif}
+#enterItihasa:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* --- Hidden/tucked heritage scrolls --- */
+.scrolls-layer{position:absolute;inset:0;z-index:6;pointer-events:none}
+.scroll{
+  --rot:0deg;position:absolute;width:clamp(170px,16vw,245px);height:48px;
+  pointer-events:auto;cursor:pointer;transform:rotate(var(--rot));
+  filter:drop-shadow(0 7px 9px rgba(0,0,0,.55));transition:filter .25s ease,transform .25s ease,top .35s ease,left .35s ease;
+}
+.scroll:hover{filter:drop-shadow(0 10px 13px rgba(0,0,0,.65));transform:rotate(var(--rot)) translateY(-2px)}
+.scroll-paper{
+  position:absolute;left:0;right:0;top:10px;height:28px;overflow:hidden;border-radius:7px;
+  background:linear-gradient(90deg,#b96e31,#efd294 16%,#e7c47f 82%,#a85d29);
+  border:2px solid #693719;box-shadow:inset 0 0 13px rgba(80,40,15,.28);
+  transform-origin:top center;transition:height .65s cubic-bezier(.2,.85,.2,1),box-shadow .3s;
+}
+.scroll-rod{
+  position:absolute;z-index:5;left:-5px;right:-5px;top:0;height:21px;border-radius:50%;
+  background:linear-gradient(#f4dc98,#ae642d 48%,#6d3519);border:2px solid #5e3017;
+  box-shadow:inset 0 2px 2px rgba(255,255,255,.35)
+}
+.scroll-rod.bottom{top:auto;bottom:0}
+.scroll-ribbon{
+  position:absolute;z-index:7;left:50%;top:-3px;width:17px;height:78px;transform:translateX(-50%);
+  background:linear-gradient(90deg,#6c111a,#c52d3b 48%,#6c111a);border:1px solid #4e0d14;
+  box-shadow:0 3px 6px rgba(0,0,0,.4);pointer-events:none
+}
+.scroll-ribbon::after{content:"";position:absolute;left:50%;bottom:-9px;width:15px;height:15px;
+  transform:translateX(-50%) rotate(45deg);background:#a8222d;border-right:1px solid #4e0d14;border-bottom:1px solid #4e0d14}
+.scroll.open{width:min(420px,38vw);height:clamp(280px,34vw,450px);z-index:50;transform:rotate(0deg)}
+.scroll.open .scroll-paper{height:calc(100% - 14px);box-shadow:0 15px 28px rgba(0,0,0,.45),inset 0 0 22px rgba(80,40,15,.2)}
+.scroll.open .scroll-ribbon{opacity:.1}
+.scroll-title{position:relative;display:block;text-align:center;margin:20px 15px 8px;color:#4b2415;
+  font:700 clamp(24px,2vw,34px) Georgia,"Times New Roman",serif;letter-spacing:.04em;
+  opacity:0;transform:scale(.8);transition:opacity .25s ease .2s,transform .35s ease .2s}
+.scroll.open .scroll-title{opacity:1;transform:scale(1)}
+.scroll-content{display:flex;gap:14px;align-items:center;padding:5px 17px 16px;color:#4a2818}
+.scroll-art{flex:0 0 43%;height:150px;border-radius:8px;overflow:hidden;border:2px solid rgba(105,55,20,.65);
+  box-shadow:inset 0 0 16px rgba(0,0,0,.25);background:#ead0a0}
+.scroll-art img{width:100%;height:100%;display:block;object-fit:cover}
+.scroll-copy{font:500 clamp(12px,1vw,16px)/1.38 Georgia,"Times New Roman",serif}
+.scroll-link{display:block;width:max-content;max-width:100%;margin:10px auto 0;padding:8px 13px;border-radius:999px;
+  text-decoration:none;color:#fff6d6;background:linear-gradient(135deg,#7e2630,#1b6650);
+  border:1px solid rgba(255,220,126,.9);box-shadow:0 4px 10px rgba(60,24,10,.28);font:700 12px/1.1 Arial,sans-serif}
+
+/* Carefully tucked positions: only a narrow rolled portion is visible until clicked. */
+.scroll.civilization{left:36.5%;top:24.2%;--rot:-3deg;clip-path:inset(0 0 42% 0)}
+.scroll.history{left:80.7%;top:61.2%;--rot:5deg;clip-path:inset(0 0 40% 0)}
+.scroll.culture{left:18.2%;top:61.5%;--rot:-5deg;clip-path:inset(0 0 40% 0)}
+.scroll.open{clip-path:none}
+
+@media(max-width:700px){
+  .scroll{width:clamp(130px,30vw,180px);height:42px}
+  .scroll.open{width:min(90vw,390px);height:330px}
+  .scroll-content{gap:9px;padding:4px 12px 12px}
+  .scroll-art{height:118px;flex-basis:40%}
+  .scroll-title{font-size:21px}
+  .scroll-copy{font-size:11px}
+  .scroll-link{font-size:11px;padding:7px 10px}
+  .royal-scroll{width:88vw}
+  .royal-scroll.open{height:82vh}
+}
+
+@media(max-width:700px){
+  .label{
+    font-size:15px;
+    padding:9px 13px;
+    border-width:1px;
+  }
+}
+
+/* ===== V7 FIXES: visible scrolls, smaller unfurl, decree visibility, Kathakali label ===== */
+
+/* Scrolls should look like intentional objects, not camouflage. */
+.scroll{
+  width:clamp(185px,17vw,255px);
+  height:54px;
+  filter:drop-shadow(0 8px 10px rgba(0,0,0,.68));
+}
+.scroll-paper{
+  top:11px;
+  height:31px;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.35),transparent 30%),
+    linear-gradient(90deg,#d39a4d,#f7dda0 18%,#f0cf89 82%,#c47b35);
+  border:2px solid #5b2c15;
+  box-shadow:inset 0 0 14px rgba(72,32,10,.30),0 3px 7px rgba(0,0,0,.30);
+}
+.scroll-rod{
+  left:-7px;right:-7px;height:23px;
+  background:linear-gradient(#ffe5a1,#c87b35 46%,#713417);
+  border:2px solid #5a2b14;
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 3px 5px rgba(0,0,0,.38);
+}
+.scroll-ribbon{
+  width:18px;height:82px;
+  background:linear-gradient(90deg,#72121d,#d33a47 48%,#72121d);
+  border:1px solid #4b0b13;
+  box-shadow:0 3px 7px rgba(0,0,0,.5);
+}
+
+/* Closed scrolls: exactly half-hidden, but with enough rolled paper visible to be discovered. */
+.scroll.civilization{
+  left:35.0%;top:25.0%;--rot:-3deg;
+  clip-path:inset(0 0 48% 0 round 6px);
+}
+.scroll.history{
+  left:81.0%;top:60.8%;--rot:4deg;
+  clip-path:inset(0 0 48% 0 round 6px);
+}
+.scroll.culture{
+  left:17.5%;top:61.2%;--rot:-4deg;
+  clip-path:inset(0 0 48% 0 round 6px);
+}
+.scroll.open{
+  width:min(385px,34vw);
+  height:clamp(250px,29vw,355px);
+  clip-path:none;
+  z-index:60;
+}
+.scroll.open .scroll-paper{
+  height:calc(100% - 13px);
+}
+.scroll.open .scroll-ribbon{opacity:.10}
+.scroll-title{
+  margin:17px 14px 6px;
+  font-size:clamp(22px,1.8vw,31px);
+}
+.scroll-content{
+  gap:11px;
+  padding:4px 15px 12px;
+}
+.scroll-art{height:112px;flex-basis:42%}
+.scroll-copy{font-size:clamp(11px,.9vw,14px);line-height:1.32}
+.scroll-link{margin-top:7px;padding:7px 11px}
+
+/* Opening decree: smaller so the complete button is always inside the visible parchment. */
+.royal-scroll{
+  width:min(700px,86vw);
+  height:88px;
+}
+.royal-scroll.open{
+  height:min(540px,76vh);
+}
+.royal-scroll.open .royal-paper{
+  height:calc(100% - 34px);
+}
+.royal-content{
+  padding:48px 7% 24px;
+  overflow-y:auto;
+  max-height:100%;
+}
+.royal-seal{width:87px;height:87px;margin-bottom:6px}
+.royal-content h1{font-size:clamp(25px,3.5vw,46px);margin-bottom:10px}
+.royal-content p{font-size:clamp(14px,1.35vw,20px);line-height:1.35;margin-bottom:16px}
+#enterItihasa{
+  display:inline-block;
+  margin-bottom:4px;
+  padding:11px 27px;
+}
+
+/* Kathakali label sits beside/below the artwork, never over its eyes. */
+#lab-kathakali{
+  left:82.5%;
+  top:39%;
+  transform:translate(-50%,0);
+}
+#lab-kathakali.show{
+  transform:translate(-50%,4px);
+}
+#lab-kathakali.clicked{
+  transform:translate(-50%,4px) scale(1.06);
+}
+
+/* Keep the three scrolls beneath the hotspot labels but above the static artwork. */
+.scrolls-layer{z-index:7}
+
+</style>
+
+<style id="header-nav-styles">
+/* ===== Top site header: brand, Home, Language dropdown, Login ===== */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:500;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:12px clamp(14px,3vw,36px);
+  background:linear-gradient(135deg,#2a1408 0%,#40200f 50%,#2a1408 100%);
+  border-bottom:2px solid #c99a4a;
+  box-shadow:0 4px 20px rgba(0,0,0,.5);
+  font-family:Georgia,"Times New Roman",serif;
+  transform:translateY(0);
+  transition:transform .3s ease;
+  will-change:transform;
+}
+.site-header.header-hidden{
+  transform:translateY(-100%);
+}
+.header-brand{display:flex;align-items:center;gap:10px;min-width:0}
+.header-logo{
+  flex:0 0 auto;
+  width:clamp(30px,3.2vw,42px);
+  height:clamp(30px,3.2vw,42px);
+  color:#f0cf76;
+}
+.header-titles{min-width:0}
+.header-titles .brand-name{
+  margin:0;
+  font-size:clamp(16px,2.1vw,24px);
+  font-weight:700;
+  letter-spacing:.09em;
+  color:#f3d896;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+  white-space:nowrap;
+}
+.header-titles .brand-tag{
+  display:block;
+  font-family:Arial,sans-serif;
+  font-size:clamp(9px,.85vw,12px);
+  letter-spacing:.14em;
+  color:#d8b57e;
+  white-space:nowrap;
+}
+.header-nav{display:flex;align-items:center;gap:clamp(10px,2vw,26px)}
+.header-link{
+  display:flex;align-items:center;gap:7px;
+  color:#f3e3c2;text-decoration:none;
+  font-family:Arial,sans-serif;font-size:clamp(13px,1.1vw,16px);
+  white-space:nowrap;
+}
+.header-link svg{width:18px;height:18px;color:#f0cf76;flex:0 0 auto}
+.header-link:hover{color:#ffe7a1}
+.header-divider{width:1px;height:24px;background:rgba(230,201,138,.35);flex:0 0 auto}
+
+.lang-dropdown{position:relative}
+.lang-btn{
+  display:flex;align-items:center;gap:6px;
+  background:transparent;border:none;cursor:pointer;
+  color:#f3e3c2;font-family:Arial,sans-serif;font-size:clamp(13px,1.1vw,16px);
+  padding:6px 2px;
+}
+.lang-btn svg{width:18px;height:18px;color:#f0cf76;flex:0 0 auto}
+.lang-btn .chevron{width:12px;height:12px;margin-left:2px;transition:transform .18s ease}
+.lang-dropdown.open .lang-btn .chevron{transform:rotate(180deg)}
+.lang-menu{
+  position:absolute;top:calc(100% + 10px);right:0;
+  min-width:170px;
+  max-height:60vh;
+  overflow-y:auto;
+  background:linear-gradient(160deg,#2f1810,#1e0f08);
+  border:1px solid #c99a4a;border-radius:10px;
+  box-shadow:0 12px 26px rgba(0,0,0,.55);
+  padding:6px;
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+  z-index:600;
+}
+.lang-dropdown.open .lang-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-option{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 12px;border-radius:7px;
+  color:#f3e3c2;font-family:Arial,sans-serif;font-size:14px;
+  cursor:pointer;background:transparent;border:none;width:100%;text-align:left;
+}
+.lang-option:hover{background:rgba(201,154,74,.2)}
+.lang-option.selected{color:#ffe7a1;font-weight:700}
+.lang-option .check{opacity:0;font-size:12px}
+.lang-option.selected .check{opacity:1}
+
+.login-btn{
+  position:relative;
+  display:flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#7b2030 0%,#155a48 55%,#0f2e21 100%);
+  border:2px solid rgba(240,207,118,.85);
+  border-radius:999px;
+  color:#fff7dc;font-family:Arial,sans-serif;font-weight:700;
+  font-size:clamp(12px,1.05vw,15px);
+  padding:8px clamp(14px,1.6vw,22px);
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.3) inset,0 0 20px rgba(240,207,118,.22);
+  transition:filter .18s ease,transform .18s ease,box-shadow .18s ease;
+  white-space:nowrap;
+  z-index:0;
+}
+.login-btn::before{
+  content:"";
+  position:absolute;
+  inset:-7px;
+  border-radius:999px;
+  background:radial-gradient(ellipse at center,
+    rgba(240,207,118,.42) 0%,
+    rgba(240,207,118,.16) 45%,
+    rgba(240,207,118,0) 75%);
+  filter:blur(7px);
+  opacity:.75;
+  z-index:-1;
+  transition:opacity .22s ease,filter .22s ease;
+  pointer-events:none;
+}
+.login-btn svg{width:16px;height:16px}
+.login-btn:hover{
+  filter:brightness(1.15);
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 9px 22px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.3) inset,0 0 28px rgba(240,207,118,.38);
+}
+.login-btn:hover::before{opacity:1;filter:blur(9px)}
+.pp-badge-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(240,207,118,.18);
+  border:1px solid rgba(240,207,118,.55);
+  font-size:14px;
+}
+
+@media(max-width:820px){
+  .header-titles .brand-tag{display:none}
+  .header-link span.link-text{display:none}
+  .header-divider{display:none}
+}
+@media(max-width:560px){
+  .site-header{padding:10px 12px}
+  .header-nav{gap:12px}
+  .login-btn span.link-text{display:none}
+  .login-btn{padding:9px 12px}
+}
+
+</style>
+
+<style id="v8-final-fixes">
+/* ===== V8: clean scroll placement + compact unfurl + reliable clicking ===== */
+.scrolls-layer{
+  z-index:24 !important;
+  pointer-events:none;
+}
+.scroll{
+  pointer-events:auto !important;
+  z-index:25 !important;
+}
+
+/* Clearly visible, attached to the margins of existing coloured text panels. */
+.scroll.civilization{
+  /* Upper margin of Culture & Heritage */
+  left:6.2%;
+  top:20.9%;
+  --rot:-4deg;
+  clip-path:none;
+}
+.scroll.history{
+  /* Bottom margin of Literature */
+  left:68.9%;
+  top:59.2%;
+  --rot:3deg;
+  clip-path:none;
+}
+.scroll.culture{
+  /* Top margin of Icons of India (closed tab). */
+  left:40.0%;
+  top:82.2%;
+  --rot:-3deg;
+  clip-path:none;
+}
+/* When opened, reposition upward so the unfurled scroll never spills past
+   the bottom of the page, regardless of viewport size. */
+.scroll.culture.open{
+  top:58% !important;
+  left:37% !important;
+}
+
+/* Closed scrolls remain compact; the title stays hidden until opening. */
+.scroll:not(.open){
+  width:clamp(150px,13vw,205px);
+  height:42px;
+}
+.scroll:not(.open) .scroll-paper{
+  height:24px;
+}
+
+/* Much smaller unfurled area. */
+.scroll.open{
+  width:min(315px,28vw) !important;
+  height:min(225px,27vh) !important;
+  clip-path:none !important;
+  z-index:60 !important;
+}
+.scroll.open .scroll-paper{
+  height:calc(100% - 11px) !important;
+  overflow:hidden;
+}
+.scroll.open .scroll-title{
+  margin:13px 12px 4px;
+  font-size:clamp(19px,1.55vw,27px);
+}
+.scroll.open .scroll-content{
+  gap:8px;
+  padding:2px 11px 8px;
+}
+.scroll.open .scroll-art{
+  height:82px;
+  flex-basis:37%;
+}
+.scroll.open .scroll-copy{
+  font-size:clamp(10px,.78vw,13px);
+  line-height:1.22;
+}
+.scroll.open .scroll-link{
+  margin-top:4px;
+  padding:5px 9px;
+}
+
+/* Keep labels above scrolls, but move Kathakali away from the face/eyes. */
+.label{z-index:70 !important;}
+#lab-kathakali{
+  left:90%;
+  top:40%;
+  transform:translate(-50%,8px) !important;
+}
+#lab-kathakali.show,
+#lab-kathakali.clicked{
+  transform:translate(-50%,12px) !important;
+}
+
+/* Decree button stays completely visible on smaller screens. */
+#royalIntro .royal-content{
+  padding-bottom:18px;
+}
+#royalIntro #enterItihasa{
+  position:relative;
+  z-index:20;
+  margin-bottom:8px;
+}
+</style>
+
+<script>
+/* Runs before first paint: if the decree was already accepted on a
+   previous visit, mark <html> so the popup never flashes on load. */
+if(localStorage.getItem('tridharaDecreeSeen')==='1'){
+  document.documentElement.classList.add('decree-seen');
+}
+</script>
+<style>
+html.decree-seen #royalIntro{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transition:none!important;
+}
+</style>
+<script src="player-profile.js" defer></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-brand">
+    <svg class="header-logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="currentColor">
+        <path d="M24 6c2.4 3.6 3.6 7 3.6 10.2 0 3-1.2 5.6-3.6 7.8-2.4-2.2-3.6-4.8-3.6-7.8C20.4 13 21.6 9.6 24 6z"/>
+        <path d="M24 6c3.9 1.6 6.9 4 8.8 7.1 1.7 2.7 2.1 5.6 1.1 8.7-3.1-.5-5.6-2-7.6-4.6-1.9-2.5-2.7-5.6-2.3-11.2z"/>
+        <path d="M24 6c-3.9 1.6-6.9 4-8.8 7.1-1.7 2.7-2.1 5.6-1.1 8.7 3.1-.5 5.6-2 7.6-4.6 1.9-2.5 2.7-5.6 2.3-11.2z"/>
+        <path d="M24 24c3.6.2 6.6 1.6 8.9 4.1 2 2.2 3 4.8 3 7.9-3.4.6-6.5-.1-9.2-2.2-2.3-1.8-3.8-4.3-4.5-7.6.6-.9 1.2-1.6 1.8-2.2z"/>
+        <path d="M24 24c-3.6.2-6.6 1.6-8.9 4.1-2 2.2-3 4.8-3 7.9 3.4.6 6.5-.1 9.2-2.2 2.3-1.8 3.8-4.3 4.5-7.6-.6-.9-1.2-1.6-1.8-2.2z"/>
+        <path d="M24 24c0 5.4-1 9.6-3 12.8-1.4 2.2-3.1 3.8-5.2 4.9 1 .2 2 .3 3.1.3 3.6 0 6.6-1.3 9-3.8 1.9 2.5 4.9 3.8 9 3.8 1.1 0 2.1-.1 3.1-.3-2.1-1.1-3.8-2.7-5.2-4.9-2-3.2-3-7.4-3-12.8h-7.8z"/>
+      </g>
+    </svg>
+    <div class="header-titles">
+      <p class="brand-name"><span class="notranslate">TRIDHARA</span></p>
+      <span class="brand-tag" data-i18n="brandTag">CULTURE &bull; HISTORY &bull; CIVILIZATION</span>
+    </div>
+  </div>
+
+  <nav class="header-nav">
+    <a class="header-link" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+      <span class="link-text" data-i18n="navHome">Home</span>
+    </a>
+    <span class="header-divider"></span>
+
+    <div class="lang-dropdown" id="langDropdown">
+      <button class="lang-btn" id="langBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+        <span class="link-text" id="langLabel">English</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="lang-menu" id="langMenu" role="listbox">
+        <button class="lang-option selected" type="button" role="option" aria-selected="true" data-lang="English" data-code="en">English <span class="check">&#10003;</span></button>
+        <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="Hindi" data-code="hi">हिंदी <span class="check">&#10003;</span></button>
+        <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="Bengali" data-code="bn">বাংলা <span class="check">&#10003;</span></button>
+        <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="Odia" data-code="or">ଓଡ଼ିଆ <span class="check">&#10003;</span></button>
+        <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="Tamil" data-code="ta">தமிழ் <span class="check">&#10003;</span></button>
+        <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="Telugu" data-code="te">తెలుగు <span class="check">&#10003;</span></button>
+        <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="Malayalam" data-code="ml">മലയാളം <span class="check">&#10003;</span></button>
+        <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="Marathi" data-code="mr">मराठी <span class="check">&#10003;</span></button>
+        <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="Gujarati" data-code="gu">ગુજરાતી <span class="check">&#10003;</span></button>
+        <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="Punjabi" data-code="pa">ਪੰਜਾਬੀ <span class="check">&#10003;</span></button>
+      </div>
+    </div>
+
+    <button class="login-btn" id="profileBtn" type="button" data-player-trigger title="Edit your player profile">
+      <span class="pp-badge-icon" data-player-badge-icon data-player-badge-icon-default="👤" aria-hidden="true">👤</span>
+      <span class="link-text" data-player-badge-name data-player-badge-default="Profile">Profile</span>
+    </button>
+  </nav>
+</header>
+
+
+<div id="royalIntro" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+  <div class="royal-scroll" id="royalScroll" tabindex="0" role="button" aria-expanded="false">
+    <span class="royal-rod"></span>
+    <div class="royal-paper">
+      <div class="royal-content">
+        <div class="royal-seal">✦<br><span class="notranslate">TRIDHARA</span></div>
+        <h1 id="introTitle" data-i18n="introHeading">By Royal Decree</h1>
+        <p><strong data-i18n="introChosen">You have been chosen.</strong><br><br>
+        <span data-i18n="introBody">Three ancient scrolls of <em>Knowledge, Fortune &amp; Wisdom</em> lie hidden within the tapestry of <em class="notranslate">Itihasa</em>.</span><br><br>
+        <span data-i18n="introBody2">Seek them well. Unfurl their secrets. Let the discovery begin.</span></p>
+        <button id="enterItihasa" type="button" data-i18n="introAccept">I Accept the Decree</button>
+      </div>
+    </div>
+    <span class="royal-rod bottom"></span>
+  </div>
+</div>
+
+<div class="stage">
+  <main class="scene" id="scene">
+    <img class="reference" src="reference.png" alt="Itihasa reference composition">
+    <section class="culture-panel">
+      <h3 data-i18n="cultureHeading">Cuisine &amp; Flavours</h3>
+      <p data-i18n="cultureBody">India’s cuisine is a rich blend of regional ingredients, spices, and cooking traditions. From biryani and Indian cuisine to sweets like gulab jamun, every region offers unique flavours and dishes.</p>
+    </section>
+    <section class="literature-panel">
+      <h3 data-i18n="literatureHeading">Literature</h3>
+      <p data-i18n="literatureBody">Poetry, stories and ideas that shaped Indian literary expression across generations.</p>
+    </section>
+    <section class="tradition-panel">
+      <h3 data-i18n="traditionHeading">Tradition and People</h3>
+      <p data-i18n="traditionBody">India is home to people from many communities, languages, and cultures. Despite this diversity, shared traditions, festivals, and values create a strong sense of unity.</p>
+    </section>
+    <section class="performing-panel">
+      <h3 data-i18n="performingHeading">Performing Arts</h3>
+      <p data-i18n="performingBody">India has a diverse heritage of classical dances, folk music, theatre, festivals, and traditional art forms. <span class="notranslate">Bharatanatyam</span>, <span class="notranslate">Kathak</span>, and folk dances like <span class="notranslate">Garba</span> showcase this cultural richness.</p>
+    </section>
+    <section class="icons-panel">
+      <h3 data-i18n="iconsHeading">Icons of India</h3>
+      <p data-i18n="iconsBody">India is known for iconic landmarks, symbols, and personalities such as the <span class="notranslate">Taj Mahal</span>, the <span class="notranslate">Lotus Temple</span>, the national flag, and great leaders who shaped the country’s history.</p>
+    </section>
+
+    <div class="hotspot hs-akbar" data-label="lab-akbar" aria-label="Akbar"></div>
+    <div class="hotspot hs-birbal" data-label="lab-birbal" aria-label="Birbal"></div>
+    <div class="hotspot hs-food" data-label="lab-food" aria-label="Indian Cuisine"></div>
+    <div class="hotspot hs-tagore" data-label="lab-tagore" aria-label="Rabindranath Tagore"></div>
+    <div class="hotspot hs-draupadi" data-label="lab-draupadi" aria-label="Draupadi"></div>
+    <div class="hotspot hs-durga" data-label="lab-durga" aria-label="Durga Ma"></div>
+    <div class="hotspot hs-kathakali" data-label="lab-kathakali" aria-label="Kathakali"></div>
+    <div class="hotspot hs-taj" data-label="lab-taj" aria-label="Taj Mahal"></div>
+
+    <div class="label" id="lab-akbar" data-i18n="labAkbar">Akbar</div>
+    <div class="label" id="lab-birbal" data-i18n="labBirbal">Birbal</div>
+    <div class="label" id="lab-food" data-i18n="labFood">Indian Cuisine</div>
+    <div class="label" id="lab-tagore" data-i18n="labTagore">Rabindranath Tagore</div>
+    <div class="label" id="lab-draupadi" data-i18n="labDraupadi">Draupadi</div>
+    <div class="label" id="lab-durga" data-i18n="labDurga">Durga Ma</div>
+    <div class="label" id="lab-kathakali" data-i18n="labKathakali">Kathakali</div>
+    <div class="label" id="lab-taj" data-i18n="labTaj">Taj Mahal</div>
+
+    <div class="scrolls-layer" aria-label="Three hidden scrolls">
+      <article class="scroll civilization" tabindex="0" role="button" aria-expanded="false">
+<span class="scroll-rod"></span>
+        <div class="scroll-paper">
+          <span class="scroll-title" data-i18n="scrollCivTitle">Civilization</span>
+          <div class="scroll-content">
+            <div class="scroll-art"><img src="civilization.jpg" alt="Ancient Indian city"></div>
+            <div class="scroll-copy"><span data-i18n="scrollCivBody">Indian civilization grew through planned cities, agriculture, trade, craft, architecture and rich systems of community life.</span>
+              <a class="scroll-link" href="../kaalchakra modify/intro.html" data-i18n="discoverLink">Discover</a>
+            </div>
+          </div>
+        </div><span class="scroll-rod bottom"></span>
+      </article>
+
+      <article class="scroll history" tabindex="0" role="button" aria-expanded="false">
+<span class="scroll-rod"></span>
+        <div class="scroll-paper">
+          <span class="scroll-title" data-i18n="scrollHistTitle">History</span>
+          <div class="scroll-content">
+            <div class="scroll-art"><img src="history.jpg" alt="Peacock artwork"></div>
+            <div class="scroll-copy"><span data-i18n="scrollHistBody">India’s history is carried through kingdoms, people, art, architecture and stories that connect the past with the present.</span>
+              <a class="scroll-link" href="../itihasa modify/introitihasa.html" data-i18n="discoverLink">Discover</a>
+            </div>
+          </div>
+        </div><span class="scroll-rod bottom"></span>
+      </article>
+
+      <article class="scroll culture" tabindex="0" role="button" aria-expanded="false">
+<span class="scroll-rod"></span>
+        <div class="scroll-paper">
+          <span class="scroll-title" data-i18n="scrollCultTitle">Culture</span>
+          <div class="scroll-content">
+            <div class="scroll-art"><img src="culture.jpg" alt="Indian Garba dancer"></div>
+            <div class="scroll-copy"><span data-i18n="scrollCultBody">Indian culture lives through dance, music, dress, food, festivals and traditions passed from one generation to another.</span>
+              <a class="scroll-link" href="../chitra modify/bg2.html" data-i18n="discoverLink">Discover</a>
+            </div>
+          </div>
+        </div><span class="scroll-rod bottom"></span>
+      </article>
+    </div>
+  </main>
+</div>
+
+<script>
+/* --- Header: language dropdown + login button --- */
+const langDropdown=document.getElementById('langDropdown');
+const langBtn=document.getElementById('langBtn');
+const langMenu=document.getElementById('langMenu');
+const langLabel=document.getElementById('langLabel');
+const langOptions=[...document.querySelectorAll('.lang-option')];
+
+function closeLangMenu(){
+  langDropdown.classList.remove('open');
+  langBtn.setAttribute('aria-expanded','false');
+}
+langBtn.addEventListener('click',e=>{
+  e.stopPropagation();
+  const isOpen=langDropdown.classList.toggle('open');
+  langBtn.setAttribute('aria-expanded',String(isOpen));
+});
+const LANG_KEY='tridharaLang';
+
+/* --- Translation dictionary ---
+   Every translatable string on the page lives here, keyed the same way
+   as the data-i18n attributes in the HTML. Values may contain simple
+   inline HTML (e.g. <em>, <span class="notranslate">) so proper nouns and
+   emphasis survive translation untouched. */
+const I18N={
+en:{
+  brandTag:"CULTURE &bull; HISTORY &bull; CIVILIZATION",
+  navHome:"Home",
+  navLogin:"Login",
+  introHeading:"By Royal Decree",
+  introChosen:"You have been chosen.",
+  introBody:"Three ancient scrolls of <em>Knowledge, Fortune &amp; Wisdom</em> lie hidden within the tapestry of <em class=\"notranslate\">Itihasa</em>.",
+  introBody2:"Seek them well. Unfurl their secrets. Let the discovery begin.",
+  introAccept:"I Accept the Decree",
+  cultureHeading:"Cuisine &amp; Flavours",
+  cultureBody:"India’s cuisine is a rich blend of regional ingredients, spices, and cooking traditions. From biryani and Indian cuisine to sweets like gulab jamun, every region offers unique flavours and dishes.",
+  literatureHeading:"Literature",
+  literatureBody:"Poetry, stories and ideas that shaped Indian literary expression across generations.",
+  traditionHeading:"Tradition and People",
+  traditionBody:"India is home to people from many communities, languages, and cultures. Despite this diversity, shared traditions, festivals, and values create a strong sense of unity.",
+  performingHeading:"Performing Arts",
+  performingBody:"India has a diverse heritage of classical dances, folk music, theatre, festivals, and traditional art forms. <span class=\"notranslate\">Bharatanatyam</span>, <span class=\"notranslate\">Kathak</span>, and folk dances like <span class=\"notranslate\">Garba</span> showcase this cultural richness.",
+  iconsHeading:"Icons of India",
+  iconsBody:"India is known for iconic landmarks, symbols, and personalities such as the <span class=\"notranslate\">Taj Mahal</span>, the <span class=\"notranslate\">Lotus Temple</span>, the national flag, and great leaders who shaped the country’s history.",
+  scrollCivTitle:"Civilization",
+  scrollCivBody:"Indian civilization grew through planned cities, agriculture, trade, craft, architecture and rich systems of community life.",
+  scrollHistTitle:"History",
+  scrollHistBody:"India’s history is carried through kingdoms, people, art, architecture and stories that connect the past with the present.",
+  scrollCultTitle:"Culture",
+  scrollCultBody:"Indian culture lives through dance, music, dress, food, festivals and traditions passed from one generation to another.",
+  discoverLink:"Discover",
+  labAkbar:"Akbar",
+  labBirbal:"Birbal",
+  labFood:"Indian Cuisine",
+  labTagore:"Rabindranath Tagore",
+  labDraupadi:"Draupadi",
+  labDurga:"Durga Ma",
+  labKathakali:"Kathakali",
+  labTaj:"Taj Mahal"
+},
+hi:{
+  brandTag:"संस्कृति • इतिहास • सभ्यता",
+  navHome:"होम",
+  navLogin:"लॉगिन",
+  introHeading:"शाही आदेश द्वारा",
+  introChosen:"आपको चुना गया है।",
+  introBody:"<em>ज्ञान, सौभाग्य और बुद्धि</em> के तीन प्राचीन स्क्रॉल <em class=\"notranslate\">Itihasa</em> के ताने-बाने में छिपे हैं।",
+  introBody2:"उन्हें अच्छी तरह खोजें। उनके रहस्यों को उजागर करें। खोज की शुरुआत होने दें।",
+  introAccept:"मैं आदेश स्वीकार करता हूँ",
+  cultureHeading:"व्यंजन और स्वाद",
+  cultureBody:"भारत का भोजन क्षेत्रीय सामग्री, मसालों और पाक परंपराओं का समृद्ध मिश्रण है। बिरयानी और भारतीय व्यंजनों से लेकर गुलाब जामुन जैसी मिठाइयों तक, हर क्षेत्र अनूठे स्वाद और व्यंजन प्रस्तुत करता है।",
+  literatureHeading:"साहित्य",
+  literatureBody:"कविता, कहानियाँ और विचार जिन्होंने पीढ़ियों से भारतीय साहित्यिक अभिव्यक्ति को आकार दिया।",
+  traditionHeading:"परंपरा और लोग",
+  traditionBody:"भारत कई समुदायों, भाषाओं और संस्कृतियों के लोगों का घर है। इस विविधता के बावजूद, साझा परंपराएँ, त्योहार और मूल्य एकता की गहरी भावना पैदा करते हैं।",
+  performingHeading:"प्रदर्शन कलाएँ",
+  performingBody:"भारत में शास्त्रीय नृत्य, लोक संगीत, रंगमंच, त्योहार और पारंपरिक कला रूपों की विविध विरासत है। <span class=\"notranslate\">Bharatanatyam</span>, <span class=\"notranslate\">Kathak</span> और <span class=\"notranslate\">Garba</span> जैसे लोक नृत्य इस सांस्कृतिक समृद्धि को दर्शाते हैं।",
+  iconsHeading:"भारत के प्रतीक",
+  iconsBody:"भारत अपने प्रतिष्ठित स्थलों, प्रतीकों और व्यक्तित्वों के लिए जाना जाता है, जैसे <span class=\"notranslate\">Taj Mahal</span>, <span class=\"notranslate\">Lotus Temple</span>, राष्ट्रीय ध्वज, और महान नेता जिन्होंने देश के इतिहास को आकार दिया।",
+  scrollCivTitle:"सभ्यता",
+  scrollCivBody:"भारतीय सभ्यता नियोजित शहरों, कृषि, व्यापार, शिल्प, वास्तुकला और सामुदायिक जीवन की समृद्ध प्रणालियों के माध्यम से विकसित हुई।",
+  scrollHistTitle:"इतिहास",
+  scrollHistBody:"भारत का इतिहास राजवंशों, लोगों, कला, वास्तुकला और कहानियों के माध्यम से आगे बढ़ता है जो अतीत को वर्तमान से जोड़ती हैं।",
+  scrollCultTitle:"संस्कृति",
+  scrollCultBody:"भारतीय संस्कृति नृत्य, संगीत, वेशभूषा, भोजन, त्योहारों और परंपराओं के माध्यम से जीवित है जो एक पीढ़ी से दूसरी पीढ़ी तक चलती हैं।",
+  discoverLink:"जानें",
+  labAkbar:"अकबर",
+  labBirbal:"बीरबल",
+  labFood:"भारतीय व्यंजन",
+  labTagore:"रवींद्रनाथ टैगोर",
+  labDraupadi:"द्रौपदी",
+  labDurga:"दुर्गा माँ",
+  labKathakali:"कथकली",
+  labTaj:"ताज महल"
+},
+bn:{
+  brandTag:"সংস্কৃতি • ইতিহাস • সভ্যতা",
+  navHome:"হোম",
+  navLogin:"লগইন",
+  introHeading:"রাজকীয় আদেশে",
+  introChosen:"আপনাকে নির্বাচিত করা হয়েছে।",
+  introBody:"<em>জ্ঞান, সৌভাগ্য ও প্রজ্ঞা</em>র তিনটি প্রাচীন স্ক্রল <em class=\"notranslate\">Itihasa</em>-এর বুননে লুকিয়ে আছে।",
+  introBody2:"ভালোভাবে খুঁজুন। তাদের রহস্য উন্মোচন করুন। আবিষ্কার শুরু হোক।",
+  introAccept:"আমি আদেশ গ্রহণ করছি",
+  cultureHeading:"খাদ্য ও স্বাদ",
+  cultureBody:"ভারতের খাদ্য আঞ্চলিক উপকরণ, মশলা এবং রান্নার ঐতিহ্যের এক সমৃদ্ধ মিশ্রণ। বিরিয়ানি ও ভারতীয় খাবার থেকে গুলাব জামুনের মতো মিষ্টি পর্যন্ত, প্রতিটি অঞ্চল অনন্য স্বাদ ও পদ উপস্থাপন করে।",
+  literatureHeading:"সাহিত্য",
+  literatureBody:"কবিতা, গল্প এবং ভাবনা যা প্রজন্মান্তরে ভারতীয় সাহিত্যিক প্রকাশকে গড়ে তুলেছে।",
+  traditionHeading:"ঐতিহ্য ও মানুষ",
+  traditionBody:"ভারত বহু সম্প্রদায়, ভাষা ও সংস্কৃতির মানুষের আবাসস্থল। এই বৈচিত্র্য সত্ত্বেও, ভাগ করা ঐতিহ্য, উৎসব এবং মূল্যবোধ ঐক্যের এক দৃঢ় অনুভূতি তৈরি করে।",
+  performingHeading:"পরিবেশন শিল্প",
+  performingBody:"ভারতে শাস্ত্রীয় নৃত্য, লোকসংগীত, নাট্য, উৎসব এবং ঐতিহ্যবাহী শিল্পকলার বৈচিত্র্যময় ঐতিহ্য রয়েছে। <span class=\"notranslate\">Bharatanatyam</span>, <span class=\"notranslate\">Kathak</span> এবং <span class=\"notranslate\">Garba</span>-এর মতো লোকনৃত্য এই সাংস্কৃতিক সমৃদ্ধি তুলে ধরে।",
+  iconsHeading:"ভারতের প্রতীক",
+  iconsBody:"ভারত তার আইকনিক স্থাপনা, প্রতীক এবং ব্যক্তিত্বের জন্য পরিচিত, যেমন <span class=\"notranslate\">Taj Mahal</span>, <span class=\"notranslate\">Lotus Temple</span>, জাতীয় পতাকা এবং মহান নেতারা যাঁরা দেশের ইতিহাস গড়েছেন।",
+  scrollCivTitle:"সভ্যতা",
+  scrollCivBody:"ভারতীয় সভ্যতা পরিকল্পিত শহর, কৃষি, বাণিজ্য, কারুশিল্প, স্থাপত্য এবং সমৃদ্ধ সামাজিক জীবনের মাধ্যমে গড়ে উঠেছে।",
+  scrollHistTitle:"ইতিহাস",
+  scrollHistBody:"ভারতের ইতিহাস রাজ্য, মানুষ, শিল্প, স্থাপত্য এবং গল্পের মধ্য দিয়ে বাহিত হয় যা অতীতকে বর্তমানের সাথে যুক্ত করে।",
+  scrollCultTitle:"সংস্কৃতি",
+  scrollCultBody:"ভারতীয় সংস্কৃতি নাচ, গান, পোশাক, খাদ্য, উৎসব এবং ঐতিহ্যের মধ্য দিয়ে বেঁচে থাকে যা এক প্রজন্ম থেকে অন্য প্রজন্মে বাহিত হয়।",
+  discoverLink:"আবিষ্কার করুন",
+  labAkbar:"আকবর",
+  labBirbal:"বীরবল",
+  labFood:"ভারতীয় খাবার",
+  labTagore:"রবীন্দ্রনাথ ঠাকুর",
+  labDraupadi:"দ্রৌপদী",
+  labDurga:"দুর্গা মা",
+  labKathakali:"কথাকলি",
+  labTaj:"তাজমহল"
+},
+or:{
+  brandTag:"ସଂସ୍କୃତି • ଇତିହାସ • ସଭ୍ୟତା",
+  navHome:"ହୋମ୍",
+  navLogin:"ଲଗଇନ୍",
+  introHeading:"ରାଜକୀୟ ଆଦେଶ ଦ୍ୱାରା",
+  introChosen:"ଆପଣଙ୍କୁ ମନୋନୀତ କରାଯାଇଛି।",
+  introBody:"<em>ଜ୍ଞାନ, ସୌଭାଗ୍ୟ ଓ ପ୍ରଜ୍ଞା</em>ର ତିନୋଟି ପ୍ରାଚୀନ ସ୍କ୍ରଲ୍ <em class=\"notranslate\">Itihasa</em>ର ବୁଣାଟରେ ଲୁକ୍କାୟିତ ଅଛି।",
+  introBody2:"ସେମାନଙ୍କୁ ଭଲଭାବେ ଖୋଜନ୍ତୁ। ସେମାନଙ୍କ ରହସ୍ୟ ଉନ୍ମୋଚନ କରନ୍ତୁ। ଆବିଷ୍କାର ଆରମ୍ଭ ହେଉ।",
+  introAccept:"ମୁଁ ଆଦେଶ ଗ୍ରହଣ କରୁଛି",
+  cultureHeading:"ଖାଦ୍ୟ ଓ ସ୍ୱାଦ",
+  cultureBody:"ଭାରତର ଖାଦ୍ୟ ଆଞ୍ଚଳିକ ଉପାଦାନ, ମସଲା ଏବଂ ରନ୍ଧନ ପରମ୍ପରାର ଏକ ସମୃଦ୍ଧ ମିଶ୍ରଣ। ବିରିଆନି ଓ ଭାରତୀୟ ଖାଦ୍ୟଠାରୁ ଗୁଲାବ ଜାମୁନ ଭଳି ମିଠା ପର୍ଯ୍ୟନ୍ତ, ପ୍ରତ୍ୟେକ ଅଞ୍ଚଳ ଅନନ୍ୟ ସ୍ୱାଦ ଓ ପଦ ଉପସ୍ଥାପନ କରେ।",
+  literatureHeading:"ସାହିତ୍ୟ",
+  literatureBody:"କବିତା, କାହାଣୀ ଏବଂ ଚିନ୍ତାଧାରା ଯାହା ପିଢ଼ି ପରେ ପିଢ଼ି ଭାରତୀୟ ସାହିତ୍ୟିକ ଅଭିବ୍ୟକ୍ତିକୁ ଆକାର ଦେଇଛି।",
+  traditionHeading:"ପରମ୍ପରା ଓ ଲୋକ",
+  traditionBody:"ଭାରତ ଅନେକ ସମ୍ପ୍ରଦାୟ, ଭାଷା ଓ ସଂସ୍କୃତିର ଲୋକଙ୍କ ଆବାସସ୍ଥଳ। ଏହି ବିବିଧତା ସତ୍ତ୍ୱେ, ସହଭାଗୀ ପରମ୍ପରା, ପର୍ବପର୍ବାଣୀ ଓ ମୂଲ୍ୟବୋଧ ଏକତାର ଏକ ଦୃଢ଼ ଭାବନା ସୃଷ୍ଟି କରେ।",
+  performingHeading:"ପ୍ରଦର୍ଶନ କଳା",
+  performingBody:"ଭାରତରେ ଶାସ୍ତ୍ରୀୟ ନୃତ୍ୟ, ଲୋକସଙ୍ଗୀତ, ନାଟ୍ୟ, ପର୍ବ ଓ ପାରମ୍ପରିକ କଳାରୂପର ବିବିଧ ଐତିହ୍ୟ ରହିଛି। <span class=\"notranslate\">Bharatanatyam</span>, <span class=\"notranslate\">Kathak</span> ଏବଂ <span class=\"notranslate\">Garba</span> ଭଳି ଲୋକନୃତ୍ୟ ଏହି ସାଂସ୍କୃତିକ ସମୃଦ୍ଧିକୁ ପ୍ରଦର୍ଶିତ କରେ।",
+  iconsHeading:"ଭାରତର ପ୍ରତୀକ",
+  iconsBody:"ଭାରତ ତାହାର ପ୍ରସିଦ୍ଧ ସ୍ଥାପତ୍ୟ, ପ୍ରତୀକ ଓ ବ୍ୟକ୍ତିତ୍ୱ ପାଇଁ ଜଣାଶୁଣା, ଯେମିତି <span class=\"notranslate\">Taj Mahal</span>, <span class=\"notranslate\">Lotus Temple</span>, ଜାତୀୟ ପତାକା, ଏବଂ ମହାନ ନେତାମାନେ ଯେଉଁମାନେ ଦେଶର ଇତିହାସକୁ ଆକାର ଦେଇଛନ୍ତି।",
+  scrollCivTitle:"ସଭ୍ୟତା",
+  scrollCivBody:"ଭାରତୀୟ ସଭ୍ୟତା ଯୋଜିତ ସହର, କୃଷି, ବାଣିଜ୍ୟ, ଶିଳ୍ପକଳା, ସ୍ଥାପତ୍ୟ ଏବଂ ସମୃଦ୍ଧ ସାମାଜିକ ଜୀବନ ମାଧ୍ୟମରେ ବିକଶିତ ହୋଇଥିଲା।",
+  scrollHistTitle:"ଇତିହାସ",
+  scrollHistBody:"ଭାରତର ଇତିହାସ ରାଜ୍ୟ, ଲୋକ, କଳା, ସ୍ଥାପତ୍ୟ ଏବଂ କାହାଣୀ ମାଧ୍ୟମରେ ବହନ ହୋଇଥାଏ ଯାହା ଅତୀତକୁ ବର୍ତ୍ତମାନ ସହିତ ଯୋଡ଼େ।",
+  scrollCultTitle:"ସଂସ୍କୃତି",
+  scrollCultBody:"ଭାରତୀୟ ସଂସ୍କୃତି ନୃତ୍ୟ, ସଙ୍ଗୀତ, ପୋଷାକ, ଖାଦ୍ୟ, ପର୍ବ ଓ ପରମ୍ପରା ମାଧ୍ୟମରେ ଜୀବିତ ରହିଥାଏ ଯାହା ଏକ ପିଢ଼ିରୁ ଅନ୍ୟ ପିଢ଼ିକୁ ପ୍ରବାହିତ ହୁଏ।",
+  discoverLink:"ଆବିଷ୍କାର କରନ୍ତୁ",
+  labAkbar:"ଆକବର",
+  labBirbal:"ବୀରବଲ",
+  labFood:"ଭାରତୀୟ ଖାଦ୍ୟ",
+  labTagore:"ରବୀନ୍ଦ୍ରନାଥ ଠାକୁର",
+  labDraupadi:"ଦ୍ରୌପଦୀ",
+  labDurga:"ଦୁର୍ଗା ମା",
+  labKathakali:"କଥାକଳି",
+  labTaj:"ତାଜମହଲ"
+},
+ta:{
+  brandTag:"பண்பாடு • வரலாறு • நாகரிகம்",
+  navHome:"முகப்பு",
+  navLogin:"உள்நுழைவு",
+  introHeading:"அரச கட்டளையால்",
+  introChosen:"நீங்கள் தேர்ந்தெடுக்கப்பட்டுள்ளீர்கள்.",
+  introBody:"<em>அறிவு, செல்வம் மற்றும் ஞானம்</em> ஆகியவற்றின் மூன்று பண்டைய சுருள்கள் <em class=\"notranslate\">Itihasa</em>வின் நெசவினுள் மறைந்துள்ளன.",
+  introBody2:"அவற்றை நன்கு தேடுங்கள். அவற்றின் ரகசியங்களை வெளிப்படுத்துங்கள். கண்டுபிடிப்பு தொடங்கட்டும்.",
+  introAccept:"நான் கட்டளையை ஏற்கிறேன்",
+  cultureHeading:"உணவு மற்றும் சுவைகள்",
+  cultureBody:"இந்தியாவின் உணவு பிராந்திய பொருட்கள், மசாலாக்கள் மற்றும் சமையல் மரபுகளின் வளமான கலவையாகும். பிரியாணி மற்றும் இந்திய உணவுகளிலிருந்து குலாப் ஜாமூன் போன்ற இனிப்புகள் வரை, ஒவ்வொரு பகுதியும் தனித்துவமான சுவைகளையும் உணவுகளையும் வழங்குகிறது.",
+  literatureHeading:"இலக்கியம்",
+  literatureBody:"தலைமுறை தலைமுறையாக இந்திய இலக்கிய வெளிப்பாட்டை வடிவமைத்த கவிதைகள், கதைகள் மற்றும் எண்ணங்கள்.",
+  traditionHeading:"மரபும் மக்களும்",
+  traditionBody:"பல சமூகங்கள், மொழிகள் மற்றும் பண்பாடுகளைச் சேர்ந்த மக்களின் தாயகம் இந்தியா. இந்த பன்முகத்தன்மை இருந்தபோதிலும், பகிரப்பட்ட மரபுகள், திருவிழாக்கள் மற்றும் மதிப்புகள் ஒற்றுமையின் வலுவான உணர்வை உருவாக்குகின்றன.",
+  performingHeading:"நிகழ்த்துக் கலைகள்",
+  performingBody:"இந்தியாவில் பாரம்பரிய நடனங்கள், நாட்டுப்புற இசை, நாடகம், திருவிழாக்கள் மற்றும் பாரம்பரிய கலை வடிவங்களின் பன்முக பாரம்பரியம் உள்ளது. <span class=\"notranslate\">Bharatanatyam</span>, <span class=\"notranslate\">Kathak</span> மற்றும் <span class=\"notranslate\">Garba</span> போன்ற நாட்டுப்புற நடனங்கள் இந்த பண்பாட்டு வளத்தை வெளிப்படுத்துகின்றன.",
+  iconsHeading:"இந்தியாவின் அடையாளங்கள்",
+  iconsBody:"இந்தியா <span class=\"notranslate\">Taj Mahal</span>, <span class=\"notranslate\">Lotus Temple</span>, தேசியக் கொடி மற்றும் நாட்டின் வரலாற்றை வடிவமைத்த மாபெரும் தலைவர்கள் போன்ற சின்னமான அடையாளங்கள், சின்னங்கள் மற்றும் ஆளுமைகளுக்காக அறியப்படுகிறது.",
+  scrollCivTitle:"நாகரிகம்",
+  scrollCivBody:"இந்திய நாகரிகம் திட்டமிடப்பட்ட நகரங்கள், விவசாயம், வர்த்தகம், கைவினை, கட்டிடக்கலை மற்றும் வளமான சமூக வாழ்க்கை முறைகள் மூலம் வளர்ந்தது.",
+  scrollHistTitle:"வரலாறு",
+  scrollHistBody:"இந்தியாவின் வரலாறு அரசுகள், மக்கள், கலை, கட்டிடக்கலை மற்றும் கடந்த காலத்தை நிகழ்காலத்துடன் இணைக்கும் கதைகள் மூலம் தாங்கிச் செல்லப்படுகிறது.",
+  scrollCultTitle:"பண்பாடு",
+  scrollCultBody:"இந்திய பண்பாடு நடனம், இசை, ஆடை, உணவு, திருவிழாக்கள் மற்றும் ஒரு தலைமுறையிலிருந்து மற்றொரு தலைமுறைக்கு கடத்தப்படும் மரபுகள் மூலம் வாழ்கிறது.",
+  discoverLink:"கண்டறியவும்",
+  labAkbar:"அக்பர்",
+  labBirbal:"பீர்பால்",
+  labFood:"இந்திய உணவு",
+  labTagore:"ரவீந்திரநாத் தாகூர்",
+  labDraupadi:"திரௌபதி",
+  labDurga:"துர்கா அம்மன்",
+  labKathakali:"கதகளி",
+  labTaj:"தாஜ் மகால்"
+},
+te:{
+  brandTag:"సంస్కృతి • చరిత్ర • నాగరికత",
+  navHome:"హోమ్",
+  navLogin:"లాగిన్",
+  introHeading:"రాజ శాసనం ద్వారా",
+  introChosen:"మీరు ఎంపిక చేయబడ్డారు.",
+  introBody:"<em>జ్ఞానం, అదృష్టం మరియు వివేకం</em> అనే మూడు పురాతన స్క్రోల్‌లు <em class=\"notranslate\">Itihasa</em> నేతలో దాగి ఉన్నాయి.",
+  introBody2:"వాటిని బాగా వెతకండి. వాటి రహస్యాలను వెల్లడించండి. ఆవిష్కరణ ప్రారంభం కానివ్వండి.",
+  introAccept:"నేను శాసనాన్ని అంగీకరిస్తున్నాను",
+  cultureHeading:"వంటకాలు &amp; రుచులు",
+  cultureBody:"భారతదేశ వంటకం ప్రాంతీయ పదార్థాలు, మసాలాలు మరియు వంట సంప్రదాయాల గొప్ప మిశ్రమం. బిర్యానీ మరియు భారతీయ వంటకాల నుండి గులాబ్ జామూన్ వంటి తీపి పదార్థాల వరకు, ప్రతి ప్రాంతం ప్రత్యేకమైన రుచులు మరియు వంటకాలను అందిస్తుంది.",
+  literatureHeading:"సాహిత్యం",
+  literatureBody:"తరతరాలుగా భారతీయ సాహిత్య భావ వ్యక్తీకరణను రూపొందించిన కవిత్వం, కథలు మరియు ఆలోచనలు.",
+  traditionHeading:"సంప్రదాయం &amp; ప్రజలు",
+  traditionBody:"భారతదేశం అనేక సమాజాలు, భాషలు మరియు సంస్కృతులకు చెందిన ప్రజలకు నిలయం. ఈ వైవిధ్యం ఉన్నప్పటికీ, పంచుకున్న సంప్రదాయాలు, పండుగలు మరియు విలువలు ఐక్యత యొక్క బలమైన భావనను సృష్టిస్తాయి.",
+  performingHeading:"ప్రదర్శన కళలు",
+  performingBody:"భారతదేశంలో శాస్త్రీయ నృత్యాలు, జానపద సంగీతం, నాటకం, పండుగలు మరియు సాంప్రదాయ కళారూపాల విభిన్న వారసత్వం ఉంది. <span class=\"notranslate\">Bharatanatyam</span>, <span class=\"notranslate\">Kathak</span> మరియు <span class=\"notranslate\">Garba</span> వంటి జానపద నృత్యాలు ఈ సాంస్కృతిక సంపదను ప్రదర్శిస్తాయి.",
+  iconsHeading:"భారత ప్రతీకలు",
+  iconsBody:"భారతదేశం <span class=\"notranslate\">Taj Mahal</span>, <span class=\"notranslate\">Lotus Temple</span>, జాతీయ జెండా మరియు దేశ చరిత్రను తీర్చిదిద్దిన గొప్ప నాయకుల వంటి ప్రసిద్ధ కట్టడాలు, చిహ్నాలు మరియు వ్యక్తిత్వాలకు ప్రసిద్ధి చెందింది.",
+  scrollCivTitle:"నాగరికత",
+  scrollCivBody:"భారతీయ నాగరికత ప్రణాళికాబద్ధమైన నగరాలు, వ్యవసాయం, వాణిజ్యం, హస్తకళలు, వాస్తుశిల్పం మరియు గొప్ప సామాజిక జీవన వ్యవస్థల ద్వారా అభివృద్ధి చెందింది.",
+  scrollHistTitle:"చరిత్ర",
+  scrollHistBody:"భారతదేశ చరిత్ర రాజ్యాలు, ప్రజలు, కళ, వాస్తుశిల్పం మరియు గతాన్ని వర్తమానంతో అనుసంధానించే కథల ద్వారా కొనసాగుతుంది.",
+  scrollCultTitle:"సంస్కృతి",
+  scrollCultBody:"భారతీయ సంస్కృతి నృత్యం, సంగీతం, దుస్తులు, ఆహారం, పండుగలు మరియు ఒక తరం నుండి మరొక తరానికి అందించబడే సంప్రదాయాల ద్వారా జీవిస్తుంది.",
+  discoverLink:"అన్వేషించండి",
+  labAkbar:"అక్బర్",
+  labBirbal:"బీర్బల్",
+  labFood:"భారతీయ వంటకాలు",
+  labTagore:"రవీంద్రనాథ్ ఠాగూర్",
+  labDraupadi:"ద్రౌపది",
+  labDurga:"దుర్గా మా",
+  labKathakali:"కథాకళి",
+  labTaj:"తాజ్ మహల్"
+},
+ml:{
+  brandTag:"സംസ്കാരം • ചരിത്രം • നാഗരികത",
+  navHome:"ഹോം",
+  navLogin:"ലോഗിൻ",
+  introHeading:"രാജകൽപ്പന പ്രകാരം",
+  introChosen:"നിങ്ങളെ തിരഞ്ഞെടുത്തിരിക്കുന്നു.",
+  introBody:"<em>അറിവ്, ഭാഗ്യം, ജ്ഞാനം</em> എന്നിവയുടെ മൂന്ന് പുരാതന ചുരുളുകൾ <em class=\"notranslate\">Itihasa</em>യുടെ നെയ്ത്തിനുള്ളിൽ ഒളിഞ്ഞിരിക്കുന്നു.",
+  introBody2:"അവയെ നന്നായി അന്വേഷിക്കുക. അവയുടെ രഹസ്യങ്ങൾ അനാവരണം ചെയ്യുക. കണ്ടെത്തൽ ആരംഭിക്കട്ടെ.",
+  introAccept:"ഞാൻ കൽപ്പന സ്വീകരിക്കുന്നു",
+  cultureHeading:"ഭക്ഷണവും രുചികളും",
+  cultureBody:"ഇന്ത്യൻ പാചകരീതി പ്രാദേശിക ചേരുവകൾ, മസാലകൾ, പാചക പാരമ്പര്യങ്ങൾ എന്നിവയുടെ സമ്പന്നമായ സങ്കലനമാണ്. ബിരിയാണിയും ഇന്ത്യൻ വിഭവങ്ങളും മുതൽ ഗുലാബ് ജാമുൻ പോലുള്ള മധുരപലഹാരങ്ങൾ വരെ, ഓരോ പ്രദേശവും തനതായ രുചികളും വിഭവങ്ങളും വാഗ്ദാനം ചെയ്യുന്നു.",
+  literatureHeading:"സാഹിത്യം",
+  literatureBody:"തലമുറകളായി ഇന്ത്യൻ സാഹിത്യ ആവിഷ്കാരത്തെ രൂപപ്പെടുത്തിയ കവിതകളും കഥകളും ആശയങ്ങളും.",
+  traditionHeading:"പാരമ്പര്യവും ജനങ്ങളും",
+  traditionBody:"പല സമൂഹങ്ങളിലും ഭാഷകളിലും സംസ്കാരങ്ങളിലും പെട്ട ജനങ്ങളുടെ ഭവനമാണ് ഇന്ത്യ. ഈ വൈവിധ്യമുണ്ടായിട്ടും, പങ്കിട്ട പാരമ്പര്യങ്ങളും ഉത്സവങ്ങളും മൂല്യങ്ങളും ഐക്യത്തിന്റെ ശക്തമായ ഒരു ബോധം സൃഷ്ടിക്കുന്നു.",
+  performingHeading:"പ്രകടന കലകൾ",
+  performingBody:"ഇന്ത്യയ്ക്ക് ശാസ്ത്രീയ നൃത്തങ്ങൾ, നാടോടി സംഗീതം, നാടകം, ഉത്സവങ്ങൾ, പരമ്പരാഗത കലാരൂപങ്ങൾ എന്നിവയുടെ വൈവിധ്യമാർന്ന പൈതൃകമുണ്ട്. <span class=\"notranslate\">Bharatanatyam</span>, <span class=\"notranslate\">Kathak</span>, <span class=\"notranslate\">Garba</span> പോലുള്ള നാടോടി നൃത്തങ്ങൾ ഈ സാംസ്കാരിക സമ്പന്നത പ്രകടമാക്കുന്നു.",
+  iconsHeading:"ഇന്ത്യയുടെ ചിഹ്നങ്ങൾ",
+  iconsBody:"<span class=\"notranslate\">Taj Mahal</span>, <span class=\"notranslate\">Lotus Temple</span>, ദേശീയ പതാക, രാജ്യത്തിന്റെ ചരിത്രം രൂപപ്പെടുത്തിയ മഹാനായ നേതാക്കൾ തുടങ്ങിയ പ്രശസ്തമായ അടയാളങ്ങൾ, ചിഹ്നങ്ങൾ, വ്യക്തിത്വങ്ങൾ എന്നിവയ്ക്ക് ഇന്ത്യ പ്രശസ്തമാണ്.",
+  scrollCivTitle:"നാഗരികത",
+  scrollCivBody:"ആസൂത്രിത നഗരങ്ങൾ, കൃഷി, വ്യാപാരം, കരകൗശലം, വാസ്തുവിദ്യ, സമ്പന്നമായ സാമൂഹിക ജീവിത സംവിധാനങ്ങൾ എന്നിവയിലൂടെ ഇന്ത്യൻ നാഗരികത വളർന്നു.",
+  scrollHistTitle:"ചരിത്രം",
+  scrollHistBody:"ഭൂതകാലത്തെ വർത്തമാനവുമായി ബന്ധിപ്പിക്കുന്ന രാജ്യങ്ങൾ, ജനങ്ങൾ, കല, വാസ്തുവിദ്യ, കഥകൾ എന്നിവയിലൂടെ ഇന്ത്യയുടെ ചരിത്രം വഹിക്കപ്പെടുന്നു.",
+  scrollCultTitle:"സംസ്കാരം",
+  scrollCultBody:"ഒരു തലമുറയിൽ നിന്ന് മറ്റൊന്നിലേക്ക് കൈമാറ്റം ചെയ്യപ്പെടുന്ന നൃത്തം, സംഗീതം, വേഷം, ഭക്ഷണം, ഉത്സവങ്ങൾ, പാരമ്പര്യങ്ങൾ എന്നിവയിലൂടെ ഇന്ത്യൻ സംസ്കാരം ജീവിക്കുന്നു.",
+  discoverLink:"കണ്ടെത്തുക",
+  labAkbar:"അക്ബർ",
+  labBirbal:"ബീർബൽ",
+  labFood:"ഇന്ത്യൻ പാചകരീതി",
+  labTagore:"രവീന്ദ്രനാഥ് ടാഗോർ",
+  labDraupadi:"ദ്രൗപദി",
+  labDurga:"ദുർഗ്ഗാ മാ",
+  labKathakali:"കഥകളി",
+  labTaj:"താജ്‌ മഹൽ"
+},
+mr:{
+  brandTag:"संस्कृती • इतिहास • सभ्यता",
+  navHome:"मुख्यपृष्ठ",
+  navLogin:"लॉगिन",
+  introHeading:"राजाज्ञेनुसार",
+  introChosen:"तुमची निवड झाली आहे.",
+  introBody:"<em>ज्ञान, सुदैव आणि शहाणपण</em> यांच्या तीन प्राचीन गुंडाळ्या <em class=\"notranslate\">Itihasa</em>च्या विणीत लपलेल्या आहेत.",
+  introBody2:"त्यांचा नीट शोध घ्या. त्यांची रहस्ये उलगडा. शोधाला सुरुवात होऊ द्या.",
+  introAccept:"मी आज्ञा स्वीकारतो",
+  cultureHeading:"खाद्य आणि स्वाद",
+  cultureBody:"भारतीय खाद्यसंस्कृती ही प्रादेशिक जिन्नस, मसाले आणि स्वयंपाकाच्या परंपरांचे समृद्ध मिश्रण आहे. बिर्याणी आणि भारतीय पदार्थांपासून ते गुलाबजामसारख्या मिठाईपर्यंत, प्रत्येक प्रदेश अनोखे स्वाद आणि पदार्थ सादर करतो.",
+  literatureHeading:"साहित्य",
+  literatureBody:"पिढ्यानपिढ्या भारतीय साहित्यिक अभिव्यक्तीला आकार देणारी कविता, कथा आणि विचार.",
+  traditionHeading:"परंपरा आणि लोक",
+  traditionBody:"भारत अनेक समुदाय, भाषा आणि संस्कृतींच्या लोकांचे घर आहे. ही विविधता असूनही, सामायिक परंपरा, सण आणि मूल्ये एकतेची दृढ भावना निर्माण करतात.",
+  performingHeading:"प्रदर्शन कला",
+  performingBody:"भारतात शास्त्रीय नृत्य, लोकसंगीत, रंगभूमी, सण आणि पारंपरिक कलाप्रकारांचा वैविध्यपूर्ण वारसा आहे. <span class=\"notranslate\">Bharatanatyam</span>, <span class=\"notranslate\">Kathak</span> आणि <span class=\"notranslate\">Garba</span> सारखी लोकनृत्ये ही सांस्कृतिक समृद्धी दर्शवतात.",
+  iconsHeading:"भारताची प्रतीके",
+  iconsBody:"भारत <span class=\"notranslate\">Taj Mahal</span>, <span class=\"notranslate\">Lotus Temple</span>, राष्ट्रध्वज आणि देशाचा इतिहास घडवणाऱ्या महान नेत्यांसारख्या प्रतिष्ठित वास्तू, प्रतीके आणि व्यक्तिमत्त्वांसाठी ओळखला जातो.",
+  scrollCivTitle:"सभ्यता",
+  scrollCivBody:"भारतीय सभ्यता नियोजित शहरे, शेती, व्यापार, हस्तकला, स्थापत्य आणि समृद्ध सामाजिक जीवनपद्धतींद्वारे विकसित झाली.",
+  scrollHistTitle:"इतिहास",
+  scrollHistBody:"भारताचा इतिहास राज्ये, लोक, कला, स्थापत्य आणि भूतकाळाला वर्तमानाशी जोडणाऱ्या कथांमधून पुढे नेला जातो.",
+  scrollCultTitle:"संस्कृती",
+  scrollCultBody:"भारतीय संस्कृती नृत्य, संगीत, पोशाख, अन्न, सण आणि एका पिढीकडून दुसऱ्या पिढीकडे जाणाऱ्या परंपरांमधून जिवंत राहते.",
+  discoverLink:"शोधा",
+  labAkbar:"अकबर",
+  labBirbal:"बिरबल",
+  labFood:"भारतीय पाककृती",
+  labTagore:"रवींद्रनाथ टागोर",
+  labDraupadi:"द्रौपदी",
+  labDurga:"दुर्गा माता",
+  labKathakali:"कथकली",
+  labTaj:"ताज महाल"
+},
+gu:{
+  brandTag:"સંસ્કૃતિ • ઇતિહાસ • સભ્યતા",
+  navHome:"હોમ",
+  navLogin:"લોગિન",
+  introHeading:"શાહી ફરમાન દ્વારા",
+  introChosen:"તમારી પસંદગી કરવામાં આવી છે.",
+  introBody:"<em>જ્ઞાન, સૌભાગ્ય અને શાણપણ</em>ના ત્રણ પ્રાચીન સ્ક્રોલ <em class=\"notranslate\">Itihasa</em>ની ગૂંથણીમાં છુપાયેલા છે.",
+  introBody2:"તેમને સારી રીતે શોધો. તેમના રહસ્યો ઉજાગર કરો. શોધની શરૂઆત થવા દો.",
+  introAccept:"હું ફરમાન સ્વીકારું છું",
+  cultureHeading:"ભોજન અને સ્વાદ",
+  cultureBody:"ભારતનું ભોજન પ્રાદેશિક સામગ્રી, મસાલા અને રસોઈ પરંપરાઓનું સમૃદ્ધ મિશ્રણ છે. બિરયાની અને ભારતીય વાનગીઓથી લઈને ગુલાબ જાંબુ જેવી મીઠાઈઓ સુધી, દરેક પ્રદેશ અનોખા સ્વાદ અને વાનગીઓ પ્રસ્તુત કરે છે.",
+  literatureHeading:"સાહિત્ય",
+  literatureBody:"પેઢી દર પેઢી ભારતીય સાહિત્યિક અભિવ્યક્તિને આકાર આપતી કવિતાઓ, વાર્તાઓ અને વિચારો.",
+  traditionHeading:"પરંપરા અને લોકો",
+  traditionBody:"ભારત અનેક સમુદાયો, ભાષાઓ અને સંસ્કૃતિઓના લોકોનું ઘર છે. આ વિવિધતા છતાં, વહેંચાયેલી પરંપરાઓ, તહેવારો અને મૂલ્યો એકતાની મજબૂત ભાવના સર્જે છે.",
+  performingHeading:"પ્રદર્શન કલાઓ",
+  performingBody:"ભારત પાસે શાસ્ત્રીય નૃત્યો, લોકસંગીત, નાટ્ય, તહેવારો અને પરંપરાગત કલા સ્વરૂપોનો વૈવિધ્યસભર વારસો છે. <span class=\"notranslate\">Bharatanatyam</span>, <span class=\"notranslate\">Kathak</span> અને <span class=\"notranslate\">Garba</span> જેવા લોકનૃત્યો આ સાંસ્કૃતિક સમૃદ્ધિ દર્શાવે છે.",
+  iconsHeading:"ભારતના પ્રતીકો",
+  iconsBody:"ભારત <span class=\"notranslate\">Taj Mahal</span>, <span class=\"notranslate\">Lotus Temple</span>, રાષ્ટ્રધ્વજ અને દેશના ઇતિહાસને આકાર આપનારા મહાન નેતાઓ જેવા પ્રતિષ્ઠિત સ્થળો, પ્રતીકો અને વ્યક્તિત્વો માટે જાણીતું છે.",
+  scrollCivTitle:"સભ્યતા",
+  scrollCivBody:"ભારતીય સભ્યતા આયોજિત શહેરો, ખેતી, વેપાર, હસ્તકલા, સ્થાપત્ય અને સમૃદ્ધ સામુદાયિક જીવન પદ્ધતિઓ દ્વારા વિકસી.",
+  scrollHistTitle:"ઇતિહાસ",
+  scrollHistBody:"ભારતનો ઇતિહાસ રાજ્યો, લોકો, કલા, સ્થાપત્ય અને ભૂતકાળને વર્તમાન સાથે જોડતી વાર્તાઓ દ્વારા આગળ વધે છે.",
+  scrollCultTitle:"સંસ્કૃતિ",
+  scrollCultBody:"ભારતીય સંસ્કૃતિ નૃત્ય, સંગીત, પોશાક, ખોરાક, તહેવારો અને એક પેઢીથી બીજી પેઢી સુધી પસાર થતી પરંપરાઓ દ્વારા જીવંત રહે છે.",
+  discoverLink:"શોધો",
+  labAkbar:"અકબર",
+  labBirbal:"બિરબલ",
+  labFood:"ભારતીય ભોજન",
+  labTagore:"રવીન્દ્રનાથ ટાગોર",
+  labDraupadi:"દ્રૌપદી",
+  labDurga:"દુર્ગા મા",
+  labKathakali:"કથકલી",
+  labTaj:"તાજ મહાલ"
+},
+pa:{
+  brandTag:"ਸੱਭਿਆਚਾਰ • ਇਤਿਹਾਸ • ਸੱਭਿਅਤਾ",
+  navHome:"ਹੋਮ",
+  navLogin:"ਲੌਗਇਨ",
+  introHeading:"ਸ਼ਾਹੀ ਫ਼ਰਮਾਨ ਦੁਆਰਾ",
+  introChosen:"ਤੁਹਾਨੂੰ ਚੁਣਿਆ ਗਿਆ ਹੈ।",
+  introBody:"<em>ਗਿਆਨ, ਕਿਸਮਤ ਅਤੇ ਸਿਆਣਪ</em> ਦੇ ਤਿੰਨ ਪ੍ਰਾਚੀਨ ਸਕ੍ਰੋਲ <em class=\"notranslate\">Itihasa</em> ਦੀ ਬੁਣਤੀ ਵਿੱਚ ਲੁਕੇ ਹੋਏ ਹਨ।",
+  introBody2:"ਉਹਨਾਂ ਨੂੰ ਚੰਗੀ ਤਰ੍ਹਾਂ ਲੱਭੋ। ਉਹਨਾਂ ਦੇ ਰਾਜ਼ ਖੋਲ੍ਹੋ। ਖੋਜ ਸ਼ੁਰੂ ਹੋਣ ਦਿਓ।",
+  introAccept:"ਮੈਂ ਫ਼ਰਮਾਨ ਸਵੀਕਾਰ ਕਰਦਾ ਹਾਂ",
+  cultureHeading:"ਖਾਣਾ ਅਤੇ ਸੁਆਦ",
+  cultureBody:"ਭਾਰਤ ਦਾ ਭੋਜਨ ਖੇਤਰੀ ਸਮੱਗਰੀ, ਮਸਾਲਿਆਂ ਅਤੇ ਰਸੋਈ ਪਰੰਪਰਾਵਾਂ ਦਾ ਇੱਕ ਅਮੀਰ ਮਿਸ਼ਰਣ ਹੈ। ਬਿਰਿਆਨੀ ਅਤੇ ਭਾਰਤੀ ਪਕਵਾਨਾਂ ਤੋਂ ਲੈ ਕੇ ਗੁਲਾਬ ਜਾਮੁਨ ਵਰਗੀਆਂ ਮਿਠਾਈਆਂ ਤੱਕ, ਹਰ ਖੇਤਰ ਵਿਲੱਖਣ ਸੁਆਦ ਅਤੇ ਪਕਵਾਨ ਪੇਸ਼ ਕਰਦਾ ਹੈ।",
+  literatureHeading:"ਸਾਹਿਤ",
+  literatureBody:"ਪੀੜ੍ਹੀ ਦਰ ਪੀੜ੍ਹੀ ਭਾਰਤੀ ਸਾਹਿਤਕ ਪ੍ਰਗਟਾਵੇ ਨੂੰ ਆਕਾਰ ਦੇਣ ਵਾਲੀ ਕਵਿਤਾ, ਕਹਾਣੀਆਂ ਅਤੇ ਵਿਚਾਰ।",
+  traditionHeading:"ਪਰੰਪਰਾ ਅਤੇ ਲੋਕ",
+  traditionBody:"ਭਾਰਤ ਕਈ ਭਾਈਚਾਰਿਆਂ, ਭਾਸ਼ਾਵਾਂ ਅਤੇ ਸੱਭਿਆਚਾਰਾਂ ਦੇ ਲੋਕਾਂ ਦਾ ਘਰ ਹੈ। ਇਸ ਵਿਭਿੰਨਤਾ ਦੇ ਬਾਵਜੂਦ, ਸਾਂਝੀਆਂ ਪਰੰਪਰਾਵਾਂ, ਤਿਉਹਾਰ ਅਤੇ ਕਦਰਾਂ-ਕੀਮਤਾਂ ਏਕਤਾ ਦੀ ਮਜ਼ਬੂਤ ਭਾਵਨਾ ਪੈਦਾ ਕਰਦੇ ਹਨ।",
+  performingHeading:"ਪ੍ਰਦਰਸ਼ਨੀ ਕਲਾਵਾਂ",
+  performingBody:"ਭਾਰਤ ਕੋਲ ਕਲਾਸੀਕਲ ਨਾਚ, ਲੋਕ ਸੰਗੀਤ, ਨਾਟਕ, ਤਿਉਹਾਰ ਅਤੇ ਰਵਾਇਤੀ ਕਲਾ ਰੂਪਾਂ ਦੀ ਵਿਭਿੰਨ ਵਿਰਾਸਤ ਹੈ। <span class=\"notranslate\">Bharatanatyam</span>, <span class=\"notranslate\">Kathak</span> ਅਤੇ <span class=\"notranslate\">Garba</span> ਵਰਗੇ ਲੋਕ ਨਾਚ ਇਸ ਸੱਭਿਆਚਾਰਕ ਅਮੀਰੀ ਨੂੰ ਦਰਸਾਉਂਦੇ ਹਨ।",
+  iconsHeading:"ਭਾਰਤ ਦੇ ਪ੍ਰਤੀਕ",
+  iconsBody:"ਭਾਰਤ <span class=\"notranslate\">Taj Mahal</span>, <span class=\"notranslate\">Lotus Temple</span>, ਰਾਸ਼ਟਰੀ ਝੰਡੇ ਅਤੇ ਦੇਸ਼ ਦੇ ਇਤਿਹਾਸ ਨੂੰ ਆਕਾਰ ਦੇਣ ਵਾਲੇ ਮਹਾਨ ਆਗੂਆਂ ਵਰਗੀਆਂ ਪ੍ਰਸਿੱਧ ਥਾਵਾਂ, ਪ੍ਰਤੀਕਾਂ ਅਤੇ ਸ਼ਖ਼ਸੀਅਤਾਂ ਲਈ ਜਾਣਿਆ ਜਾਂਦਾ ਹੈ।",
+  scrollCivTitle:"ਸੱਭਿਅਤਾ",
+  scrollCivBody:"ਭਾਰਤੀ ਸੱਭਿਅਤਾ ਯੋਜਨਾਬੱਧ ਸ਼ਹਿਰਾਂ, ਖੇਤੀਬਾੜੀ, ਵਪਾਰ, ਦਸਤਕਾਰੀ, ਆਰਕੀਟੈਕਚਰ ਅਤੇ ਭਾਈਚਾਰਕ ਜੀਵਨ ਦੀਆਂ ਅਮੀਰ ਪ੍ਰਣਾਲੀਆਂ ਰਾਹੀਂ ਵਧੀ।",
+  scrollHistTitle:"ਇਤਿਹਾਸ",
+  scrollHistBody:"ਭਾਰਤ ਦਾ ਇਤਿਹਾਸ ਰਾਜਾਂ, ਲੋਕਾਂ, ਕਲਾ, ਆਰਕੀਟੈਕਚਰ ਅਤੇ ਕਹਾਣੀਆਂ ਰਾਹੀਂ ਅੱਗੇ ਵਧਦਾ ਹੈ ਜੋ ਅਤੀਤ ਨੂੰ ਵਰਤਮਾਨ ਨਾਲ ਜੋੜਦੀਆਂ ਹਨ।",
+  scrollCultTitle:"ਸੱਭਿਆਚਾਰ",
+  scrollCultBody:"ਭਾਰਤੀ ਸੱਭਿਆਚਾਰ ਨਾਚ, ਸੰਗੀਤ, ਪਹਿਰਾਵੇ, ਭੋਜਨ, ਤਿਉਹਾਰਾਂ ਅਤੇ ਇੱਕ ਪੀੜ੍ਹੀ ਤੋਂ ਦੂਜੀ ਪੀੜ੍ਹੀ ਤੱਕ ਜਾਣ ਵਾਲੀਆਂ ਪਰੰਪਰਾਵਾਂ ਰਾਹੀਂ ਜਿਉਂਦਾ ਹੈ।",
+  discoverLink:"ਖੋਜੋ",
+  labAkbar:"ਅਕਬਰ",
+  labBirbal:"ਬੀਰਬਲ",
+  labFood:"ਭਾਰਤੀ ਖਾਣਾ",
+  labTagore:"ਰਵਿੰਦਰਨਾਥ ਟੈਗੋਰ",
+  labDraupadi:"ਦ੍ਰੌਪਦੀ",
+  labDurga:"ਦੁਰਗਾ ਮਾਂ",
+  labKathakali:"ਕਥਕਲੀ",
+  labTaj:"ਤਾਜ ਮਹਿਲ"
+}
+};
+
+const i18nNodes=[...document.querySelectorAll('[data-i18n]')];
+
+function applyLanguage(code){
+  const dict=I18N[code]||I18N.en;
+  i18nNodes.forEach(node=>{
+    const key=node.dataset.i18n;
+    const value=dict[key]!==undefined?dict[key]:I18N.en[key];
+    if(value!==undefined) node.innerHTML=value;
+  });
+  document.documentElement.lang=code;
+  localStorage.setItem(LANG_KEY,code);
+}
+
+function selectLanguageOption(code){
+  const opt=langOptions.find(o=>o.dataset.code===code);
+  if(!opt) return;
+  langOptions.forEach(o=>{o.classList.remove('selected');o.setAttribute('aria-selected','false')});
+  opt.classList.add('selected');
+  opt.setAttribute('aria-selected','true');
+  langLabel.textContent=opt.dataset.lang;
+}
+
+langOptions.forEach(opt=>{
+  opt.addEventListener('click',e=>{
+    e.stopPropagation();
+    selectLanguageOption(opt.dataset.code);
+    closeLangMenu();
+    applyLanguage(opt.dataset.code);
+  });
+});
+document.addEventListener('click',()=>closeLangMenu());
+langMenu.addEventListener('click',e=>e.stopPropagation());
+
+/* Restore the visitor's previously chosen language, if any. */
+const savedLang=localStorage.getItem(LANG_KEY);
+if(savedLang && I18N[savedLang]){
+  selectLanguageOption(savedLang);
+  applyLanguage(savedLang);
+}
+
+/* --- Header: hide on scroll down, reveal on scroll up --- */
+const siteHeader=document.querySelector('.site-header');
+let lastScrollY=window.scrollY;
+let headerTicking=false;
+const HEADER_SCROLL_THRESHOLD=8;
+
+function updateHeaderVisibility(){
+  const currentY=window.scrollY;
+  const delta=currentY-lastScrollY;
+
+  if(currentY<=0){
+    siteHeader.classList.remove('header-hidden');
+  }else if(delta>HEADER_SCROLL_THRESHOLD){
+    siteHeader.classList.add('header-hidden');
+    closeLangMenu();
+  }else if(delta<-HEADER_SCROLL_THRESHOLD){
+    siteHeader.classList.remove('header-hidden');
+  }
+  lastScrollY=currentY;
+  headerTicking=false;
+}
+window.addEventListener('scroll',()=>{
+  if(!headerTicking){
+    requestAnimationFrame(updateHeaderVisibility);
+    headerTicking=true;
+  }
+},{passive:true});
+
+const intro=document.getElementById('royalIntro');
+const royalScroll=document.getElementById('royalScroll');
+const enter=document.getElementById('enterItihasa');
+const DECREE_KEY='tridharaDecreeSeen';
+
+function dismissIntro(){
+  localStorage.setItem(DECREE_KEY,'1');
+  intro.classList.add('hidden');
+  setTimeout(()=>document.getElementById('scene')?.focus(),520);
+}
+
+function openRoyalScroll(){
+  royalScroll.classList.add('open');
+  royalScroll.setAttribute('aria-expanded','true');
+}
+royalScroll.addEventListener('click',e=>{
+  if(e.target.closest('#enterItihasa')) return;
+  if(!royalScroll.classList.contains('open')) {
+    openRoyalScroll();
+    return;
+  }
+  // Fallback: once the decree is open, clicking the parchment itself proceeds.
+  dismissIntro();
+});
+royalScroll.addEventListener('keydown',e=>{
+  if(e.key==='Enter'||e.key===' '){
+    e.preventDefault();
+    if(!royalScroll.classList.contains('open')) openRoyalScroll();
+    else dismissIntro();
+  }
+});
+enter.addEventListener('click',e=>{
+  e.stopPropagation();
+  dismissIntro();
+});
+
+const hotspots=[...document.querySelectorAll('.hotspot')];
+let active=null;
+
+function clearActive(){
+  if(!active) return;
+  active.classList.remove('active');
+  const oldLabel=document.getElementById(active.dataset.label);
+  if(oldLabel) oldLabel.classList.remove('show','clicked');
+  active=null;
+}
+
+hotspots.forEach(h=>{
+  const label=document.getElementById(h.dataset.label);
+
+  h.addEventListener('mouseenter',()=>label.classList.add('show'));
+  h.addEventListener('mouseleave',()=>{
+    if(active!==h) label.classList.remove('show');
+  });
+
+  h.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(active===h){ clearActive(); return; }
+    clearActive();
+    active=h;
+    h.classList.add('active');
+    label.classList.add('show');
+    label.classList.add('clicked');
+  });
+});
+
+document.querySelector('.scene').addEventListener('click',clearActive);
+const scrolls=[...document.querySelectorAll('.scroll')];
+scrolls.forEach(scroll=>{
+  const toggle=()=>{
+    const isOpen=scroll.classList.toggle('open');
+    scroll.setAttribute('aria-expanded',String(isOpen));
+  };
+  scroll.addEventListener('click',e=>{
+    if(e.target.closest('a')) return;
+    e.stopPropagation();
+    toggle();
+  });
+  scroll.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){
+      e.preventDefault();
+      toggle();
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
